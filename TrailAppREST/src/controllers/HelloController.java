@@ -1,13 +1,10 @@
 package controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import data.UserDAO;
-import entities.User;
 
 @RestController
 public class HelloController {
@@ -19,10 +16,10 @@ public class HelloController {
 		return "pong";
 	}
 	
-	@GetMapping("users")
-	List<User> index() {
-		return dao.index();
-	}
+//	@GetMapping("users")
+//	List<User> index() {
+//		return dao.index();
+//	}
 	
 	
 }
