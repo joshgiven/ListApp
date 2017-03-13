@@ -8,7 +8,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import entities.TrailReport;
+import entities.Report;
 
 @Transactional
 @Repository
@@ -18,13 +18,13 @@ public class ReportDaoJpaImpl implements ReportDAO {
 	EntityManager em;
 
 	@Override
-	public List<TrailReport> index(int trailId) {
+	public List<Report> index(int trailId) {
 		String query = 
 				"SELECT tr " + 
-				"FROM TrailReport tr JOIN Trail t" +
+				"FROM Report tr JOIN Trail t" +
 		        "WHERE t = :trailId";
 			
-			return em.createQuery(query, TrailReport.class)
+			return em.createQuery(query, Report.class)
 					.setParameter("trailId", trailId)
 					.getResultList();
 	}

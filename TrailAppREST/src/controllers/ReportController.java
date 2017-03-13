@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import entities.TrailReport;
+import entities.Report;
 
 @RestController
 public class ReportController {
@@ -23,17 +23,17 @@ public class ReportController {
 	}
 
 	@GetMapping("trails/{tid}/reports")
-	List<TrailReport> index(@PathVariable int tid) {
+	List<Report> index(@PathVariable int tid) {
 		return null;
 	}
 	
 	@GetMapping("trails/{tid}/reports/{rid}")
-	TrailReport show(@PathVariable int tid, @PathVariable int rid) {
+	Report show(@PathVariable int tid, @PathVariable int rid) {
 		return null;
 	}
 	
 	@PostMapping("trails/{tid}/reports")
-	TrailReport create(
+	Report create(
 			@PathVariable int tid,
 			@RequestBody String fillupJSON, 
 			HttpServletResponse res) {
@@ -41,7 +41,7 @@ public class ReportController {
 	}
 	
 	@PutMapping("trails/{tid}/reports/{rid}")
-	TrailReport update(
+	Report update(
 			@PathVariable int tid, 
 			@PathVariable int rid, 
 			@RequestBody String fillupJSON, 
@@ -51,7 +51,7 @@ public class ReportController {
 	}
 	
 	@DeleteMapping("trails/{tid}/reports/{rid}")
-	TrailReport destroy(
+	Report destroy(
 			@PathVariable int tid, 
 			@PathVariable int rid, 
 			HttpServletResponse res ) {
