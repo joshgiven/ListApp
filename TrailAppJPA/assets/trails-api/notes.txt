@@ -1,0 +1,13 @@
+// These code snippets use an open-source library. http://unirest.io/java
+HttpResponse<String> response = Unirest.get("https://trailapi-trailapi.p.mashape.com/?q[state_cont]=Colorado")
+.header("X-Mashape-Key", "s0btwXERfLmshJffdVEn4Ih8Uxfcp16PJvtjsnTdTdNBWMesHu")
+.header("Accept", "text/plain")
+.asString();
+
+
+
+// These code snippets use an open-source library. http://unirest.io/java
+HttpResponse<String> response = Unirest.get("https://trailapi-trailapi.p.mashape.com/?q[activities_activity_type_name_eq]=hiking&q[state_cont]=Colorado")
+.header("X-Mashape-Key", "ehHQJC0mjWmshcrfSlKfqj8Jw2IFp1Jwsj0jsnOsM1o1Won9NT")
+.header("Accept", "text/plain")
+.asString();
