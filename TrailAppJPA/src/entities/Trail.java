@@ -2,11 +2,15 @@ package entities;
 
 import java.util.List;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="trail")
 public class Trail {
 
 	@Id
@@ -24,13 +28,13 @@ public class Trail {
 	private String imageUrl;
 	
 	@OneToMany(mappedBy="trail")
-	List<TrailReport> reports;
+	List<Report> reports;
 
 	
 	public Trail(){}
 	
 	public Trail(int id, String city, String state, String name, String apiId, String directions, int latitude,
-			int longitude, String description, Double length, String imageUrl, List<TrailReport> reports) {
+			int longitude, String description, Double length, String imageUrl, List<Report> reports) {
 		super();
 		this.id = id;
 		this.city = city;
@@ -126,11 +130,11 @@ public class Trail {
 		this.imageUrl = imageUrl;
 	}
 
-	public List<TrailReport> getReports() {
+	public List<Report> getReports() {
 		return reports;
 	}
 
-	public void setReports(List<TrailReport> reports) {
+	public void setReports(List<Report> reports) {
 		this.reports = reports;
 	}
 

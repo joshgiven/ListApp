@@ -8,7 +8,8 @@
 
 		<class>entities.User</class>
 		<class>entities.Trail</class>
-		<class>entities.TrailReport</class>
+		<class>entities.Report</class>
+		<class>entities.Status</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/listappdb" />
