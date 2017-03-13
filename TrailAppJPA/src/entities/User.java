@@ -2,6 +2,7 @@ package entities;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,10 +20,18 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	private String email;
+	
 	private String password;
+	
+	@Column(name="first_name")
 	private String firstName;
+	
+	@Column(name="last_name")
 	private String lastName;
+	
+	@Column(name="description")
 	private String description;
 	
 	@ManyToMany
@@ -32,13 +41,13 @@ public class User {
 	private List<Trail> favorites;
 	
 	@OneToMany(mappedBy="user")
-	private List<TrailReport> reports;
+	private List<Report> reports;
 	
 	
 	public User(){}
 	
 	public User(int id, String email, String password, String firstName, String lastName, String description,
-			List<Trail> favorites, List<TrailReport> reports) {
+			List<Trail> favorites, List<Report> reports) {
 		super();
 		this.id = id;
 		this.email = email;
@@ -98,11 +107,11 @@ public class User {
 		this.favorites = favorites;
 	}
 
-	public List<TrailReport> getReports() {
+	public List<Report> getReports() {
 		return reports;
 	}
 
-	public void setReports(List<TrailReport> reports) {
+	public void setReports(List<Report> reports) {
 		this.reports = reports;
 	}
 

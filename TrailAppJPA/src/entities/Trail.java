@@ -2,11 +2,16 @@ package entities;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="trail")
 public class Trail {
 
 	@Id
@@ -15,22 +20,30 @@ public class Trail {
 	private String city;
 	private String state;
 	private String name;
+	
+	@Column(name="api_id")
 	private String apiId;
+	
 	private String directions;
 	private int latitude;
 	private int longitude;
 	private String description;
-	private int length;
+	private Double length;
+	
+	@Column(name="image_url")
 	private String imageUrl;
 	
 	@OneToMany(mappedBy="trail")
-	List<TrailReport> reports;
+	List<Report> reports;
+	
+	@Column(name="recent_report_id")
+	private Integer recentReportId;
 
 	
 	public Trail(){}
 	
 	public Trail(int id, String city, String state, String name, String apiId, String directions, int latitude,
-			int longitude, String description, int length, String imageUrl, List<TrailReport> reports) {
+			int longitude, String description, Double length, String imageUrl, List<Report> reports) {
 		super();
 		this.id = id;
 		this.city = city;
@@ -110,11 +123,11 @@ public class Trail {
 		this.description = description;
 	}
 
-	public int getLength() {
+	public Double getLength() {
 		return length;
 	}
 
-	public void setLength(int length) {
+	public void setLength(Double length) {
 		this.length = length;
 	}
 
@@ -126,11 +139,11 @@ public class Trail {
 		this.imageUrl = imageUrl;
 	}
 
-	public List<TrailReport> getReports() {
+	public List<Report> getReports() {
 		return reports;
 	}
 
-	public void setReports(List<TrailReport> reports) {
+	public void setReports(List<Report> reports) {
 		this.reports = reports;
 	}
 
