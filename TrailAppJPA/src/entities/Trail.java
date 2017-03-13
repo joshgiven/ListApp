@@ -20,7 +20,7 @@ public class Trail {
 	private int latitude;
 	private int longitude;
 	private String description;
-	private int length;
+	private Double length;
 	private String imageUrl;
 	
 	@OneToMany(mappedBy="trail")
@@ -30,7 +30,7 @@ public class Trail {
 	public Trail(){}
 	
 	public Trail(int id, String city, String state, String name, String apiId, String directions, int latitude,
-			int longitude, String description, int length, String imageUrl, List<TrailReport> reports) {
+			int longitude, String description, Double length, String imageUrl, List<TrailReport> reports) {
 		super();
 		this.id = id;
 		this.city = city;
@@ -110,11 +110,11 @@ public class Trail {
 		this.description = description;
 	}
 
-	public int getLength() {
+	public Double getLength() {
 		return length;
 	}
 
-	public void setLength(int length) {
+	public void setLength(Double length) {
 		this.length = length;
 	}
 
