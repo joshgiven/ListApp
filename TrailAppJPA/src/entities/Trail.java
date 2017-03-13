@@ -14,6 +14,14 @@ import javax.persistence.Table;
 @Table(name="trail")
 public class Trail {
 
+	public Integer getRecentReportId() {
+		return recentReportId;
+	}
+
+	public void setRecentReportId(Integer recentReportId) {
+		this.recentReportId = recentReportId;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
