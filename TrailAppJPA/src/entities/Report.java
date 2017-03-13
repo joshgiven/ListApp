@@ -2,14 +2,13 @@ package entities;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -33,11 +32,22 @@ public class Report {
 	private String heading;
 	private String comment;
 	private Date timestamp;
+	
+	private String snowStatus;
+	private String groundStatus;
+	private String passStatus;
 
 	// conditions
-	@ManyToMany
-	@JoinTable(name = "report_status", joinColumns = @JoinColumn(name = "report_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "status_id", referencedColumnName = "id"))
-	private List<Status> condition;
+//	@ManyToMany
+//	@JoinTable(name = "report_status", joinColumns = @JoinColumn(name = "report_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "status_id", referencedColumnName = "id"))
+//	private List<Status> condition;
+	
+	
+	private Map<String, String> getStatuses(){
+		
+		
+		return null;
+	};
 
 	public Report() {
 	}
@@ -51,7 +61,6 @@ public class Report {
 		this.heading = heading;
 		this.comment = comment;
 		this.timestamp = timestamp;
-		this.condition = condition;
 	}
 
 	public Trail getTrail() {
@@ -92,14 +101,6 @@ public class Report {
 
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
-	}
-
-	public List<Status> getCondition() {
-		return condition;
-	}
-
-	public void setCondition(List<Status> condition) {
-		this.condition = condition;
 	}
 
 	public int getId() {

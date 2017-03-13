@@ -50,6 +50,7 @@ CREATE TABLE IF NOT EXISTS `traildb`.`trail` (
   `length` DOUBLE NULL,
   `image_url` BLOB NULL,
   `activity_type` VARCHAR(45) NOT NULL DEFAULT 'Hiking',
+  `recent_report_id` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -61,13 +62,13 @@ DROP TABLE IF EXISTS `traildb`.`report` ;
 
 CREATE TABLE IF NOT EXISTS `traildb`.`report` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `trail_id` INT NOT NULL,
   `comment` TEXT(1000) NULL,
   `timestamp` DATETIME NULL DEFAULT NOW(),
   `heading` VARCHAR(255) NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_trail_report_trail1_idx` (`trail_id` ASC),
-  CONSTRAINT `fk_trail_report_trail1`
+  `trail_id` INT NOT NULL,
+  PRIMARY KEY (`id`, `trail_id`),
+  INDEX `fk_report_trail1_idx` (`trail_id` ASC),
+  CONSTRAINT `fk_report_trail1`
     FOREIGN KEY (`trail_id`)
     REFERENCES `traildb`.`trail` (`id`)
     ON DELETE NO ACTION
@@ -83,6 +84,7 @@ DROP TABLE IF EXISTS `traildb`.`tstatus` ;
 CREATE TABLE IF NOT EXISTS `traildb`.`tstatus` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(200) NULL,
+  `status_type` ENUM('snow', 'ground', 'passability') NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
