@@ -2,13 +2,15 @@ package entities;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
+import entities.TStatus;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -32,36 +34,41 @@ public class Report {
 	private String heading;
 	private String comment;
 	private Date timestamp;
-	
-	private String snowStatus;
-	private String groundStatus;
-	private String passStatus;
 
-	// conditions
-//	@ManyToMany
-//	@JoinTable(name = "report_status", joinColumns = @JoinColumn(name = "report_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "status_id", referencedColumnName = "id"))
-//	private List<Status> condition;
+	@ManyToMany
+	@JoinTable(name = "t_status_has_report", 
+	joinColumns = @JoinColumn(name = "report_id", referencedColumnName = "id"), 
+	inverseJoinColumns = @JoinColumn(name = "t_status_id", referencedColumnName = "id"))
+	private List<TStatus> tstatuses;
+		
 	
 	
-	private Map<String, String> getStatuses(){
-		
-		
-		return null;
-	};
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Report [id=");
+		builder.append(id);
+		builder.append(", trail=");
+		builder.append(trail);
+		builder.append(", user=");
+		builder.append(user);
+		builder.append(", heading=");
+		builder.append(heading);
+		builder.append(", comment=");
+		builder.append(comment);
+		builder.append(", timestamp=");
+		builder.append(timestamp);
+		builder.append(", statuses=");
+		builder.append(tstatuses);
+		builder.append("]");
+		return builder.toString();
+	}
+
 
 	public Report() {
 	}
 
-	public Report(int id, Trail trail, User user, String heading, String comment, Date timestamp,
-			List<Status> condition) {
-		super();
-		this.id = id;
-		this.trail = trail;
-		this.user = user;
-		this.heading = heading;
-		this.comment = comment;
-		this.timestamp = timestamp;
-	}
 
 	public Trail getTrail() {
 		return trail;
@@ -105,6 +112,16 @@ public class Report {
 
 	public int getId() {
 		return id;
+	}
+
+
+	public List<TStatus> getTStatuses() {
+		return tstatuses;
+	}
+
+
+	public void setTStatuses(List<TStatus> statuses) {
+		this.tstatuses = statuses;
 	}
 
 }

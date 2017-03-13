@@ -1,4 +1,4 @@
-package entites;
+package test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -23,7 +23,7 @@ public class UserTest {
 	
 	@Before
 	public void setUp() {
-		emf = Persistence.createEntityManagerFactory("ListApp");
+		emf = Persistence.createEntityManagerFactory("TrailApp");
 		em = emf.createEntityManager();
 	}
 	
@@ -31,7 +31,7 @@ public class UserTest {
 	public void tearDown() {
 		if (em != null)
 			em.close();
-		if (em != null)
+		if (emf != null)
 			emf.close();
 	}
 	
@@ -47,14 +47,23 @@ public class UserTest {
 		
 		List<User> users = em.createQuery(query, User.class).getResultList();
 		assertNotNull(users);
-		assertEquals(5, users.size());
+		assertEquals(1, users.size());
 		
 		User lastUser = users.get(users.size()-1);
 		assertNotNull(lastUser);
 	}
-
+	
 	@Test
-	public void test_fail() {
-		fail("meh");
+	public void test_user_fields() {
+		User user = em.find(User.class, 1);
+		assertEquals(1, user.getId());
+		assertEquals("Tester", user.getFirstName());
+		assertEquals("McTesterson", user.getLastName());
+		
 	}
+
+//	@Test
+//	public void test_fail() {
+//		fail("meh");
+//	}
 }
