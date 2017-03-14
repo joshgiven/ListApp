@@ -35,7 +35,7 @@ public class User {
 	private String description;
 	
 	@ManyToMany
-	@JoinTable(name="user_trail", 
+	@JoinTable(name="user_has_trail", 
 	joinColumns=@JoinColumn(name="user_id", referencedColumnName="id"),
 	inverseJoinColumns=@JoinColumn(name="trail_id", referencedColumnName="id"))
 	private List<Trail> favorites;
