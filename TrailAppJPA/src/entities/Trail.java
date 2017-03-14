@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="trail")
 public class Trail {
@@ -42,6 +44,7 @@ public class Trail {
 	private String imageUrl;
 	
 	@OneToMany(mappedBy="trail")
+	@JsonIgnore
 	List<Report> reports;
 	
 	@Column(name="recent_report_id")

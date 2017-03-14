@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +13,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="user")
@@ -34,13 +37,14 @@ public class User {
 	@Column(name="description")
 	private String description;
 	
-	@ManyToMany
-	@JoinTable(name="user_trail", 
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(name="user_has_trail", 
 	joinColumns=@JoinColumn(name="user_id", referencedColumnName="id"),
 	inverseJoinColumns=@JoinColumn(name="trail_id", referencedColumnName="id"))
 	private List<Trail> favorites;
 	
 	@OneToMany(mappedBy="user")
+	@JsonIgnore
 	private List<Report> reports;
 	
 	

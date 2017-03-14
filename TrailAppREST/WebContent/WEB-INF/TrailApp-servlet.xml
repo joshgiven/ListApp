@@ -21,10 +21,10 @@
      
     <context:component-scan base-package="controllers" />
     
- 	<!-- 
+ 
     <bean id="userDAO" class="data.UserDaoJpaImpl" />
-    <bean id="authDAO" class="data.AuthDAO" />
-  	-->
+  <!--   <bean id="authDAO" class="data.AuthDAO" /> -->
+ 
     
     <!-- bcrypt bean -->
 <!-- 	<bean id="bCryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" /> -->
