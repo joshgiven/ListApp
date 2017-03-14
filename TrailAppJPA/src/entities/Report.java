@@ -32,7 +32,7 @@ public class Report {
 	private int id;
 
 	@JsonIgnore
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "trail_id")
 	private Trail trail;
 

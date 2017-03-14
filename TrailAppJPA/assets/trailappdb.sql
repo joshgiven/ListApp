@@ -153,3 +153,27 @@ GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE `trailappdb`.* TO 'trailu
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+-- -----------------------------------------------------
+-- Data for table `trailappdb`.`t_status`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `trailappdb`;
+INSERT INTO `trailappdb`.`t_status` (`id`, `name`, `status_type`) VALUES (1, 'deep snow cover', 'snow');
+INSERT INTO `trailappdb`.`t_status` (`id`, `name`, `status_type`) VALUES (2, 'moderate snow cover', 'snow');
+INSERT INTO `trailappdb`.`t_status` (`id`, `name`, `status_type`) VALUES (3, 'light snow cover', 'snow');
+INSERT INTO `trailappdb`.`t_status` (`id`, `name`, `status_type`) VALUES (4, 'slushy snow cover', 'snow');
+INSERT INTO `trailappdb`.`t_status` (`id`, `name`, `status_type`) VALUES (5, 'no snow', 'snow');
+INSERT INTO `trailappdb`.`t_status` (`id`, `name`, `status_type`) VALUES (6, 'dry', 'ground');
+INSERT INTO `trailappdb`.`t_status` (`id`, `name`, `status_type`) VALUES (7, 'icy', 'ground');
+INSERT INTO `trailappdb`.`t_status` (`id`, `name`, `status_type`) VALUES (8, 'washed out', 'ground');
+INSERT INTO `trailappdb`.`t_status` (`id`, `name`, `status_type`) VALUES (9, 'heavy mud', 'ground');
+INSERT INTO `trailappdb`.`t_status` (`id`, `name`, `status_type`) VALUES (10, 'moderate mud', 'ground');
+INSERT INTO `trailappdb`.`t_status` (`id`, `name`, `status_type`) VALUES (11, 'light mud', 'ground');
+INSERT INTO `trailappdb`.`t_status` (`id`, `name`, `status_type`) VALUES (12, 'closed', 'passability');
+INSERT INTO `trailappdb`.`t_status` (`id`, `name`, `status_type`) VALUES (13, 'open', 'passability');
+INSERT INTO `trailappdb`.`t_status` (`id`, `name`, `status_type`) VALUES (14, 'impassable', 'passability');
+INSERT INTO `trailappdb`.`t_status` (`id`, `name`, `status_type`) VALUES (15, 'hazardous', 'passability');
+
+COMMIT;
+
