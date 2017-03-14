@@ -1,6 +1,7 @@
 package entities;
 
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -50,7 +51,7 @@ public class Trail {
 //	private Integer recentReportId;
 	
 	
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "recent_report_id")
 	private Report recentReport;
 
@@ -90,7 +91,13 @@ public class Trail {
 	}
 	
 	public void setRecentReport(Report recentReport) {
-		this.recentReport = recentReport;
+		if(reports.size()>1){
+		for (Report r : reports) {
+			System.out.println(r.getTimestamp());
+		}
+		reports.sort((Report r1, Report r2) -> r1.getTimestamp().compareTo(r2.getTimestamp()));
+		this.recentReport = reports.get(reports.size()-1);
+		} else this.recentReport = recentReport;
 	}
 
 	public String getCity() {
