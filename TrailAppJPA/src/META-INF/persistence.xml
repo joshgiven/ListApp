@@ -10,6 +10,7 @@
 		<class>entities.Trail</class>
 		<class>entities.Report</class>
 		<class>entities.TStatus</class>
+		<class>entities.StatusType</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/trailappdb" />

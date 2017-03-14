@@ -1,15 +1,19 @@
 package entities;
 
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PreRemove;
 import javax.persistence.Table;
 
@@ -18,14 +22,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name="trail")
 public class Trail {
-
-	public Integer getRecentReportId() {
-		return recentReportId;
-	}
-
-	public void setRecentReportId(Integer recentReportId) {
-		this.recentReportId = recentReportId;
-	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,20 +34,26 @@ public class Trail {
 	private String apiId;
 
 	private String directions;
-	private int latitude;
-	private int longitude;
+	private double latitude;
+	private double longitude;
 	private String description;
 	private Double length;
 
 	@Column(name="image_url")
 	private String imageUrl;
 
-	@OneToMany(mappedBy="trail", cascade={CascadeType.REMOVE})
+	@OneToMany(mappedBy="trail", cascade={CascadeType.REMOVE}, fetch=FetchType.EAGER)
 	@JsonIgnore
 	private List<Report> reports;
 
-	@Column(name="recent_report_id")
-	private Integer recentReportId;
+//	@Column(name="recent_report_id")
+//	private Integer recentReportId;
+	
+	
+	@OneToOne
+	@JoinColumn(name = "recent_report_id")
+	private Report recentReport;
+
 
 	@ManyToMany(mappedBy="favorites")
 	@JsonIgnore
@@ -81,6 +83,14 @@ public class Trail {
 		this.length = length;
 		this.imageUrl = imageUrl;
 		this.reports = reports;
+	}
+	
+	public Report getRecentReport() {
+		return recentReport;
+	}
+	
+	public void setRecentReport(Report recentReport) {
+		this.recentReport = recentReport;
 	}
 
 	public String getCity() {
@@ -123,19 +133,19 @@ public class Trail {
 		this.directions = directions;
 	}
 
-	public int getLatitude() {
+	public double getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(int latitude) {
+	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
 
-	public int getLongitude() {
+	public double getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(int longitude) {
+	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
 

@@ -6,9 +6,10 @@ import entities.Report;
 
 public interface ReportDAO {
 	public List<Report> index(int trailId);
-//	public TrailReport show(int id);
-//	public TrailReport create(TrailReport report);
-//	public TrailReport update(int id, TrailReport report);
-//	public TrailReport destroy(int id);
+	public Report show(int id);
+	public Report create(Report report, int tid, int uid);
+	public Report update(int id, Report report);
+	public Report destroy(int id);
+	public Report mostRecentReport(int tid);
 
 }
