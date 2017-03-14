@@ -12,7 +12,7 @@
     <mvc:annotation-driven />
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="api/TrailAppREST/**" />
+			<mvc:mapping path="TrailAppREST/**" />
 			<bean id="DataSecurityInterceptor" class="security.DataSecurityInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

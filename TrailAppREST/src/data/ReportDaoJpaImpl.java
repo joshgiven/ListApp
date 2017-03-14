@@ -1,5 +1,6 @@
 package data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import entities.Report;
+import entities.TStatus;
 import entities.Trail;
 import entities.User;
 
@@ -39,31 +41,38 @@ public class ReportDaoJpaImpl implements ReportDAO {
 		User user = em.find(User.class, uid);
 		report.setTrail(trail);
 		report.setUser(user);
+		List<TStatus> statuses = report.getTStatuses();
+		TStatus a = em.find(TStatus.class, statuses.get(0).getId());
+		TStatus b = em.find(TStatus.class, statuses.get(1).getId());
+		TStatus c = em.find(TStatus.class, statuses.get(2).getId());
+		List<TStatus> newStatuses = new ArrayList<TStatus>();
+		newStatuses.add(a);
+		newStatuses.add(b);
+		newStatuses.add(c);
+		report.setTStatuses(newStatuses);
 		em.persist(report);
-		System.out.println("report id: " + report.getId());
-		if(trail.getRecentReport() == null ||
-				trail.getRecentReport().getTimestamp().compareTo(report.getTimestamp())<0){
-		em.flush();
 		trail.setRecentReport(report);
-		System.out.println(trail.getRecentReport().getId());
-		}
 		return em.find(Report.class, report.getId());
 	}
 
 	@Override
 	public Report update(int id, Report report) {
 		Report r = em.find(Report.class, id);
+		System.out.println("report: " + report);
 		Trail trail = r.getTrail();
 		r.setComment(report.getComment());
 		r.setHeading(report.getHeading());
 		r.setTimestamp(report.getTimestamp());
-		r.setTStatuses(report.getTStatuses());
-		em.flush();
-		if(trail.getRecentReport() == null ||
-				trail.getRecentReport().getTimestamp().compareTo(report.getTimestamp())<0){
-		//trail.setRecentReport(report);
-		System.out.println(trail.getRecentReport().getId());
-		}
+		List<TStatus> statuses = report.getTStatuses();
+		TStatus a = em.find(TStatus.class, statuses.get(0).getId());
+		TStatus b = em.find(TStatus.class, statuses.get(1).getId());
+		TStatus c = em.find(TStatus.class, statuses.get(2).getId());
+		List<TStatus> newStatuses = new ArrayList<TStatus>();
+		newStatuses.add(a);
+		newStatuses.add(b);
+		newStatuses.add(c);
+		r.setTStatuses(newStatuses);
+		trail.setRecentReport(r);
 		return r;
 	}
 
