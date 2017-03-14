@@ -23,14 +23,13 @@ public class TrailDaoJpaImpl implements TrailDAO {
 				"SELECT t " + 
 				"FROM Trail t";
 			
-			return em.createQuery(query, Trail.class)
-					.getResultList();
+		return em.createQuery(query, Trail.class)
+		         .getResultList();
 	}
 
 	@Override
 	public Trail show(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.find(Trail.class, id);
 	}
 
 	@Override
@@ -47,8 +46,13 @@ public class TrailDaoJpaImpl implements TrailDAO {
 
 	@Override
 	public Trail destroy(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Trail trail = em.find(Trail.class, id);
+		
+		if(trail != null) {
+			em.remove(trail);
+		}
+		
+		return trail;
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,11 +15,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import data.TrailDAO;
 import entities.Trail;
 
 @RestController
 public class TrailController {
 
+	@Autowired
+	TrailDAO trailDAO;
+	
 	@GetMapping("trails/ping")
 	String ping() {
 		return "pong";
@@ -31,7 +36,7 @@ public class TrailController {
 			@RequestParam String status, 
 			HttpServletRequest req,
 			HttpServletResponse res ) {
-		
+
 		return null;
 	}
 	
@@ -45,12 +50,12 @@ public class TrailController {
 	
 	@GetMapping("trails")
 	List<Trail> index() {
-		return null;
+		return trailDAO.index();
 	}
 	
 	@GetMapping("trails/{id}")
 	Trail show(@PathVariable int id) {
-		return null;
+		return trailDAO.show(id);
 	}
 	
 	@PostMapping("trails")
@@ -65,6 +70,6 @@ public class TrailController {
 	
 	@DeleteMapping("trails/{id}")
 	Trail destroy(@PathVariable int id, HttpServletResponse res) {
-		return null;
+		return trailDAO.destroy(id);
 	}
 }

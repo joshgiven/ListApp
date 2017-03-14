@@ -21,8 +21,10 @@
      
     <context:component-scan base-package="controllers" />
     
- 	<!-- 
+    <bean id="trailDAO" class="data.TrailDaoJpaImpl" />
     <bean id="userDAO" class="data.UserDaoJpaImpl" />
+    <bean id="reportDAO" class="data.ReportDaoJpaImpl" />
+ 	<!-- 
     <bean id="authDAO" class="data.AuthDAO" />
   	-->
     
