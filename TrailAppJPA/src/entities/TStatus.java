@@ -48,7 +48,7 @@ public class TStatus {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Status [id=");
+		builder.append("tstatus [id=");
 		builder.append(id);
 		builder.append(", name=");
 		builder.append(name);
