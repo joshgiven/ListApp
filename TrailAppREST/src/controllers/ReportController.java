@@ -73,7 +73,7 @@ public class ReportController {
 		  e.printStackTrace();
 		  return null;
 		}
-		return reportDAO.update(tid,r);
+		return reportDAO.update(rid,r);
 	}
 	
 	@DeleteMapping("trails/{tid}/reports/{rid}")
@@ -83,5 +83,14 @@ public class ReportController {
 			HttpServletResponse res ) {
 		
 		return reportDAO.destroy(rid);
+	}
+	
+	@GetMapping("trails/{tid}/latestreport")
+	Report mostRecentReport(
+			@PathVariable int tid, 
+			@PathVariable int rid, 
+			HttpServletResponse res ) {
+		
+		return reportDAO.mostRecentReport(tid);
 	}
 }

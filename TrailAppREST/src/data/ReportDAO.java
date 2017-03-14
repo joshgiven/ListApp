@@ -10,5 +10,6 @@ public interface ReportDAO {
 	public Report create(Report report, int tid, int uid);
 	public Report update(int id, Report report);
 	public Report destroy(int id);
+	public Report mostRecentReport(int tid);
 
 }
