@@ -30,7 +30,6 @@ UNLOCK TABLES;
 
 LOCK TABLES `t_status` WRITE;
 /*!40000 ALTER TABLE `t_status` DISABLE KEYS */;
-INSERT INTO `t_status` VALUES (1,'heavy snow','snow'),(2,'muddy','ground'),(3,'open and passable','passability');
 /*!40000 ALTER TABLE `t_status` ENABLE KEYS */;
 UNLOCK TABLES;
 
