@@ -21,12 +21,10 @@ public class ReportDaoJpaImpl implements ReportDAO {
 
 	@Override
 	public List<Report> index(int trailId) {
-		String query = 
-				"SELECT t " + 
-				"FROM Trail t WHERE t.id = :trailId";
-		Trail t = em.createQuery(query, Trail.class)
-					.setParameter("trailId", trailId)
-					.getSingleResult();
+//		String query = 
+//				"SELECT t " + 
+//				"FROM Trail t WHERE t.id = :trailId";
+		Trail t = em.find(Trail.class, trailId);
 		return t.getReports();
 	}
 
@@ -42,17 +40,30 @@ public class ReportDaoJpaImpl implements ReportDAO {
 		report.setTrail(trail);
 		report.setUser(user);
 		em.persist(report);
+		System.out.println("report id: " + report.getId());
+		if(trail.getRecentReport() == null ||
+				trail.getRecentReport().getTimestamp().compareTo(report.getTimestamp())<0){
 		em.flush();
+		trail.setRecentReport(report);
+		System.out.println(trail.getRecentReport().getId());
+		}
 		return em.find(Report.class, report.getId());
 	}
 
 	@Override
 	public Report update(int id, Report report) {
 		Report r = em.find(Report.class, id);
+		Trail trail = r.getTrail();
 		r.setComment(report.getComment());
 		r.setHeading(report.getHeading());
 		r.setTimestamp(report.getTimestamp());
 		r.setTStatuses(report.getTStatuses());
+		em.flush();
+		if(trail.getRecentReport() == null ||
+				trail.getRecentReport().getTimestamp().compareTo(report.getTimestamp())<0){
+		//trail.setRecentReport(report);
+		System.out.println(trail.getRecentReport().getId());
+		}
 		return r;
 	}
 
@@ -65,6 +76,13 @@ public class ReportDaoJpaImpl implements ReportDAO {
 		} catch (Exception e) {
 			return null;
 		}  
+	}
+
+	@Override
+	public Report mostRecentReport(int tid) {
+		Trail trail = em.find(Trail.class, tid);
+		List<Report> reports = trail.getReports();
+		return reports.get(reports.size()-1);
 	}
 
 }
