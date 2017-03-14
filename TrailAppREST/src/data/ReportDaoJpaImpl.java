@@ -40,13 +40,7 @@ public class ReportDaoJpaImpl implements ReportDAO {
 		report.setTrail(trail);
 		report.setUser(user);
 		em.persist(report);
-		System.out.println("report id: " + report.getId());
-		if(trail.getRecentReport() == null ||
-				trail.getRecentReport().getTimestamp().compareTo(report.getTimestamp())<0){
-		em.flush();
 		trail.setRecentReport(report);
-		System.out.println(trail.getRecentReport().getId());
-		}
 		return em.find(Report.class, report.getId());
 	}
 
@@ -58,14 +52,7 @@ public class ReportDaoJpaImpl implements ReportDAO {
 		r.setHeading(report.getHeading());
 		r.setTimestamp(report.getTimestamp());
 		r.setTStatuses(report.getTStatuses());
-		em.persist(r);
-		if(trail.getRecentReport() == null ||
-				trail.getRecentReport().getTimestamp().compareTo(report.getTimestamp())<0){
 		trail.setRecentReport(report);
-		em.persist(trail);
-		System.out.println(trail.getRecentReport().getId());
-		}
-		em.flush();
 		return r;
 	}
 
