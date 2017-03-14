@@ -16,38 +16,48 @@ public class UserDaoJpaImpl implements UserDAO {
 
 	@PersistenceContext
 	EntityManager em;
+	
+	@Override
+	public String ping(){
+		return "pong";
+	}
 
 	@Override
 	public List<User> index() {
-		String query = 
-			"SELECT u " + 
-			"FROM User u";
-		
-		return em.createQuery(query, User.class)
-				.getResultList();
+		String query = "SELECT u FROM User u";
+		return em.createQuery(query, User.class).getResultList();
 	}
 
 	@Override
 	public User show(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.find(User.class, id);
 	}
 
 	@Override
 	public User create(User T) {
-		// TODO Auto-generated method stub
-		return null;
+		em.persist(T);
+		em.flush();
+		return T;
 	}
 
 	@Override
 	public User update(int id, User T) {
-		// TODO Auto-generated method stub
-		return null;
+		User u = em.find(User.class, id);
+		u.setDescription(T.getDescription());
+		u.setFirstName(T.getFirstName());
+		u.setLastName(T.getLastName());
+		u.setPassword(T.getPassword());
+		return u;
 	}
 
 	@Override
 	public User destroy(int id) {
-		// TODO Auto-generated method stub
-		return null;
+    	try {
+    		User u = em.find(User.class, id);
+    		em.remove(u);
+    		return u;
+		} catch (Exception e) {
+			return null;
+		}  
 	}
 }
