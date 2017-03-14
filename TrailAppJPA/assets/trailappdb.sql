@@ -41,12 +41,12 @@ CREATE TABLE IF NOT EXISTS `trailappdb`.`trail` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `city` VARCHAR(45) NOT NULL,
   `state` VARCHAR(45) NULL,
-  `name` VARCHAR(45) NOT NULL,
+  `name` VARCHAR(128) NOT NULL,
   `api_id` VARCHAR(45) NOT NULL,
-  `directions` BLOB NULL,
+  `directions` TEXT(5000) NULL,
   `latitude` DOUBLE NULL,
   `longitude` DOUBLE NULL,
-  `description` BLOB NULL,
+  `description` TEXT(5000) NULL,
   `length` DOUBLE NULL,
   `image_url` BLOB NULL,
   `activity_type` VARCHAR(45) NOT NULL DEFAULT 'Hiking',
@@ -153,67 +153,3 @@ GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE `trailappdb`.* TO 'trailu
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
--- -----------------------------------------------------
--- Data for table `trailappdb`.`user`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `trailappdb`;
-INSERT INTO `trailappdb`.`user` (`id`, `email`, `password`, `first_name`, `last_name`, `description`) VALUES (1, 'test@testy.com', '1234567890', 'Tester', 'McTesterson', 'Kinda a cool guy');
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `trailappdb`.`trail`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `trailappdb`;
-INSERT INTO `trailappdb`.`trail` (`id`, `city`, `state`, `name`, `api_id`, `directions`, `latitude`, `longitude`, `description`, `length`, `image_url`, `activity_type`, `recent_report_id`) VALUES (1, 'Denver', 'Colorado', 'Orange Rocks', 'not a real id', NULL, 100, 100, NULL, NULL, NULL, 'hiking', NULL);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `trailappdb`.`report`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `trailappdb`;
-INSERT INTO `trailappdb`.`report` (`id`, `comment`, `timestamp`, `heading`, `trail_id`, `user_id`) VALUES (1, 'Trail conditions were awful!', NULL, 'Awful!', 1, 1);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `trailappdb`.`t_status`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `trailappdb`;
-INSERT INTO `trailappdb`.`t_status` (`id`, `name`, `status_type`) VALUES (1, 'heavy snow', 'snow');
-INSERT INTO `trailappdb`.`t_status` (`id`, `name`, `status_type`) VALUES (2, 'muddy', 'ground');
-INSERT INTO `trailappdb`.`t_status` (`id`, `name`, `status_type`) VALUES (3, 'open and passable', 'passability');
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `trailappdb`.`user_has_trail`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `trailappdb`;
-INSERT INTO `trailappdb`.`user_has_trail` (`user_id`, `trail_id`) VALUES (1, 1);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `trailappdb`.`t_status_has_report`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `trailappdb`;
-INSERT INTO `trailappdb`.`t_status_has_report` (`t_status_id`, `report_id`) VALUES (1, 1);
-INSERT INTO `trailappdb`.`t_status_has_report` (`t_status_id`, `report_id`) VALUES (2, 1);
-INSERT INTO `trailappdb`.`t_status_has_report` (`t_status_id`, `report_id`) VALUES (3, 1);
-
-COMMIT;
-
