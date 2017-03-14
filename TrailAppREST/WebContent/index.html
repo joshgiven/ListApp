@@ -1,11 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="ngTrailApp">
 <head>
-<title>Hello World</title>
+
+  <script src="./js/vendor/jquery-3.1.1.min.js"></script>
+  <script src="./js/vendor/angular.min.js"></script>
+  <script src="./js/vendor/angular-route.min.js"></script>
+
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <script src="./js/vendor/bootstrap.min.js"></script>
+
+  <!-- The module file -->
+  <script src="./app_client/ngTrailApp.js"></script>
+  <!-- some service -->
+  <!-- <script src="./app_client/services/authService.js"></script> -->
+  <script src="./app_client/services/trailModel.js"></script>
+  <script src="./app_client/services/userModel.js"></script>
+  <!-- some component -->
+  <script src="./app_client/components/appComponent.js"></script>
+  <script src="./app_client/components/navComponent.js"></script>
+  <script src="./app_client/components/reportComponent.js"></script>
+  <script src="./app_client/components/trailComponent.js"></script>
+  <script src="./app_client/components/userComponent.js"></script>
+  <!-- ./app_client/components/loginController.js -->
+  <!-- some filter -->
+  <!-- <script src="./app_client/filters/completedFilter.js"></script> -->
+  <!-- ./app_client/filters/userTrailFilter.js -->
+
+
+
+  <link rel="stylesheet" href="./css/styles.css">
+
+  <title>TrailApp</title>
 </head>
 <body>
-<h2>Hello World</h2>
-<a href="api/ping">ping</a>
-<a href="api/users">users</a>
+
+<app-component>Loading...<app-component>
+
+<!-- <div class="restTest">
+  <h2>REST Test</h2>
+  <ul>
+    <li><a href="api/ping">ping</a></li>
+    <li><a href="api/users">users</a></li>
+    <li><a href="api/trails">trails</a></li>
+  </ul>
+</div> -->
+
 </body>
 </html>
