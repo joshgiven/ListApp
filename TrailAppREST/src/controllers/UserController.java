@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import data.UserDAO;
 import entities.User;
 
@@ -39,16 +41,33 @@ public class UserController {
 	
 	@PostMapping("users")
 	User create(@RequestBody String fillupJSON, HttpServletResponse res) {
-		return null;
+		ObjectMapper mapper = new ObjectMapper();
+		User q = null;
+		try {
+		  q = mapper.readValue(fillupJSON, User.class);
+		} catch (Exception e) {
+		  e.printStackTrace();
+		  return null;
+		}
+		System.out.println(q);
+		return userDAO.create(q);
 	}
 	
 	@PutMapping("users/{id}")
 	User update(@PathVariable int id, @RequestBody String fillupJSON, HttpServletResponse res) {
-		return null;
+		ObjectMapper mapper = new ObjectMapper();
+		User q = null;
+		try {
+		  q = mapper.readValue(fillupJSON, User.class);
+		} catch (Exception e) {
+		  e.printStackTrace();
+		  return null;
+		}
+		return userDAO.update(id,q);
 	}
 	
 	@DeleteMapping("users/{id}")
 	User destroy(@PathVariable int id, HttpServletResponse res) {
-		return null;
+		return userDAO.destroy(id);
 	}
 }
