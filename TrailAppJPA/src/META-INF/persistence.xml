@@ -8,12 +8,13 @@
 
 		<class>entities.User</class>
 		<class>entities.Trail</class>
-		<class>entities.TrailReport</class>
+		<class>entities.Report</class>
+		<class>entities.TStatus</class>
 
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/listappdb" />
-			<property name="javax.persistence.jdbc.user" value="lister" />
-			<property name="javax.persistence.jdbc.password" value="lister" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/trailappdb" />
+			<property name="javax.persistence.jdbc.user" value="trailuser" />
+			<property name="javax.persistence.jdbc.password" value="trailuser" />
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 			<property name="hibernate.show_sql" value="false" />
 			<property name="hibernate.format_sql" value="false" />

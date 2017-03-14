@@ -10,7 +10,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
     <mvc:annotation-driven />
-    <!-- 
+    <!--
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="api/todos/**" />
@@ -18,24 +18,26 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
      -->
-     
+
     <context:component-scan base-package="controllers" />
-    
+
+    <bean id="trailDAO" class="data.TrailDaoJpaImpl" />
     <bean id="userDAO" class="data.UserDaoJpaImpl" />
- 	<!-- 
+    <bean id="reportDAO" class="data.ReportDaoJpaImpl" />
+ 	<!--
     <bean id="authDAO" class="data.AuthDAO" />
   	-->
-    
+
     <!-- bcrypt bean -->
 <!-- 	<bean id="bCryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" /> -->
-    
+
 	<!-- Inject SecretKeyGenerator Bean -->
 	<!-- <bean id="secretKeyGenerator" class="security.SecretKeyGenerator" /> -->
-	
+
 	<!-- Inject JsonWebTokenGenerator Bean (To be created) -->
 	<!-- <bean id="jsonWebTokenGenerator" class="security.JsonWebTokenGenerator" /> -->
- 
- 
+
+
     <bean id="myEntityManagerFactory"
         class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="TrailApp" />
