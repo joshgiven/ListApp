@@ -33,15 +33,36 @@ public class TrailDaoJpaImpl implements TrailDAO {
 	}
 
 	@Override
-	public Trail create(Trail T) {
-		// TODO Auto-generated method stub
-		return null;
+	public Trail create(Trail trail) {
+		em.persist(trail);
+		em.flush();
+		
+		return show(trail.getId());
 	}
 
 	@Override
-	public Trail update(int id, Trail T) {
-		// TODO Auto-generated method stub
-		return null;
+	public Trail update(int id, Trail trail) {
+		Trail pTrail = show(id);
+		
+		if(pTrail != null) {
+			pTrail.setCity(trail.getCity());
+			pTrail.setState(trail.getState());
+			pTrail.setName(trail.getName());
+			pTrail.setDirections(trail.getDirections());
+			pTrail.setLatitude(trail.getLatitude());
+			pTrail.setLongitude(trail.getLongitude());
+			pTrail.setDescription(trail.getDescription());
+			pTrail.setLength(trail.getLength());
+			pTrail.setImageUrl(trail.getImageUrl());
+			
+			String apiId = trail.getApiId();
+			apiId = (apiId != null) ? apiId : "";
+			pTrail.setApiId(apiId);
+			
+			em.flush();
+		}
+		
+		return pTrail;
 	}
 
 	@Override

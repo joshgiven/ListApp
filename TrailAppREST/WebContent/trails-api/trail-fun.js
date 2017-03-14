@@ -33,5 +33,38 @@ getTrailData = function() {
         // })
 };
 
+submitTrailData = function(trail) {
+  $.ajax({
+    type: "POST",
+    url: "http://localhost:8080/TrailAppREST/api/trails",
+    dataType: "json",
+    contentType: 'application/json',  //setting the request headers content-type
+    data: JSON.stringify(trail),
+    headers: {'Access-Control-Allow-Origin' : true}
+  }).done(console.log(trail.name));
+};
+
 var codata = null;
-getTrailData().done((data,status) => codata = data);
+getTrailData().done(function(data,status) {
+  codata = data;
+  codata = data.places.map(x => mashapeToAppObj(x));
+
+  codata.forEach(function(v,i,a) {
+    setTimeout(function(){
+      submitTrailData(v);
+    }, 1000*i);
+  });
+//  for(var i=0; i < codata.length; i++) {
+//	  setTimeout(function(){
+//		  submitTrailData(codata[i]);
+//	  }, 1000*i);
+//  }
+});
+
+/*
+
+
+
+
+
+*/

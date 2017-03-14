@@ -38,17 +38,17 @@ public class Trail {
 	@Column(name="image_url")
 	private String imageUrl;
 	
-	@OneToMany(mappedBy="trail", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="trail", cascade={CascadeType.REMOVE})
 	@JsonIgnore
 	private List<Report> reports;
 	
 	@Column(name="recent_report_id")
 	private Integer recentReportId;
 
-	@ManyToMany(mappedBy = "favorites")
+	@ManyToMany(mappedBy="favorites")
 	@JsonIgnore
 	List<User> fans;
-	
+
 	@PreRemove
 	private void clearFans() {
 		for(User u : fans) {
@@ -166,6 +166,13 @@ public class Trail {
 	public int getId() {
 		return id;
 	}
-	
-	
+		
+	public List<User> getFans() {
+		return fans;
+	}
+
+	public void setFans(List<User> fans) {
+		this.fans = fans;
+	}
+
 }
