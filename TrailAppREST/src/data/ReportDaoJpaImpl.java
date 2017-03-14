@@ -58,12 +58,14 @@ public class ReportDaoJpaImpl implements ReportDAO {
 		r.setHeading(report.getHeading());
 		r.setTimestamp(report.getTimestamp());
 		r.setTStatuses(report.getTStatuses());
-		em.flush();
+		em.persist(r);
 		if(trail.getRecentReport() == null ||
 				trail.getRecentReport().getTimestamp().compareTo(report.getTimestamp())<0){
-		//trail.setRecentReport(report);
+		trail.setRecentReport(report);
+		em.persist(trail);
 		System.out.println(trail.getRecentReport().getId());
 		}
+		em.flush();
 		return r;
 	}
 
