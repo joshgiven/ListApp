@@ -19,37 +19,37 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name="user")
 public class User {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String email;
-	
+
 	private String password;
-	
+
 	@Column(name="first_name")
 	private String firstName;
-	
+
 	@Column(name="last_name")
 	private String lastName;
-	
+
 	@Column(name="description")
 	private String description;
-	
+
 	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name="user_has_trail", 
 	joinColumns=@JoinColumn(name="user_id", referencedColumnName="id"),
 	inverseJoinColumns=@JoinColumn(name="trail_id", referencedColumnName="id"))
 	private List<Trail> favorites;
-	
+
 	@OneToMany(mappedBy="user")
 	@JsonIgnore
 	private List<Report> reports;
-	
-	
+
+
 	public User(){}
-	
+
 	public User(int id, String email, String password, String firstName, String lastName, String description,
 			List<Trail> favorites, List<Report> reports) {
 		super();
@@ -123,5 +123,5 @@ public class User {
 		return id;
 	}
 
-	
+
 }

@@ -2,12 +2,15 @@ package entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.PreRemove;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -30,29 +33,39 @@ public class Trail {
 	private String city;
 	private String state;
 	private String name;
-	
+
 	@Column(name="api_id")
 	private String apiId;
-	
+
 	private String directions;
 	private int latitude;
 	private int longitude;
 	private String description;
 	private Double length;
-	
+
 	@Column(name="image_url")
 	private String imageUrl;
-	
-	@OneToMany(mappedBy="trail")
+
+	@OneToMany(mappedBy="trail", cascade={CascadeType.REMOVE})
 	@JsonIgnore
-	List<Report> reports;
-	
+	private List<Report> reports;
+
 	@Column(name="recent_report_id")
 	private Integer recentReportId;
 
-	
+	@ManyToMany(mappedBy="favorites")
+	@JsonIgnore
+	List<User> fans;
+
+	@PreRemove
+	private void clearFans() {
+		for(User u : fans) {
+			u.getFavorites().remove(this);
+		}
+	}
+
 	public Trail(){}
-	
+
 	public Trail(int id, String city, String state, String name, String apiId, String directions, int latitude,
 			int longitude, String description, Double length, String imageUrl, List<Report> reports) {
 		super();
@@ -161,6 +174,13 @@ public class Trail {
 	public int getId() {
 		return id;
 	}
-	
-	
+
+	public List<User> getFans() {
+		return fans;
+	}
+
+	public void setFans(List<User> fans) {
+		this.fans = fans;
+	}
+
 }
