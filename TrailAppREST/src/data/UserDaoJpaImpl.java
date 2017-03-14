@@ -16,7 +16,8 @@ public class UserDaoJpaImpl implements UserDAO {
 
 	@PersistenceContext
 	EntityManager em;
-		
+
+	@Override
 	public List<User> index() {
 		String query = 
 			"SELECT u " + 
@@ -24,5 +25,29 @@ public class UserDaoJpaImpl implements UserDAO {
 		
 		return em.createQuery(query, User.class)
 				.getResultList();
+	}
+
+	@Override
+	public User show(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User create(User T) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User update(int id, User T) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User destroy(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

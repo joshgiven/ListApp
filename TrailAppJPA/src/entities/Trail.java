@@ -2,6 +2,7 @@ package entities;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,22 +14,38 @@ import javax.persistence.Table;
 @Table(name="trail")
 public class Trail {
 
+	public Integer getRecentReportId() {
+		return recentReportId;
+	}
+
+	public void setRecentReportId(Integer recentReportId) {
+		this.recentReportId = recentReportId;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String city;
 	private String state;
 	private String name;
+	
+	@Column(name="api_id")
 	private String apiId;
+	
 	private String directions;
 	private int latitude;
 	private int longitude;
 	private String description;
 	private Double length;
+	
+	@Column(name="image_url")
 	private String imageUrl;
 	
 	@OneToMany(mappedBy="trail")
 	List<Report> reports;
+	
+	@Column(name="recent_report_id")
+	private Integer recentReportId;
 
 	
 	public Trail(){}
