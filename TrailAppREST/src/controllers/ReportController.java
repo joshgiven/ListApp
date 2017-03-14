@@ -2,8 +2,10 @@ package controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,11 +14,17 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import data.ReportDAO;
 import entities.Report;
 
 @RestController
 public class ReportController {
 
+	@Autowired
+	private ReportDAO reportDAO;
+	
 	@GetMapping("reports/ping")
 	String ping() {
 		return "pong";
@@ -24,20 +32,30 @@ public class ReportController {
 
 	@GetMapping("trails/{tid}/reports")
 	List<Report> index(@PathVariable int tid) {
-		return null;
+		return reportDAO.index(tid);
 	}
 	
 	@GetMapping("trails/{tid}/reports/{rid}")
 	Report show(@PathVariable int tid, @PathVariable int rid) {
-		return null;
+		return reportDAO.show(rid);
 	}
 	
 	@PostMapping("trails/{tid}/reports")
 	Report create(
 			@PathVariable int tid,
 			@RequestBody String fillupJSON, 
-			HttpServletResponse res) {
-		return null;
+			HttpServletResponse res, HttpServletRequest req) {
+		ObjectMapper mapper = new ObjectMapper();
+		Report r = null;
+		//int uid = (int) req.getAttribute("userId");
+		try {
+		  r = mapper.readValue(fillupJSON, Report.class);
+		} catch (Exception e) {
+		  e.printStackTrace();
+		  return null;
+		}
+		//need login
+		return reportDAO.create(r, tid, 1);
 	}
 	
 	@PutMapping("trails/{tid}/reports/{rid}")
@@ -47,7 +65,15 @@ public class ReportController {
 			@RequestBody String fillupJSON, 
 			HttpServletResponse res) {
 		
-		return null;
+		ObjectMapper mapper = new ObjectMapper();
+		Report r = null;
+		try {
+		  r = mapper.readValue(fillupJSON, Report.class);
+		} catch (Exception e) {
+		  e.printStackTrace();
+		  return null;
+		}
+		return reportDAO.update(tid,r);
 	}
 	
 	@DeleteMapping("trails/{tid}/reports/{rid}")
@@ -56,6 +82,6 @@ public class ReportController {
 			@PathVariable int rid, 
 			HttpServletResponse res ) {
 		
-		return null;
+		return reportDAO.destroy(rid);
 	}
 }
