@@ -21,18 +21,67 @@ public class SearchDAOImpl implements SearchDAO {
 	//
 
 	@Override
-	public List<Trail> searchByCity(String city) {
+	public List<Trail> searchByState(String state) {
 	
 		String query = 
 					"SELECT t " + 
 					"FROM Trail t" + 
-					"WHERE t.city = :city";
+					"WHERE t.city = :state";
 				
-		List<Trail> trails = em.createQuery(query, Trail.class).setParameter("city", city)
+		List<Trail> trails = em.createQuery(query, Trail.class).setParameter("state", state)
 			         .getResultList();
 		
 		return trails;
 		}
+	
+	@Override
+	public List<Trail> searchByCity(String city) {
+		
+		String query = 
+				"SELECT t " + 
+						"FROM Trail t" + 
+						"WHERE t.city = :city";
+		
+		List<Trail> trails = em.createQuery(query, Trail.class).setParameter("city", city)
+				.getResultList();
+		
+		return trails;
+	}
+	
+	
+	
+	@Override
+	public List<Trail> searchByLatLong(Double originLat, Double originLong, int rangeInMiles) {
+		final double MILES_IN_DEG_LAT = 69.1703234283616;
+		final double DEG_LAT_PER_MILE = 1 / MILES_IN_DEG_LAT;
+		double milesPerDegreeLong = MILES_IN_DEG_LAT * Math.cos(Math.toRadians(originLat));
+		double degLongPerMile = 1 / milesPerDegreeLong;
+		
+		double minLat = originLat - (DEG_LAT_PER_MILE * rangeInMiles);
+		double maxLat = originLat + (DEG_LAT_PER_MILE * rangeInMiles);
+		double minLong = originLong - (degLongPerMile * rangeInMiles);
+		double maxLong = originLong + (degLongPerMile * rangeInMiles);
+	
+
+		String query = 
+				"SELECT t " + 
+						"FROM Trail t" + 
+						" WHERE t.latitude > :minLat" +
+						" AND t.latitude < :maxLat" +
+						" AND t.longitude > :minLong" +
+						" AND t.longitude < :maxLong";
+		
+		List<Trail> trails = em.createQuery(query, Trail.class).setParameter("minLat", minLat)
+				.setParameter("maxLat", maxLat).setParameter("minLong", minLong).setParameter("maxLong", maxLong)
+				.getResultList();
+		
+	
+
+		
+		return trails;
+	}
+	
+	
 	
 	
 
@@ -41,5 +90,7 @@ public class SearchDAOImpl implements SearchDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	
 
 }
