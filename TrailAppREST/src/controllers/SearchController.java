@@ -24,6 +24,16 @@ public class SearchController {
 		return dao.ping();
 	}
 	
+	@GetMapping("search/radius")
+	List<Trail> searchByLatLong(Double originLat, Double originLong, Integer radius) {
+		originLat = 39.0;
+		originLong = -105.0;
+		radius = 10;
+		
+		return dao.searchByLatLong(originLat, originLong, radius);
+		
+	}
+
 	@GetMapping("search/trails")
 	List<Trail> searchBy(
 			@RequestParam(required=false) String city, 
