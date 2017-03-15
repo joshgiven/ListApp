@@ -12,7 +12,7 @@
     <mvc:annotation-driven />
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="TrailAppREST/**" />
+			<mvc:mapping path="/auth/**" />
 			<bean id="DataSecurityInterceptor" class="security.DataSecurityInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
@@ -24,6 +24,7 @@
     <bean id="userDAO" class="data.UserDaoJpaImpl" />
     <bean id="reportDAO" class="data.ReportDaoJpaImpl" />
     <bean id="authDAO" class="data.AuthDAOImpl" />
+    <bean id="searchDAO" class="data.SearchDAOImpl" />
  
 
     <!-- bcrypt bean -->

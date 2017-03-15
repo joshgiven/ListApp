@@ -58,7 +58,6 @@ public class ReportDaoJpaImpl implements ReportDAO {
 	@Override
 	public Report update(int id, Report report) {
 		Report r = em.find(Report.class, id);
-		System.out.println("report: " + report);
 		Trail trail = r.getTrail();
 		r.setComment(report.getComment());
 		r.setHeading(report.getHeading());

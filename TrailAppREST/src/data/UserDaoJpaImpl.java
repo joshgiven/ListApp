@@ -1,6 +1,8 @@
 package data;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -8,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import entities.Trail;
 import entities.User;
 
 @Transactional
@@ -59,5 +62,14 @@ public class UserDaoJpaImpl implements UserDAO {
 		} catch (Exception e) {
 			return null;
 		}  
+	}
+	
+	@Override
+	public Set<Trail> userFavorites(int id){
+		String q = "SELECT u FROM User u JOIN FETCH u.favorites WHERE u.id = :id";
+		User u = em.createQuery(q, User.class).setParameter("id", id).getSingleResult();
+		
+		return u.getFavorites();
+		
 	}
 }

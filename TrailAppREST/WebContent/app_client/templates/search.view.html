@@ -1,1 +1,77 @@
 <h2>Search Form</h2>
+
+<div class="col-md-6">
+  <form class="form" name="searchForm" novalidate ng-init="search={}">
+    <div class="form-group">
+      <label for="city">city</label>
+      <input class="form-control" type="text" name="city" placeholder="city" ng-model="search.city"/>
+    </div>
+
+    <div class="form-group">
+      <label for="state">state</label>
+      <input class="form-control" type="text" name="state" placeholder="state" ng-model="search.state"/>
+    </div>
+
+    <div class="form-group">
+      <label for="radius">radius</label>
+      <input class="form-control" type="number" name="radius" placeholder="radius" ng-model="search.radius"/>
+    </div>
+
+    <div class="form-group">
+      <label for="length-min">length (min)</label>
+      <input class="form-control" type="number" name="length-min" placeholder="length" ng-model="search.lengthMin"/>
+    </div>
+
+    <div class="form-group">
+      <label for="length-max">length (max)</label>
+      <input class="form-control" type="number" name="length-max" placeholder="length" ng-model="search.lengthMax"/>
+    </div>
+
+    <div class="form-group">
+      <label for="snow">snow</label>
+      <!-- <select class="form-control" name="snow" ng-model="search.snow">
+        <option ng-repeat="snow in ['none','lite','med','heavy']"  value="{{snow}}" ng-model="search.snow">{{snow}}</option>
+      </select> -->
+
+      <div ng-repeat="snow in ['none','lite','med','heavy']" ng-init="search.snow={}">
+        <form><input type="checkbox"  ng-model="search.snow[snow]"  name="{{snow}}">{{snow}}</form>
+      </div>
+
+
+    </div>
+
+    <div class="form-group">
+      <label for="ground">ground</label>
+      <!-- <select class="form-control" name="ground" ng-model="search.ground">
+        <option ng-repeat="ground in ['dry','mud','icy']"  value="{{ground}}" ng-model="search.ground">{{ground}}</option>
+      </select> -->
+
+      <div ng-repeat="ground in ['dry','mud','icy']" ng-init="search.ground={}">
+        <form><input type="checkbox"  ng-model="search.ground[ground]" name="{{ground}}">{{ground}}</form>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="pass">passabilty</label>
+      <!-- <select class="form-control" name="pass" ng-model="search.pass">
+        <option ng-repeat="pass in ['open','hazard','closed']"  value="{{pass}}" ng-model="search.pass">{{pass}}</option>
+      </select> -->
+
+      <div ng-repeat="pass in ['open','hazard','closed']" ng-init="search.passability={}">
+        <form><input type="checkbox"  ng-model="search.passability[pass]" name="{{pass}}" value="false">{{pass}}</form>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="snow">since</label>
+      <input class="form-control" type="date" name="since" placeholder="since" ng-model="search.since"/>
+    </div>
+
+    <button class="btn" type="button" name="button" ng-click="">clear</button>
+    <button class="btn" type="button" name="button" ng-click="console.log(null)">submit</button>
+  </form>
+</div>
+
+<div>
+  <textarea class="form-control" name="x" rows="8" cols="80" nd-model="search"></textarea>
+</div>
