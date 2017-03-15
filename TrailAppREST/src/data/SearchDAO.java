@@ -8,7 +8,8 @@ public interface SearchDAO{
 	
 	public String ping();
 
-	public List<Trail> searchByCity(String s);
 	public List<Trail> search(String s);
+
+	public List<Trail> searchBy(String city, String state, Integer radius, Integer lengthMin, Integer lengthMax);
 	
 }
