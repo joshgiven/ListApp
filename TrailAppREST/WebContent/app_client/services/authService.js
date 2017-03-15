@@ -23,7 +23,7 @@ app.factory('authService', function($window, $http){
         data : user
       })
       .then(function(response){
-        saveToken(response.data.token);
+        saveToken(response.data.jwt);
         return response;
       });
     };
@@ -39,7 +39,7 @@ app.factory('authService', function($window, $http){
         data : user
       })
       .then(function(response){
-        saveToken(response.data.token);
+        saveToken(response.data.jwt);
         return response;
       });
     };
@@ -82,6 +82,7 @@ app.factory('authService', function($window, $http){
 
     return {
       login : login,
+      signup : signup,
       logout : logout,
       isLoggedIn : isLoggedIn,
       currentUser : currentUser,

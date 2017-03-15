@@ -4,7 +4,11 @@
       ng-model="user.email" />
     <input type="password" name="password" class="form-control" placeholder="password" required
       ng-model="user.password" ng-minlength="6" />
-    <button class="btn btn-primary" ng-disabled="regForm.$invalid" ng-click="$ctrl.login(user)" >login</button>
+      <input type="firstName" name="firstName" class="form-control" placeholder="first name" required
+      ng-model="user.firstName" />
+	  <input type="lastName" name="lastName" class="form-control" placeholder="last name" required
+      ng-model="user.lastName" />
+    <button class="btn btn-success" ng-disabled="regForm.$invalid" ng-click="$ctrl.signup(user)" >sign up</button>
   </form>
 
   <ul>
@@ -19,6 +23,13 @@
     </li>
     <li ng-show="regForm.password.value === 0">
       Password is required
+    </li>
+        <li ng-show="regForm.$error.firstName.required">
+      First name is required
+    </li>
+        </li>
+        <li ng-show="regForm.$error.lastName.required">
+      Last name is required
     </li>
   </ul>
 </div>

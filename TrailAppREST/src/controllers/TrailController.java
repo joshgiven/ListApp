@@ -61,7 +61,7 @@ public class TrailController {
 		return trailDAO.show(id);
 	}
 	
-	@PostMapping("trails")
+	@PostMapping("auth/trails")
 	Trail create(@RequestBody String trailJSON, HttpServletResponse res) {
 		
 		Trail trail = null;
@@ -82,7 +82,7 @@ public class TrailController {
 		return trail;
 	}
 	
-	@PutMapping("trails/{id}")
+	@PutMapping("auth/trails/{id}")
 	Trail update(@PathVariable int id, @RequestBody String fillupJSON, HttpServletResponse res) {
 		Trail trail = null;
 		
@@ -104,7 +104,7 @@ public class TrailController {
 		return trail;
 	}
 	
-	@DeleteMapping("trails/{id}")
+	@DeleteMapping("auth/trails/{id}")
 	Trail destroy(@PathVariable int id, HttpServletResponse res) {
 		return trailDAO.destroy(id);
 	}

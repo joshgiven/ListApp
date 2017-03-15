@@ -1,6 +1,7 @@
 package entities;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -37,11 +38,11 @@ public class User {
 	@Column(name="description")
 	private String description;
 
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany
 	@JoinTable(name="user_has_trail", 
 	joinColumns=@JoinColumn(name="user_id", referencedColumnName="id"),
 	inverseJoinColumns=@JoinColumn(name="trail_id", referencedColumnName="id"))
-	private List<Trail> favorites;
+	private Set<Trail> favorites;
 
 	@OneToMany(mappedBy="user")
 	@JsonIgnore
@@ -51,7 +52,7 @@ public class User {
 	public User(){}
 
 	public User(int id, String email, String password, String firstName, String lastName, String description,
-			List<Trail> favorites, List<Report> reports) {
+			Set<Trail> favorites, List<Report> reports) {
 		super();
 		this.id = id;
 		this.email = email;
@@ -103,11 +104,11 @@ public class User {
 		this.description = description;
 	}
 
-	public List<Trail> getFavorites() {
+	public Set<Trail> getFavorites() {
 		return favorites;
 	}
 
-	public void setFavorites(List<Trail> favorites) {
+	public void setFavorites(Set<Trail> favorites) {
 		this.favorites = favorites;
 	}
 

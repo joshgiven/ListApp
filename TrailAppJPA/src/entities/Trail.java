@@ -56,16 +56,16 @@ public class Trail {
 	private Report recentReport;
 
 
-	@ManyToMany(mappedBy="favorites")
-	@JsonIgnore
-	List<User> fans;
-
-	@PreRemove
-	private void clearFans() {
-		for(User u : fans) {
-			u.getFavorites().remove(this);
-		}
-	}
+//	@ManyToMany(mappedBy="favorites")
+//	@JsonIgnore
+//	List<User> fans;
+//
+//	@PreRemove
+//	private void clearFans() {
+//		for(User u : fans) {
+//			u.getFavorites().remove(this);
+//		}
+//	}
 
 	public Trail(){}
 
@@ -192,12 +192,12 @@ public class Trail {
 		return id;
 	}
 
-	public List<User> getFans() {
-		return fans;
-	}
-
-	public void setFans(List<User> fans) {
-		this.fans = fans;
-	}
+//	public List<User> getFans() {
+//		return fans;
+//	}
+//
+//	public void setFans(List<User> fans) {
+//		this.fans = fans;
+//	}
 
 }

@@ -45,7 +45,10 @@ module.config(function($routeProvider){
       }
     })
     .when('/login', {
-      templateUrl: 'app_client/templates/login-component.view.html',
+      templateUrl: 'app_client/templates/login.view.html',
+    })
+    .when('/signup', {
+      templateUrl: 'app_client/templates/signup.view.html',
     })
     .otherwise({
       redirectTo : '/'

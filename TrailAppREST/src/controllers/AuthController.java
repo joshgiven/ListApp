@@ -35,7 +35,8 @@ public class AuthController {
 
 	  @PostMapping(value = "/login")
 	  public Map<String,String> login(HttpServletRequest req, HttpServletResponse res, @RequestBody String userJsonString) {
-	    System.out.println(userJsonString);
+	    System.out.println("in login method");
+		  System.out.println(userJsonString);
 		 ObjectMapper mapper = new ObjectMapper();
 	    User user = null;
 	    // Parse User from JSON
@@ -57,11 +58,13 @@ public class AuthController {
 	    String jws = jwtGen.generateUserJwt(user);
 	    Map<String, String> responseJson = new HashMap<>();
 	    responseJson.put("jwt", jws);
+	    System.out.println(jws);
 	    return responseJson;
 	  }
 	  
 	  @PostMapping(value = "/signup")
 	  public Map<String,String> register(HttpServletRequest req, HttpServletResponse res, @RequestBody String userJsonString) {
+		  System.out.println("in signup method");
 		  System.out.println(userJsonString);
 		  ObjectMapper mapper = new ObjectMapper();
 		  User user = null;
