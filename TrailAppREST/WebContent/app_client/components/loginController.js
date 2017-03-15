@@ -4,29 +4,20 @@ var loginController = function(authService, $location) {
   var vm = this;
 
   vm.login = function(user) {
+	  console.log('in login js');
     authService.login(user)
       .then(function(resp){
         console.log('logged in!');
-        $location.path('/todos');
+        $location.path('/users/'+user.id+"/trails");
       })
       .catch(function(err) {
         console.log('login failed!');
       });
   };
 
-  vm.signup = function(user) {
-    authService.signup(user)
-      .then(function(resp){
-        console.log('registered!');
-      })
-      .catch(function(err) {
-        console.log('register failed!');
-      });
-  };
 };
 
 module.component('loginComponent', {
   templateUrl : 'app_client/templates/login-component.view.html',
-
   controller : loginController
 });

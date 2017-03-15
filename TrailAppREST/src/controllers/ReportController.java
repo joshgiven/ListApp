@@ -40,7 +40,7 @@ public class ReportController {
 		return reportDAO.show(rid);
 	}
 	
-	@PostMapping("trails/{tid}/reports")
+	@PostMapping("auth/trails/{tid}/reports")
 	Report create(
 			@PathVariable int tid,
 			@RequestBody String fillupJSON, 
@@ -58,7 +58,7 @@ public class ReportController {
 		return reportDAO.create(r, tid, 1);
 	}
 	
-	@PutMapping("trails/{tid}/reports/{rid}")
+	@PutMapping("auth/trails/{tid}/reports/{rid}")
 	Report update(
 			@PathVariable int tid, 
 			@PathVariable int rid, 
@@ -76,7 +76,7 @@ public class ReportController {
 		return reportDAO.update(rid,r);
 	}
 	
-	@DeleteMapping("trails/{tid}/reports/{rid}")
+	@DeleteMapping("auth/trails/{tid}/reports/{rid}")
 	Report destroy(
 			@PathVariable int tid, 
 			@PathVariable int rid, 
