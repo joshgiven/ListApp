@@ -1,5 +1,6 @@
 package data;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -65,7 +66,10 @@ public class UserDaoJpaImpl implements UserDAO {
 	
 	@Override
 	public Set<Trail> userFavorites(int id){
-		User u = em.find(User.class, id);
+		String q = "SELECT u FROM User u JOIN FETCH u.favorites WHERE u.id = :id";
+		User u = em.createQuery(q, User.class).setParameter("id", id).getSingleResult();
+		
 		return u.getFavorites();
+		
 	}
 }

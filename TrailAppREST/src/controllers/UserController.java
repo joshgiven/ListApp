@@ -73,9 +73,9 @@ public class UserController {
 		return userDAO.destroy(id);
 	}
 	
-	@GetMapping("{id}/users/trails")
-	Set<Trail> userFavorites(HttpServletRequest req, @PathVariable int id){
-		//int id = (int) req.getAttribute("userId");
+	@GetMapping("auth/users/trails")
+	Set<Trail> userFavorites(HttpServletRequest req){
+		int id = (int) req.getAttribute("userId");
 		return userDAO.userFavorites(id);
 	}
 }
