@@ -5,7 +5,6 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,6 +41,7 @@ public class User {
 	@JoinTable(name="user_has_trail", 
 	joinColumns=@JoinColumn(name="user_id", referencedColumnName="id"),
 	inverseJoinColumns=@JoinColumn(name="trail_id", referencedColumnName="id"))
+	@JsonIgnore //
 	private Set<Trail> favorites;
 
 	@OneToMany(mappedBy="user")
@@ -124,5 +124,10 @@ public class User {
 		return id;
 	}
 
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", email=" + email + ", password=" + password + ", firstName=" + firstName
+				+ ", lastName=" + lastName + "]";
+	}
 
 }

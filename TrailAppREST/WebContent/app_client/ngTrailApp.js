@@ -6,11 +6,15 @@ module.config(function($routeProvider){
       templateUrl: 'app_client/templates/welcome.view.html',
     })
     .when('/search', {
-      templateUrl: 'app_client/templates/search.view.html',
+      //templateUrl: 'app_client/templates/search.view.html',
+      template: `
+        <search-and-result-component trails="[]">Loading...</search-and-result-component>
+      `,
     })
     .when('/trail/:id', {
       template: `
-        <trail-component trail="$resolve.trail" showAllReports="true">Loading...</trail-component>
+        <trail-component trail="$resolve.trail" show-all-reports="true" >Loading Trail...</trail-component>
+        <!-- <report-form trail="$resolve.trail">Loading Form...</report-form> -->
       `,
       resolve: {
          trail : function(trailModel, $route, $location) {
