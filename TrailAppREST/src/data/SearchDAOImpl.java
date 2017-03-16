@@ -1,5 +1,6 @@
 package data;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -135,10 +136,12 @@ public class SearchDAOImpl implements SearchDAO {
 	@Override
 	public List<Trail> searchBy(String city, String state, Integer radius, Integer lengthMin, Integer lengthMax) {
 		
-		StringBuffer query = new StringBuffer(
+		String baseQuery = 
 					"SELECT t " + 
 					"FROM Trail t " + 
-					"WHERE 1 = 1 ");
+					"WHERE 1 = 1 ";
+		
+		StringBuffer query = new StringBuffer(baseQuery);
 		
 		if(city != null && city.length() > 0 && radius == null)
 			query.append("  AND t.city = :city ");
@@ -159,6 +162,10 @@ public class SearchDAOImpl implements SearchDAO {
 			query.append("  AND t.longitude <= :maxLong ");
 		}
 
+		if(query.toString().equals(baseQuery)) {
+			return Collections.emptyList();
+		}
+		
 		TypedQuery<Trail> q = em.createQuery(query.toString(), Trail.class);
 
 		if(city != null && city.length() > 0 && radius == null)

@@ -6,7 +6,10 @@ module.config(function($routeProvider){
       templateUrl: 'app_client/templates/welcome.view.html',
     })
     .when('/search', {
-      templateUrl: 'app_client/templates/search.view.html',
+      //templateUrl: 'app_client/templates/search.view.html',
+      template: `
+        <search-and-result-component trails="[]">Loading...</search-and-result-component>
+      `,
     })
     .when('/trail/:id', {
       template: `
