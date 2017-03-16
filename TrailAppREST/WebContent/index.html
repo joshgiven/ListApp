@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html ng-app="ngTrailApp">
-<head>
 
+<head>
   <script src="./js/vendor/jquery-3.1.1.min.js"></script>
   <script src="./js/vendor/angular.min.js"></script>
   <script src="./js/vendor/angular-route.min.js"></script>
 
   <link rel="stylesheet" href="./css/bootstrap.min.css">
   <script src="./js/vendor/bootstrap.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+  <link href=http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css>
+
+  <script src="./bootstrap/js/wow.min.js"></script>
+  <script src="./bootstrap/js/bootstrap.min.js"></script>
+  <script src="./bootstrap/js/main.js"></script>
 
   <!-- The module file -->
   <script src="./app_client/ngTrailApp.js"></script>
@@ -28,29 +35,42 @@
   <script src="./app_client/components/searchAndResultComponent.js"></script>
   <script src="./app_client/components/trailsList.js"></script>
   <script src="./app_client/components/searchFormComponent.js"></script>
-
   <!-- some filter -->
-  <!-- <script src="./app_client/filters/completedFilter.js"></script> -->
-  <!-- ./app_client/filters/userTrailFilter.js -->
-
-
+  <!-- <script src="./app_client/filters/userTrailFilter.js"></script> -->
 
   <link rel="stylesheet" href="./css/styles.css">
 
+  <script>
+    var log = false;
+    var sign = false;
+    var search = true;
+  </script>
+  <script>
+    var images = [
+      './css/forest.jpg',
+      './css/hike.jpeg'
+    ];
+
+    var index = 0;
+
+    setInterval(change_up, 5000);
+
+    function change_up() {
+      index = (index + 1 < images.length) ? index + 1 : 0;
+      $('document.body.style.backgroundImage').fadeOut(300, function() {
+          document.body.style.backgroundImage = 'url(' + images[index] + ')'
+          $(this).fadeIn(300);
+      });
+    }
+  </script>
+
   <title>TrailApp</title>
 </head>
+
 <body>
-
-<app-component>Loading...<app-component>
-
-<!-- <div class="restTest">
-  <h2>REST Test</h2>
-  <ul>
-    <li><a href="api/ping">ping</a></li>
-    <li><a href="api/users">users</a></li>
-    <li><a href="api/trails">trails</a></li>
-  </ul>
-</div> -->
-
+  <div class="background">
+    <app-component>Loading...<app-component>
+  </div>
 </body>
+
 </html>
