@@ -10,7 +10,8 @@ module.config(function($routeProvider){
     })
     .when('/trail/:id', {
       template: `
-        <trail-component trail="$resolve.trail" showAllReports="true">Loading...</trail-component>
+        <trail-component trail="$resolve.trail" show-all-reports="true" >Loading Trail...</trail-component>
+        <!-- <report-form trail="$resolve.trail">Loading Form...</report-form> -->
       `,
       resolve: {
          trail : function(trailModel, $route, $location) {

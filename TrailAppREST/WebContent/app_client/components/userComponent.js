@@ -17,14 +17,8 @@ var userController = function(userModel) {
 };
 
 module.component('userComponent', {
-  controller : userController,
-
-  bindings : {
-    user : '='
-  },
-
   template : `
-    <div>
+    <div class="">
       <h3>{{$ctrl.user.firstName + ' ' + $ctrl.user.lastName}}<h3>
       <p>{{$ctrl.user.description}}</p>
       <ul>
@@ -33,5 +27,12 @@ module.component('userComponent', {
         </li>
       </ul>
     </div>
-  `
+  `,
+
+  controller : userController,
+
+  bindings : {
+    user : '='
+  },
+
 });
