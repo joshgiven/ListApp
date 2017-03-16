@@ -83,7 +83,7 @@ body {
 
 .loginForm {
   background:transparent;
-  padding:80px 0;
+  padding:40px 0;
 }
 
 .loginForm form {
@@ -169,7 +169,32 @@ body {
 .signupForm{
 	
 	background-color:transparent;
+	
 }
+.title{
+	font-weight:bolder;
+	
+}
+
+.loginIcon{
+	display:flex;
+	align-content:center;
+	height:128px;
+	width:100%;
+	background-image: url(./loginicon.png);
+	background-position:center;
+	background-repeat: no-repeat;
+}
+
+/* .cityField{
+	margin-left:15px;
+	
+}
+
+.updateField{
+	margin-left:15px;
+	width:auto;
+} */
 
 
 
