@@ -8,12 +8,12 @@ app.component('navComponent', {
     var vm = this;
 
     vm.loggedIn = function(){
-    	//console.log("in nav componenet loggedin")
     	return authService.isLoggedIn();
     };
 
+    vm.user = authService.currentUser();
+
     vm.logout = function(){
-    	//console.log("in nav component logout")
     	authService.logout();
     	$location.path('/');
     };

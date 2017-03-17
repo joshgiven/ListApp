@@ -12,7 +12,7 @@ module.component('searchAndResultComponent', {
         Loading search form...
       </search-component>
       <h4>list</h4>
-      <trails-list trails="$ctrl.trails" >Loading results...</trails-list>
+      <trails-list trails="$ctrl.trails" report-quiet="true" trail-quiet="true">Loading results...</trails-list>
     </div>
     `,
 
@@ -20,6 +20,8 @@ module.component('searchAndResultComponent', {
 
   bindings : {
     trails : '=',
-    searchParams : '<'
+    searchParams : '<',
+    reportQuiet : '=',
+    trailQuiet : '=',
   }
 });

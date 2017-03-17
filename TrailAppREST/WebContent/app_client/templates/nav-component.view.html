@@ -5,7 +5,8 @@
     </div>
 
     <ul class="nav navbar-nav">
-      <li class="presentation"><a href="#/">Home</a></li>
+      <li class="presentation" ng-hide="$ctrl.loggedIn()"><a href="#/">Home</a></li>
+      <li class="presentation" ng-show="$ctrl.loggedIn()"><a href="#/user/{{$ctrl.user.id}}">Home</a></li>
       <li class="presentation"><a href="#/search">Search</a></li>
       <li class="presentation" ng-hide="$ctrl.loggedIn()"><a href="#/login">Login</a></li>
       <li class="presentation" ng-hide="$ctrl.loggedIn()"><a href="#/signup">Sign up</a></li>
