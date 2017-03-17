@@ -4,16 +4,26 @@ var loginController = function(authService, $location) {
   var vm = this;
 
   vm.login = function(user) {
-	  console.log('in login js');
+	  
     authService.login(user)
       .then(function(resp){
-        console.log('logged in!');
-        $location.path('/users/'+user.id+"/trails");
-      })
+       console.log('logged in!')
+        vm.loginRoute();
+        })
+        
+        
+        
       .catch(function(err) {
         console.log('login failed!');
       });
-  };
+  }
+  
+  vm.loginRoute = function(){
+	  
+	  var loggedInUser = authService.currentUser();
+	  $location.path('/user/'+loggedInUser.id)
+	  
+  }
 
 };
 

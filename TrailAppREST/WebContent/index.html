@@ -23,6 +23,10 @@
   <script src="./app_client/services/trailModel.js"></script>
   <script src="./app_client/services/userModel.js"></script>
   <script src="./app_client/services/searchService.js"></script>
+  <script src="./app_client/services/locationService.js"></script>
+  <script src="./app_client/services/searchXferService.js"></script>
+  <!-- some controller -->
+  <script src="./app_client/controllers/welcomeViewController.js"></script>
   <!-- some component -->
   <script src="./app_client/components/appComponent.js"></script>
   <script src="./app_client/components/navComponent.js"></script>
@@ -34,7 +38,7 @@
   <script src="./app_client/components/reportList.js"></script>
   <script src="./app_client/components/searchAndResultComponent.js"></script>
   <script src="./app_client/components/trailsList.js"></script>
-  <script src="./app_client/components/searchFormComponent.js"></script>
+  <!-- <script src="./app_client/components/searchFormComponent.js"></script> -->
   <script src="./app_client/components/searchComponent.js"></script>
 
   <!-- some filter -->
@@ -48,32 +52,32 @@
     var search = true;
   </script>
   <script>
-    var images = [
-      './css/forest.jpg',
-      './css/hike.jpeg'
-    ];
-
-    var index = 0;
-
-    setInterval(change_up, 5000);
-
-    function change_up() {
-      index = (index + 1 < images.length) ? index + 1 : 0;
-      $('document.body.style.backgroundImage').fadeOut(300, function() {
-          document.body.style.backgroundImage = 'url(' + images[index] + ')'
-          $(this).fadeIn(300);
-      });
-    }
+    var myVar = setInterval(function() {
+        setBackground()
+    }, 5000);
+    var setBackground = function() {
+      var $body = $('body');
+      if ($body.hasClass('background1')) {
+        $body.removeClass('background1');
+        $body.addClass('background2');
+      }
+      else if ($body.hasClass('background2')) {
+        $body.removeClass('background2');
+        $body.addClass('background3');
+      }
+      else {
+        $body.removeClass('background3');
+        $body.addClass('background1');
+      }
+    };
   </script>
 
   <link rel="icon" href="./img/favicon.ico">
   <title>TrailApp</title>
 </head>
 
-<body>
-  <div class="background">
+<body class="background1">
     <app-component>Loading...<app-component>
-  </div>
 </body>
 
 </html>
