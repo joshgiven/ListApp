@@ -1,9 +1,11 @@
 var module = angular.module('ngTrailApp');
 
-var trailController = function(trailModel) {
+var trailController = function(trailModel, userModel, authService) {
   var ctrl = this;
 
   console.log("reportQuiet in  trailComponent" + ctrl.reportQuiet);
+
+  ctrl.user = authService.currentUser();
 
   ctrl.reports = [];
 
@@ -20,6 +22,13 @@ var trailController = function(trailModel) {
         ctrl.reports.push(ctrl.trail.recentReport);
       }
     }
+  };
+
+  ctrl.addUserFavorite = function(userId, trailId){
+    console.log("Trail id " , trailId);
+    console.log("User id " , userId);
+    userModel.addUserFavorite(userId, trailId);
+
   };
 
   ctrl.getImageUrl = function(url) {
@@ -45,6 +54,9 @@ module.component('trailComponent', {
   template : `
     <div class="">
       <h3>{{$ctrl.trail.name}}</h3>
+      <button class="btn btn-primary btn-lg type="button" ng-show="$ctrl.user.id"
+          ng-click="$ctrl.addUserFavorite($ctrl.user.id, $ctrl.trail.id)">Add Favorite
+      </button></a>
       <img ng-src="{{$ctrl.getImageUrl($ctrl.trail.imageUrl)}}" />
       <p>location: {{$ctrl.trail.city}}, {{$ctrl.trail.state}}</p>
       <p>long/lat: {{$ctrl.trail.longitude}}/{{$ctrl.trail.latitude}}</p>
@@ -53,13 +65,26 @@ module.component('trailComponent', {
       <p>{{$ctrl.trail.description}}</p>
       <h4 ng-hide="$ctrl.trailQuiet">Directions</h4>
       <p ng-hide="$ctrl.trailQuiet">{{$ctrl.trail.directions}}</p>
+    </div>
+    <div>
+      <button class="btn btn-primary btn-lg type="button" ng-hide="$ctrl.trailQuiet ||
+              showReportForm" ng-click="showReportForm = !showReportForm">Add Report
+      </button></a>
+      <button class="btn btn-primary btn-lg type="button" ng-hide="$ctrl.trailQuiet ||
+              !showReportForm" ng-click="showReportForm = !showReportForm">Hide Report
+      </button></a>
+      <report-form-component ng-hide="$ctrl.trailQuiet ||
+              !showReportForm" trail="$ctrl.trail">loading...
+      </report-form-component>
+    </div>
+    <div>
       <h4 ng-hide="$ctrl.trailQuiet">Reports</h4>
       <h4 ng-hide="!$ctrl.trailQuiet">Status</h4>
       <report-list reports="$ctrl.reports" report-quiet="$ctrl.reportQuiet"
-                   default-report="$ctrl.trail.recentReport">
-        Loading Reports...
-      <report-list>
+                 default-report="$ctrl.trail.recentReport">
+                 Loading Reports...
+      </report-list>
     </div>
-    <report-form-component ng-hide="$ctrl.trailQuiet" trail="$ctrl.trail">loading... </report-form-component>
+
   `
 });

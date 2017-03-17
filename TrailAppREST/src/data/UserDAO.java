@@ -10,5 +10,6 @@ public interface UserDAO extends EntityCrudDAO<User>{
 	public String ping();
 	
 	public Set<Trail> userFavorites(int id);
+	public Set<Trail> addUserFavorite(int tid, int uid);
 	
 }

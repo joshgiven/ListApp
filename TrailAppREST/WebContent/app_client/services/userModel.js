@@ -48,6 +48,16 @@ module.factory('userModel', function($http, authService){
         'x-access-token' : authService.getToken()
       }
     });
+};
+    service.addUserFavorite = function(userId, trailId) {
+      return $http({
+        method : 'PUT',
+        // url : [userAPI, user.id, 'trails'].join('/'),
+        url : [userAPI, 'trails', trailId].join('/'),
+        headers : {
+          'x-access-token' : authService.getToken()
+        }
+      });
   };
 
   return service;
