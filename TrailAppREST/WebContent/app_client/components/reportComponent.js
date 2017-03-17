@@ -30,7 +30,7 @@ module.component('reportComponent', {
       <div class="">
         <h4>{{$ctrl.report.heading}}</h4>
         <p>comment: {{$ctrl.report.comment}}</p>
-        <p>time: {{$ctrl.report.timestamp}}</p>
+        <p>time: {{$ctrl.report.timestamp | date : 'medium' : '-1200' }}</p>
         <p>author: {{$ctrl.report.user.firstName}} {{$ctrl.report.user.lastName}}</p>
         <div class="">
           <p>status:<p>

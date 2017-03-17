@@ -54,7 +54,6 @@ public class ReportController {
 		  e.printStackTrace();
 		  return null;
 		}
-		//need login
 		return reportDAO.create(r, tid, uid);
 	}
 	
