@@ -101,10 +101,10 @@ public class Trail {
 		}
 		
 		if(reports.size() > 1) {
-			reports.sort((Report r1, Report r2) -> r1.getTimestamp().compareTo(r2.getTimestamp()));
+			reports.sort((Report r1, Report r2) -> r2.getTimestamp().compareTo(r1.getTimestamp()));
 		}
 		
-		this.recentReport = reports.get(reports.size() - 1);
+		this.recentReport = reports.get(0);
 		
 		
 //		if (reports.size() > 1) {
