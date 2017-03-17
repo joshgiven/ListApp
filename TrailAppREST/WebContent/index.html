@@ -52,35 +52,32 @@
     var search = true;
   </script>
   <script>
-var myVar = setInterval(function(){ setBackground() }, 5000);
-var setBackground = function() {
-    var $body = $('body');
-    if($body.hasClass('background1'))
-    {
+    var myVar = setInterval(function() {
+        setBackground()
+    }, 5000);
+    var setBackground = function() {
+      var $body = $('body');
+      if ($body.hasClass('background1')) {
         $body.removeClass('background1');
         $body.addClass('background2');
-    }
-    else if($body.hasClass('background2')){        
+      }
+      else if ($body.hasClass('background2')) {
         $body.removeClass('background2');
         $body.addClass('background3');
-    }
-    else{        
+      }
+      else {
         $body.removeClass('background3');
         $body.addClass('background1');
-    }
-};
-
-
-</script>
+      }
+    };
+  </script>
 
   <link rel="icon" href="./img/favicon.ico">
   <title>TrailApp</title>
 </head>
 
 <body class="background1">
-  
     <app-component>Loading...<app-component>
- 
 </body>
 
 </html>
