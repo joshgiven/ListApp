@@ -3,17 +3,52 @@
 	width:100% !important;
 }
 
-body { 
+.background1{ 
+	-moz-transition: background 3s ease-in;
+	transition: background 3s ease-in !important;
+	-webkit-transition: background 3s ease-in !important;
+  background: linear-gradient(rgba(255,255,255, .8) 45px,rgba(255,255,255, 0) 200px), url(./fall.jpeg) center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -moz-transition: background 3s ease-out;
+	transition: background 3s ease-out !important;
+  -webkit-transition: background 3s ease-out !important; 
+  
+}
+.background2{
+	-moz-transition: background 3s ease-in;
+	transition: background 3s ease-in !important;
+ -webkit-transition: background 3s ease-in !important;
   background: linear-gradient(rgba(255,255,255, .8) 45px,rgba(255,255,255, 0) 200px), url(./hike.jpeg) center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   background-repeat: no-repeat;
-  
- 
+  -moz-transition: background 3s ease-out;
+	transition: background 3s ease-out !important;
+  -webkit-transition: background 3s ease-out !important;
   
 }
+.background3{ 
+	-moz-transition: background 3s ease-in;
+	transition: background 3s ease-in !important;
+	-webkit-transition: background 3s ease-in !important;
+  background: linear-gradient(rgba(255,255,255, .8) 45px,rgba(255,255,255, 0) 200px), url(./forest.jpg) center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -moz-transition: background 3s ease-out;
+	transition: background 3s ease-out !important;
+   -webkit-transition: background 3s ease-out !important;
+  
+}
+
 
 
 
@@ -22,19 +57,19 @@ body {
 .trail{
 	font-family: 'Anton', sans-serif;
 	font-size: 50px;
-		-webkit-animation: fadein 3s; Safari, Chrome and Opera > 12.1
-    -moz-animation: fadein 3s; Firefox < 16
-    -ms-animation: fadein 3s; Internet Explorer
-    -o-animation: fadein 3s; Opera < 12.1
-    animation: fadein 3s;
+		-webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 1s; /* Firefox < 16 */
+    -ms-animation: fadein 1s; /* Internet Explorer */
+    -o-animation: fadein 1s; /* Opera < 12.1 */
+    animation: fadein 1s;
 }
 
 .search{
-		-webkit-animation: fadein 3s; Safari, Chrome and Opera > 12.1
-    -moz-animation: fadein 3s; Firefox < 16
-    -ms-animation: fadein 3s; Internet Explorer
-    -o-animation: fadein 3s; Opera < 12.1
-    animation: fadein 3s;
+		-webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 1s; /* Firefox < 16 */
+    -ms-animation: fadein 1s; /* Internet Explorer */
+    -o-animation: fadein 1s; /* Opera < 12.1 */
+    animation: fadein 1s;
 }
 
 
@@ -84,6 +119,11 @@ body {
 .loginForm {
   background:transparent;
   padding:40px 0;
+  -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 1s; /* Firefox < 16 */
+    -ms-animation: fadein 1s; /* Internet Explorer */
+    -o-animation: fadein 1s; /* Opera < 12.1 */
+    animation: fadein 1s;
 }
 
 .loginForm form {
@@ -152,11 +192,11 @@ body {
 .btn{
 	background-color: #473420;
 	border: #473420;
-		-webkit-animation: fadein 3s; Safari, Chrome and Opera > 12.1
-    -moz-animation: fadein 3s; Firefox < 16
-    -ms-animation: fadein 3s; Internet Explorer
-    -o-animation: fadein 3s; Opera < 12.1
-    animation: fadein 3s;
+		-webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 1s; /* Firefox < 16 */
+    -ms-animation: fadein 1s; /* Internet Explorer */
+    -o-animation: fadein 1s; /* Opera < 12.1 */
+    animation: fadein 1s;
 } 
 
 .loginError{
