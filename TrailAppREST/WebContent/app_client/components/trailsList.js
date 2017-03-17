@@ -4,10 +4,7 @@ var module = angular.module('ngTrailApp');
 var trailListController = function($location) {
   var ctrl = this;
 
-  //console.log("reportQuiet in  trailList" + ctrl.reportQuiet);
-
   ctrl.redirectToTrail = function(trail) {
-    console.log('redirectToTrail');
     $location.path('/trail/' + trail.id);
   };
 };

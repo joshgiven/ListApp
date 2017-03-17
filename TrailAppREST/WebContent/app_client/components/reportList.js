@@ -3,8 +3,6 @@ var module = angular.module('ngTrailApp');
 var reportListController = function() {
   var ctrl = this;
 
-  console.log("reportQuiet in  reportList" + ctrl.reportQuiet);
-
   if(!ctrl.reports)
     ctrl.reports = [];
 

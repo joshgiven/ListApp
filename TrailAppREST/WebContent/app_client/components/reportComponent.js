@@ -2,10 +2,7 @@ var module = angular.module('ngTrailApp');
 
 var reportController = function() {
   var ctrl = this;
-  console.log("report quiet in reportComponent: " + ctrl.reportQuiet);
 };
-
-
 
 module.component('reportComponent', {
   template : `

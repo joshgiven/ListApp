@@ -2,9 +2,6 @@ var module = angular.module('ngTrailApp');
 
 var trailController = function(trailModel) {
   var ctrl = this;
-
-  console.log("reportQuiet in  trailComponent" + ctrl.reportQuiet);
-
   ctrl.reports = [];
 
   ctrl.loadReports = function(showAll) {
