@@ -78,4 +78,14 @@ public class UserController {
 		int id = (int) req.getAttribute("userId");
 		return userDAO.userFavorites(id);
 	}
+	
+	@PutMapping("auth/users/trails/{tid}")
+	Set<Trail> addUserFavorite(@PathVariable int tid, HttpServletRequest req){
+		
+		System.out.println(tid);
+		int uid = (int) req.getAttribute("userId");
+		System.out.println(uid);
+		return userDAO.addUserFavorite(uid, tid);
+	
+	}
 }
