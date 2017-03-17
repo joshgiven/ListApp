@@ -15,13 +15,15 @@ module.component('searchAndResultComponent', {
       <ng-include src="'app_client/templates/search.view.html'"></ng-include>
       -->
       <h4>list</h4>
-      <trails-list trails="$ctrl.trails" >Loading results...</trails-list>
+      <trails-list trails="$ctrl.trails" report-quiet="true" trail-quiet="true">Loading results...</trails-list>
     </div>
     `,
 
   controller : searchAndResultComponentController,
 
   bindings : {
-    trails : '='
+    trails : '=',
+    reportQuiet : '=',
+    trailQuiet : '=',
   }
 });
