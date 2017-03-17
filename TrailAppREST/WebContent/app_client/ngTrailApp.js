@@ -8,12 +8,26 @@ module.config(function($routeProvider){
     .when('/search', {
       //templateUrl: 'app_client/templates/search.view.html',
       template: `
-        <search-and-result-component trails="[]">Loading...</search-and-result-component>
+        <search-and-result-component trails="$resolve.trails" search-params="$resolve.searchParams">
+          Loading...</search-and-result-component>
       `,
+      resolve: {
+        trails : function(searchXferService){
+          var trails = Object.assign([], searchXferService.getSearchTrails());
+          searchXferService.putSearchTrails([]);
+          return trails;
+        },
+        searchParams : function(searchXferService){
+          var params = Object.assign({}, searchXferService.getSearchParams());
+          searchXferService.putSearchParams({});
+          return params;
+        },
+      }
     })
     .when('/trail/:id', {
       template: `
-        <trail-component trail="$resolve.trail" show-all-reports="true" >Loading Trail...</trail-component>
+        <trail-component trail="$resolve.trail" show-all-reports="true" >
+          Loading Trail...</trail-component>
         <!-- <report-form trail="$resolve.trail">Loading Form...</report-form> -->
       `,
       resolve: {

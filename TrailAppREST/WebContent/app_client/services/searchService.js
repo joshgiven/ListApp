@@ -19,7 +19,7 @@ app.factory('searchService', function($http){
 
   service.execute = function(searchObj) {
     var url = searchAPI + service.reqParams(searchObj);
-    console.log(url);
+    //console.log(url);
 
     return $http({
       method : 'GET',
