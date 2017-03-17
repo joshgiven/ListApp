@@ -2,6 +2,9 @@ var module = angular.module('ngTrailApp');
 
 var trailController = function(trailModel) {
   var ctrl = this;
+
+  console.log("reportQuiet in  trailComponent" + ctrl.reportQuiet);
+
   ctrl.reports = [];
 
   ctrl.loadReports = function(showAll) {
@@ -34,7 +37,9 @@ module.component('trailComponent', {
 
   bindings : {
     trail : '=',
-    showAllReports : '='
+    showAllReports : '=',
+    reportQuiet: '=',
+    trailQuiet: '='
   },
 
   template : `
@@ -46,14 +51,15 @@ module.component('trailComponent', {
       <p>length: {{$ctrl.trail.length}} miles</p>
       <h4>Description</h4>
       <p>{{$ctrl.trail.description}}</p>
-      <h4>Directions</h4>
-      <p>{{$ctrl.trail.directions}}</p>
-      <h4>Reports</h4>
-      <report-list reports="$ctrl.reports" default-report="$ctrl.trail.recentReport">Loading Reports...<report-list>
+      <h4 ng-hide="$ctrl.trailQuiet">Directions</h4>
+      <p ng-hide="$ctrl.trailQuiet">{{$ctrl.trail.directions}}</p>
+      <h4 ng-hide="$ctrl.trailQuiet">Reports</h4>
+      <h4 ng-hide="!$ctrl.trailQuiet">Status</h4>
+      <report-list reports="$ctrl.reports" report-quiet="$ctrl.reportQuiet" default-report="$ctrl.trail.recentReport">Loading Reports...<report-list>
       <!--
       <ul>
         <li ng-repeat="report in $ctrl.reports">
-          <report-component report="report">Loading...</report-component>
+          <report-component report="report" report-quiet="$ctrl.reportQuiet">Loading...</report-component>
         </li>
         <li ng-hide="$ctrl.reports && $ctrl.reports[0]">no reports</li>
       </ul>
