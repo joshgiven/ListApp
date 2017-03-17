@@ -4,18 +4,15 @@ var module = angular.module('ngTrailApp');
 var trailListController = function($location) {
   var ctrl = this;
 
-  //console.log("reportQuiet in  trailList" + ctrl.reportQuiet);
-
   ctrl.redirectToTrail = function(trail) {
-    console.log('redirectToTrail');
     $location.path('/trail/' + trail.id);
   };
 };
 
 module.component('trailsList', {
   template : `
-      <div class="">
-        <ul>
+      <div class="trailsList">
+        <ul class="list-unstyled">
           <li ng-repeat="trail in $ctrl.trails">
             <trail-component trail="trail"
                              show-all-reports="false"

@@ -72,4 +72,26 @@ public class UserDaoJpaImpl implements UserDAO {
 		return u.getFavorites();
 		
 	}
+	
+	@Override
+	public Set<Trail> addUserFavorite(int uid, int tid){
+		System.out.println(uid);
+		String q = "SELECT u FROM User u WHERE u.id = :id";
+		User u = em.createQuery(q, User.class).setParameter("id", uid).getSingleResult();
+		
+		System.out.println(u.getFirstName());
+		
+		Trail t = em.find(Trail.class, tid);
+		
+		if(u.getFavorites() == null){
+			u.setFavorites(new HashSet<Trail>());
+		}
+		u.getFavorites().add(t);
+		
+		em.flush();
+		
+		return u.getFavorites();
+		
+	}
+
 }

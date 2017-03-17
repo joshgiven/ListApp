@@ -1,5 +1,5 @@
 <form name="reportForm" class="form" novalidate ng-init='report={};report.tstatuses=[{},{},{}]'>
-    Heading: <input type="heading" name="heading" class="form-control"
+    Heading: <input type="heading" name="heading" value=$report.heading class="form-control"
               placeholder="Heading" required ng-model="report.heading" />
     Comments: <input type="comment" name="comment" class="form-control"
               placeholder="comments" value=$report.comment required ng-model="report.comment" />
@@ -24,7 +24,7 @@
                     <option value="15">hazardous</option>
                     <option value="14">impassable</option>
                   </select>
-    <!-- Date Visited: <input type="date" name="timestamp" class="form-control" placeholder="Date Visited"
-                    required ng-model="report.timestamp" /> -->
+    Date Visited: <input type="datetime-local" name="timestamp" value=$report.timestamp class="form-control" placeholder="Date Visited"
+                    required ng-model="report.timestamp" />
     <button class="btn btn-success" ng-disabled="regForm.$invalid" ng-click="$ctrl.createReport(report)">Submit Report</button>
 </form>

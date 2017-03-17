@@ -14,12 +14,12 @@ module.config(function($routeProvider){
       resolve: {
         trails : function(searchXferService){
           var trails = Object.assign([], searchXferService.getSearchTrails());
-          searchXferService.putSearchTrails([]);
+          //searchXferService.putSearchTrails([]);
           return trails;
         },
         searchParams : function(searchXferService){
           var params = Object.assign({}, searchXferService.getSearchParams());
-          searchXferService.putSearchParams({});
+          //searchXferService.putSearchParams({});
           return params;
         },
       }

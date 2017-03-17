@@ -42,7 +42,7 @@ public class Report {
 	private String heading;
 	private String comment;
 	
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm")
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss")
 	private Date timestamp;
 
 	@ManyToMany(cascade=CascadeType.ALL)
@@ -79,10 +79,7 @@ public class Report {
 	}
 
 
-	public Report() {
-			this.timestamp = new Date();
-	}
-
+	public Report() {}
 
 	public Trail getTrail() {
 		return trail;
