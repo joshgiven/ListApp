@@ -2,36 +2,18 @@ var module = angular.module('ngTrailApp');
 
 var reportController = function() {
   var ctrl = this;
+  console.log("report quiet in reportComponent: " + ctrl.reportQuiet);
 };
 
 
-var tmp =
-  {
-    "tstatuses" : [
-      {
-        "id":5,
-        "name":"no snow",
-        "statusType":"snow"
-      },
-      {
-        "id":8,
-        "name":"washed out",
-        "statusType":"ground"
-      },
-      {
-        "id":15,
-        "name":"hazardous",
-        "statusType":"passability"
-      }]
-  };
 
 module.component('reportComponent', {
   template : `
       <div class="">
-        <h4>{{$ctrl.report.heading}}</h4>
-        <p>comment: {{$ctrl.report.comment}}</p>
-        <p>time: {{$ctrl.report.timestamp | date : 'medium' : '-1200' }}</p>
-        <p>author: {{$ctrl.report.user.firstName}} {{$ctrl.report.user.lastName}}</p>
+        <h4 ng-hide="$ctrl.reportQuiet">{{$ctrl.report.heading}}</h4>
+        <p ng-hide="$ctrl.reportQuiet">comment: {{$ctrl.report.comment}}</p>
+        <p>Last Updated: {{$ctrl.report.timestamp | date : 'medium' : '-1200' }}</p>
+        <p ng-hide="$ctrl.reportQuiet">author: {{$ctrl.report.user.firstName}} {{$ctrl.report.user.lastName}}</p>
         <div class="">
           <p>status:<p>
           <ul>
@@ -46,6 +28,7 @@ module.component('reportComponent', {
   controller : reportController,
 
   bindings : {
-    report : '='
+    report : '=',
+    reportQuiet : '='
   }
 });

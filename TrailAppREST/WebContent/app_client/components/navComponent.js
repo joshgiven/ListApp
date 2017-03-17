@@ -9,13 +9,14 @@ app.component('navComponent', {
 
     vm.loggedIn = function(){
     	return authService.isLoggedIn();
-    }
+    };
+
+    vm.user = authService.currentUser();
 
     vm.logout = function(){
-    	console.log("in nav component logout")
     	authService.logout();
     	$location.path('/');
-    }
+    };
 
     $(document).ready(function() {
       var $pills = $('#navComponent ul li');

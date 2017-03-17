@@ -8,20 +8,20 @@ var searchAndResultComponentController = function() {
 module.component('searchAndResultComponent', {
   template : `
     <div class="">
-      <h4>form</h4>
-      <search-component trails="$ctrl.trails">Loading search form...</search-component>
-      <!--
-      <h4>partial</h4>
-      <ng-include src="'app_client/templates/search.view.html'"></ng-include>
-      -->
+      <search-component trails="$ctrl.trails" search-params="$ctrl.searchParams">
+        Loading search form...
+      </search-component>
       <h4>list</h4>
-      <trails-list trails="$ctrl.trails" >Loading results...</trails-list>
+      <trails-list trails="$ctrl.trails" report-quiet="true" trail-quiet="true">Loading results...</trails-list>
     </div>
     `,
 
   controller : searchAndResultComponentController,
 
   bindings : {
-    trails : '='
+    trails : '=',
+    searchParams : '<',
+    reportQuiet : '=',
+    trailQuiet : '=',
   }
 });

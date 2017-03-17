@@ -6,14 +6,14 @@ var loginController = function(authService, $location) {
   vm.login = function(user) {
     authService.login(user)
       .then(function(resp){
-        console.log('logged in!');
-        $location.path('/users/'+user.id+"/trails");
-      })
-      .catch(function(err) {
-        console.log('login failed!');
+        vm.loginRoute();
       });
   };
 
+  vm.loginRoute = function(){
+	  var loggedInUser = authService.currentUser();
+	  $location.path('/user/'+loggedInUser.id);
+  };
 };
 
 module.component('loginComponent', {

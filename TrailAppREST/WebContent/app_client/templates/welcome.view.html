@@ -1,5 +1,5 @@
 
-<div class="container">
+<div class="container" ng-controller="welcomeViewController as welcome">
 	<div class="row">
 		<div class="col-md-12">
 			<h1 class="trail wow fadeIn">Trail Update</h1>
@@ -21,7 +21,7 @@
 		<div class="col-md-4"></div>
 
 	<div ng-show="search" class="col-md-4 search">
-		<search-component>Loading search...</search-component>
+		<search-component trails='[]' on-submit="welcome.submitSearch">Loading search...</search-component>
 	</div>
 	<div ng-show="sign"  class="col-md-4 search">
 		<signup-component></signup-component>
