@@ -80,6 +80,7 @@ public class Report {
 
 
 	public Report() {
+			this.timestamp = new Date();
 	}
 
 

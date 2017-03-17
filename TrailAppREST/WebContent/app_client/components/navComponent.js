@@ -6,9 +6,8 @@ app.component('navComponent', {
 
   controller : function(authService,$location) {
     var vm = this;
-    
+
     vm.loggedIn = function(){
-    	console.log("in nav componenet loggedin")
     	return authService.isLoggedIn();
     }
 
@@ -17,7 +16,7 @@ app.component('navComponent', {
     	authService.logout();
     	$location.path('/');
     }
-    
+
     $(document).ready(function() {
       var $pills = $('#navComponent ul li');
       $pills.click(function(e) {

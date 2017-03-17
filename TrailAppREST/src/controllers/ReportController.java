@@ -47,7 +47,7 @@ public class ReportController {
 			HttpServletResponse res, HttpServletRequest req) {
 		ObjectMapper mapper = new ObjectMapper();
 		Report r = null;
-		//int uid = (int) req.getAttribute("userId");
+		int uid = (int) req.getAttribute("userId");
 		try {
 		  r = mapper.readValue(fillupJSON, Report.class);
 		} catch (Exception e) {
@@ -55,7 +55,7 @@ public class ReportController {
 		  return null;
 		}
 		//need login
-		return reportDAO.create(r, tid, 1);
+		return reportDAO.create(r, tid, uid);
 	}
 	
 	@PutMapping("auth/trails/{tid}/reports/{rid}")

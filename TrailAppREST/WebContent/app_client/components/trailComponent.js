@@ -50,14 +50,8 @@ module.component('trailComponent', {
       <p>{{$ctrl.trail.directions}}</p>
       <h4>Reports</h4>
       <report-list reports="$ctrl.reports" default-report="$ctrl.trail.recentReport">Loading Reports...<report-list>
-      <!--
-      <ul>
-        <li ng-repeat="report in $ctrl.reports">
-          <report-component report="report">Loading...</report-component>
-        </li>
-        <li ng-hide="$ctrl.reports && $ctrl.reports[0]">no reports</li>
-      </ul>
-      -->
+
     </div>
+    <report-form-component trail="$ctrl.trail" >loading... </report-form-component>
   `
 });

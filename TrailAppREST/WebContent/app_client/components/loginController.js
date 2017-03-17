@@ -4,7 +4,6 @@ var loginController = function(authService, $location) {
   var vm = this;
 
   vm.login = function(user) {
-	  console.log('in login js');
     authService.login(user)
       .then(function(resp){
         console.log('logged in!');
