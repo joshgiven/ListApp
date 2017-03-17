@@ -60,6 +60,6 @@ module.component('trailComponent', {
         Loading Reports...
       <report-list>
     </div>
-    <report-form-component trail="$ctrl.trail" >loading... </report-form-component>
+    <report-form-component ng-hide="$ctrl.trailQuiet" trail="$ctrl.trail">loading... </report-form-component>
   `
 });
