@@ -1,71 +1,70 @@
 <h2>Search Form</h2>
 
 <div class="row">
-
-	<form class="form" name="searchForm" novalidate ng-init="search={}">
+	<form class="form" name="searchForm" novalidate ng-init="$ctrl.search">
 		<div class="row">
 			<div class="col-md-6 text-center">
 				<div class="form-group">
 					<label for="city">City</label> <input class="form-control cityField"
-						type="text" name="city" placeholder="city" ng-model="search.city" />
+						type="text" name="city" placeholder="city" ng-model="$ctrl.search.city" />
 				</div>
 			</div>
 			<div class="col-md-6">
 			<div class="col-md-6">
 				<div class="form-group">
-					<label for="state">State</label><select class="form-control" name="state" ng-model="search.state">
-	<option value="Alabama">AL</option>
-	<option value="Alaska">AK</option>
-	<option value="Arizona">AZ</option>
-	<option value="Arkansas">AR</option>
-	<option value="California">CA</option>
-	<option value="Colorado">CO</option>
-	<option value="Connecticut">CT</option>
-	<option value="Delaware">DE</option>
-	<option value="District of Columbia">DC</option>
-	<option value="Florida">FL</option>
-	<option value="Georgia">GA</option>
-	<option value="Hawaii">HI</option>
-	<option value="Idaho">ID</option>
-	<option value="Illinois">IL</option>
-	<option value="Indiana">IN</option>
-	<option value="Iowa">IA</option>
-	<option value="Kansas">KA</option>
-	<option value="Kentucky">KY</option>
-	<option value="Louisiana">LA</option>
-	<option value="Maine">ME</option>
-	<option value="Maryland">MD</option>
-	<option value="Massachusetts">MA</option>
-	<option value="Michigan">MI</option>
-	<option value="Minnesota">MN</option>
-	<option value="Mississippi">MS</option>
-	<option value="Missouri">MO</option>
-	<option value="Montana">MT</option>
-	<option value="Nebraska">NE</option>
-	<option value="Nevada">NV</option>
-	<option value="New Hampshire">NH</option>
-	<option value="New Jersey">NJ</option>
-	<option value="New Mexico">NM</option>
-	<option value="New York">NY</option>
-	<option value="North Carolina">NC</option>
-	<option value="North Dakota">ND</option>
-	<option value="Ohio">OH</option>
-	<option value="Oklahoma">OK</option>
-	<option value="Oregon">OR</option>
-	<option value="Pennsylvania">PA</option>
-	<option value="Rhode Island">RI</option>
-	<option value="South Carolina">SC</option>
-	<option value="South Dakota">SD</option>
-	<option value="Tennessee">TN</option>
-	<option value="Texas">TX</option>
-	<option value="Utah">UT</option>
-	<option value="Vermont">VT</option>
-	<option value="Virginia">VA</option>
-	<option value="Washington">WA</option>
-	<option value="West Virginia">WV</option>
-	<option value="Wisconsin">WI</option>
-	<option value="Wyoming">WY</option>
-</select> 
+					<label for="state">State</label><select class="form-control" name="state" ng-model="$ctrl.search.state">
+						<option value="Alabama">AL</option>
+						<option value="Alaska">AK</option>
+						<option value="Arizona">AZ</option>
+						<option value="Arkansas">AR</option>
+						<option value="California">CA</option>
+						<option value="Colorado">CO</option>
+						<option value="Connecticut">CT</option>
+						<option value="Delaware">DE</option>
+						<option value="District of Columbia">DC</option>
+						<option value="Florida">FL</option>
+						<option value="Georgia">GA</option>
+						<option value="Hawaii">HI</option>
+						<option value="Idaho">ID</option>
+						<option value="Illinois">IL</option>
+						<option value="Indiana">IN</option>
+						<option value="Iowa">IA</option>
+						<option value="Kansas">KA</option>
+						<option value="Kentucky">KY</option>
+						<option value="Louisiana">LA</option>
+						<option value="Maine">ME</option>
+						<option value="Maryland">MD</option>
+						<option value="Massachusetts">MA</option>
+						<option value="Michigan">MI</option>
+						<option value="Minnesota">MN</option>
+						<option value="Mississippi">MS</option>
+						<option value="Missouri">MO</option>
+						<option value="Montana">MT</option>
+						<option value="Nebraska">NE</option>
+						<option value="Nevada">NV</option>
+						<option value="New Hampshire">NH</option>
+						<option value="New Jersey">NJ</option>
+						<option value="New Mexico">NM</option>
+						<option value="New York">NY</option>
+						<option value="North Carolina">NC</option>
+						<option value="North Dakota">ND</option>
+						<option value="Ohio">OH</option>
+						<option value="Oklahoma">OK</option>
+						<option value="Oregon">OR</option>
+						<option value="Pennsylvania">PA</option>
+						<option value="Rhode Island">RI</option>
+						<option value="South Carolina">SC</option>
+						<option value="South Dakota">SD</option>
+						<option value="Tennessee">TN</option>
+						<option value="Texas">TX</option>
+						<option value="Utah">UT</option>
+						<option value="Vermont">VT</option>
+						<option value="Virginia">VA</option>
+						<option value="Washington">WA</option>
+						<option value="West Virginia">WV</option>
+						<option value="Wisconsin">WI</option>
+						<option value="Wyoming">WY</option>
+					</select>
 <!-- <input class="form-control"
 						type="text" name="state" placeholder="state"
 						ng-model="search.state" /> -->
@@ -75,7 +74,7 @@
 				<div class="form-group">
 						<label for="radius">Proximity</label> <input class="form-control pull-right"
 							type="number" name="radius" placeholder="miles"
-							ng-model="search.radius" />
+							ng-model="$ctrl.search.radius" />
 					</div>
 				</div>
 			</div>
@@ -87,8 +86,8 @@
 		<div class="col-md-3 "></div>
 		</div>
 		<div class="col-md-6"></div>
-		
-		
+
+
 		</div>
 		<div class="row">
 			<div class="col-md-6">
@@ -99,37 +98,37 @@
 					<div class="form-group">
 						<label for="length-min">Min</label> <input
 							class="form-control" type="number" name="length-min"
-							placeholder="miles" ng-model="search.lengthMin" />
+							placeholder="miles" ng-model="$ctrl.search.lengthMin" />
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="length-max">Max</label> <input
 							class="form-control" type="number" name="length-max"
-							placeholder="miles" ng-model="search.lengthMax" />
+							placeholder="miles" ng-model="$ctrl.search.lengthMax" />
 					</div>
 				</div>
 			</div>
 
 			<div class="col-md-6 text-center">
 				<div class="form-group">
-					<label for="snow">Updated After</label> <input class="form-control updateField"
+					<label for="since">Updated After</label> <input class="form-control updateField"
 						type="date" name="since" placeholder="since"
-						ng-model="search.since" />
+						ng-model="$ctrl.search.since" />
 				</div>
 
 			</div>
 		</div>
 		<div class="row">
 		<div class="col-md-12">
-			
+
 				<button class="btn btn-primary btn-lg" type="button" name="button"
-					ng-click="">Clear</button>
-			
-			
+					ng-click="$ctrl.search = {}">Clear</button>
+
+
 				<button class="btn btn-primary btn-lg" type="button" name="button"
-					ng-click="console.log(null)">Submit</button>
-			
+					ng-click="$ctrl.executeSearch()">Submit</button>
+
 			</div>
 		</div>
 
@@ -168,12 +167,5 @@
         <form><input type="checkbox"  ng-model="search.passability[pass]" name="{{pass}}" value="false">{{pass}}</form>
       </div>
     </div> -->
-
-
-
-
-
-
 	</form>
 </div>
-

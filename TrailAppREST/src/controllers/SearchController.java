@@ -33,6 +33,12 @@ public class SearchController {
 		return dao.searchByLatLong(originLat, originLong, radius);
 		
 	}
+	
+	@GetMapping("search/derp")
+	List<Trail> searchDerp() {
+		return dao.search("");
+	}
+
 
 	@GetMapping("search/trails")
 	List<Trail> searchBy(
