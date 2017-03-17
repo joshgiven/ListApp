@@ -12,8 +12,8 @@ var reportListController = function() {
 
 module.component('reportList', {
   template : `
-      <div class="">
-        <ul>
+      <div class="reportList">
+        <ul class="list-unstyled">
           <li ng-repeat="report in $ctrl.reports track by $index">
             <report-component report="report" report-quiet="$ctrl.reportQuiet">Loading...</report-component>
           </li>

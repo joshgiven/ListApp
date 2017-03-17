@@ -11,8 +11,8 @@ var trailListController = function($location) {
 
 module.component('trailsList', {
   template : `
-      <div class="">
-        <ul>
+      <div class="trailsList">
+        <ul class="list-unstyled">
           <li ng-repeat="trail in $ctrl.trails">
             <trail-component trail="trail"
                              show-all-reports="false"
