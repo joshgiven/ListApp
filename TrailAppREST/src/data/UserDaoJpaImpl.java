@@ -1,10 +1,12 @@
 package data;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
@@ -66,20 +68,36 @@ public class UserDaoJpaImpl implements UserDAO {
 	
 	@Override
 	public Set<Trail> userFavorites(int id){
-		String q = "SELECT u FROM User u JOIN FETCH u.favorites WHERE u.id = :id";
-		User u = em.createQuery(q, User.class).setParameter("id", id).getSingleResult();
+		Set<Trail> favs = null;
 		
-		return u.getFavorites();
+		try {
+			String q = 
+				"SELECT u " +
+				"FROM User u JOIN FETCH u.favorites " +
+				"WHERE u.id = :id";
+			
+			User u = em.createQuery(q, User.class)
+			           .setParameter("id", id)
+			           .getSingleResult();
+			
+			favs = u.getFavorites();
+		} 
+		catch (NoResultException e) {
+			e.printStackTrace(System.err);
+			System.out.println("no favs found");
+			favs = Collections.emptySet();
+		}
 		
+		return favs;
 	}
 	
 	@Override
 	public Set<Trail> addUserFavorite(int uid, int tid){
-		System.out.println(uid);
+//		System.out.println(uid);
 		String q = "SELECT u FROM User u WHERE u.id = :id";
 		User u = em.createQuery(q, User.class).setParameter("id", uid).getSingleResult();
 		
-		System.out.println(u.getFirstName());
+//		System.out.println(u.getFirstName());
 		
 		Trail t = em.find(Trail.class, tid);
 		

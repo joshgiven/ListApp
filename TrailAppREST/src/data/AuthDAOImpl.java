@@ -21,30 +21,59 @@ public class AuthDAOImpl implements AuthDAO {
 
 	@Override
 	public User create(User user) {
-		// extract raw password
+		if( user == null || 
+		    user.getPassword() == null || 
+		    user.getEmail() == null ) {
+			
+			return null;
+		}
+		
+		// is email already in use?
+		try {
+			User u = em.createQuery(
+			                "SELECT u " + 
+			                "FROM User u " + 
+			                "WHERE email = :email", User.class)
+			           .setParameter("email", user.getEmail())
+			           .getSingleResult();
+			
+			if(u != null) {
+				return null;
+			}
+		} 
+		catch (NoResultException e) {
+			// this is good, eat exception
+		}
+		
 		String rawPassword = user.getPassword();
-		// encode raw password
 		String encodedPassword = passwordEncoder.encode(rawPassword);
-		// reset the user's password to the encoded one
 		user.setPassword(encodedPassword);
-		// persist the user
+		
+		// persist the user & force EntityManager to persist immediately
 		em.persist(user);
-		// force EntityManager to persist immediately
 		em.flush();
-		// return the persisted user
+		
 		return user;
 	}
 
 	@Override
 	public User authenticateUser(User user) throws NoResultException {
+		if(user == null || user.getPassword() == null) {
+			return null;
+		}
+		
 		// Find the managed user by its username
 		User u = em.createQuery("SELECT u FROM User u where email = :email", User.class)
-		           .setParameter("email", user.getEmail()).getSingleResult();
+		           .setParameter("email", user.getEmail())
+		           .getSingleResult();
+		
+		if(u == null || u.getPassword() == null) {
+			return null;
+		}
 		
 		// One-way encrypt the provided password, see if the result matches the
 		// persisted password value
-		if( u.getPassword() != null && user.getPassword() != null && 
-		    passwordEncoder.matches(user.getPassword(), u.getPassword())) {
+		if(passwordEncoder.matches(user.getPassword(), u.getPassword())) {
 			return u;
 		}
 		

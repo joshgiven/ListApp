@@ -33,63 +33,80 @@ public class AuthController {
 	}
 
 	@PostMapping(value = "/login")
-	public Map<String, String> login(HttpServletRequest req, HttpServletResponse res,
-			@RequestBody String userJsonString) {
-		
-		System.out.println("in login method");
-		System.out.println(userJsonString);
+	public Map<String, String> login(
+			HttpServletRequest req, HttpServletResponse res,
+			@RequestBody String userJsonString ) {
 		
 		ObjectMapper mapper = new ObjectMapper();
 		User user = null;
+
 		// Parse User from JSON
 		try {
 			user = mapper.readValue(userJsonString, User.class);
 		} 
 		catch (Exception e) {
-			e.printStackTrace();
+			// bad JSON
+			res.setStatus(400);
+			return null;
 		}
-		
-		System.out.println(user);
 		
 		// Find managed User, return it if password is correct
 		try {
 			user = authDAO.authenticateUser(user);
 		} 
 		catch (Exception e) {
-			// User not authenticated
-			e.printStackTrace();
-			res.setStatus(401);
+			// User not found
+			res.setStatus(404);
 			return null;
 		}
 
+		if(user == null) {
+			// User not authenticated
+			res.setStatus(401);
+			return null;
+		}
+		
 		String jws = jwtGen.generateUserJwt(user);
 		Map<String, String> responseJson = new HashMap<>();
 		responseJson.put("jwt", jws);
-		System.out.println(jws);
+		
+		res.setStatus(200);
 		return responseJson;
 	}
 
 	@PostMapping(value = "/signup")
-	public Map<String, String> register(HttpServletRequest req, HttpServletResponse res,
-			@RequestBody String userJsonString) {
-		System.out.println("in signup method");
-		System.out.println(userJsonString);
+	public Map<String, String> register(
+			HttpServletRequest req, HttpServletResponse res,
+			@RequestBody String userJsonString ) {
+		
 		ObjectMapper mapper = new ObjectMapper();
 		User user = null;
+		
 		// Parse User from JSON
 		try {
 			user = mapper.readValue(userJsonString, User.class);
 		} 
 		catch (Exception e) {
-			e.printStackTrace();
+			// bad JSON
+			//e.printStackTrace();
+			res.setStatus(400);
+			return null;
 		}
+				
 		// Find managed User, return it if password is correct
 		try {
 			user = authDAO.create(user);
 		} 
-		catch (Exception e) {
-			// User not authenticated
-			e.printStackTrace();
+		catch(Exception e) {
+			// not sure what would trigger this exception
+			
+			// User not persisted
+			// e.printStackTrace();
+			res.setStatus(401);  // proper resp code?
+			return null;
+		}
+		
+		if(user == null) {
 			res.setStatus(401);
 			return null;
 		}
@@ -97,19 +114,9 @@ public class AuthController {
 		String jws = jwtGen.generateUserJwt(user);
 		Map<String, String> responseJson = new HashMap<>();
 		responseJson.put("jwt", jws);
+
+		res.setStatus(201);
 		return responseJson;
 	}
-
-	// @PostMapping(path="/register")
-	// public User register(@RequestBody String userJSON){
-	// ObjectMapper mapper = new ObjectMapper();
-	// User newUser = null;
-	// try {
-	// newUser = mapper.readValue(userJSON, User.class);
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	// }
-	// return authDAO.register(newUser);
-	// }
 
 }

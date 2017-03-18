@@ -24,7 +24,7 @@ module.component('userComponent', {
       <p>{{$ctrl.user.description}}</p>
       <h4>Favorite Trails</h4>
       <trails-list trails="$ctrl.userFavs">Loading trails...</trails-list>
-      
+
       <!--
       <ul>
         <li ng-repeat="trail in $ctrl.userFavs">

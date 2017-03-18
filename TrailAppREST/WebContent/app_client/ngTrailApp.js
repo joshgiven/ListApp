@@ -67,6 +67,11 @@ module.config(function($routeProvider){
     .when('/signup', {
       templateUrl: 'app_client/templates/signup.view.html',
     })
+    .when('/error', {
+      template: `
+        <h1>Error</h1>
+      `,
+    })
     .otherwise({
       redirectTo : '/'
     });
