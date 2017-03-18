@@ -2,18 +2,30 @@ var module = angular.module('ngTrailApp');
 
 var signupController = function(authService, $location) {
   var vm = this;
+  vm.error = null;
 
   vm.signup = function(user) {
-	  console.log('in signup js user: '+ user.email);
+    vm.error = null;
+
     authService.signup(user)
       .then(function(resp){
-        console.log('registered!');
-        $location.path('/');
+        vm.loginRoute();
       })
-      .catch(function(err) {
-        console.log('register failed!');
+      .catch(function(resp) {
+        if(resp.status === 401) {
+          vm.error = "A user with that email address already exists";
+        }
+        else {
+          vm.error = "Error: " + resp.status + " : " + resp.statusText;
+        }
       });
   };
+
+  vm.loginRoute = function(){
+    var loggedInUser = authService.currentUser();
+    $location.path('/user/'+loggedInUser.id);
+  };
+
 };
 
 module.component('signupComponent', {

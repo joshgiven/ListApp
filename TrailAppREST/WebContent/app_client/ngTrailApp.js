@@ -70,7 +70,11 @@ module.config(function($routeProvider){
     .when('/error', {
       template: `
         <h1>Error</h1>
+        Some error occurred. What could it have been?
       `,
+      resolve: {
+        // error : function(errorService) { return errorService.getError(); }
+      }
     })
     .otherwise({
       redirectTo : '/'
