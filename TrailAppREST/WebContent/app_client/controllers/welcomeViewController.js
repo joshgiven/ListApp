@@ -1,6 +1,6 @@
 var module = angular.module('ngTrailApp');
 
-module.controller('welcomeViewController', function($location, searchXferService) {
+module.controller('welcomeViewController', function($location, searchXferService, authService) {
   var ctrl = this;
 
   ctrl.submitSearch = function(searchParams, trails) {
@@ -9,4 +9,7 @@ module.controller('welcomeViewController', function($location, searchXferService
     $location.path('/search'); //
   };
 
+  if(authService.isLoggedIn()) {
+    $location.path(['/user', authService.currentUser().id].join('/'));
+  }
 });

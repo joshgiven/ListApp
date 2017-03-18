@@ -67,7 +67,7 @@ app.factory('authService', function($window, $http){
 
     // Get current user from JWT
     var currentUser = function() {
-    	
+
       if (isLoggedIn()) {
         var token = getToken();
         var payload = JSON.parse($window.atob(token.split('.')[1]));
@@ -78,8 +78,6 @@ app.factory('authService', function($window, $http){
         };
       }
     };
-
-//    logout();
 
     return {
       login : login,

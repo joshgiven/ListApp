@@ -4,22 +4,22 @@ module.config(function($routeProvider){
   $routeProvider
     .when('/', {
       templateUrl: 'app_client/templates/welcome.view.html',
+      controller: 'welcomeViewController',
+      controllerAs: 'welcome'
     })
     .when('/search', {
-      //templateUrl: 'app_client/templates/search.view.html',
       template: `
-        <search-and-result-component trails="$resolve.trails" search-params="$resolve.searchParams">
+        <search-and-result-component trails="$resolve.trails"
+                                     search-params="$resolve.searchParams">
           Loading...</search-and-result-component>
       `,
       resolve: {
         trails : function(searchXferService){
           var trails = Object.assign([], searchXferService.getSearchTrails());
-          //searchXferService.putSearchTrails([]);
           return trails;
         },
         searchParams : function(searchXferService){
           var params = Object.assign({}, searchXferService.getSearchParams());
-          //searchXferService.putSearchParams({});
           return params;
         },
       }
@@ -28,7 +28,6 @@ module.config(function($routeProvider){
       template: `
         <trail-component trail="$resolve.trail" show-all-reports="true" >
           Loading Trail...</trail-component>
-        <!-- <report-form trail="$resolve.trail">Loading Form...</report-form> -->
       `,
       resolve: {
          trail : function(trailModel, $route, $location) {
