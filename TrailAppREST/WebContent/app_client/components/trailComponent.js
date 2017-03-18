@@ -1,6 +1,6 @@
 var module = angular.module('ngTrailApp');
 
-var trailController = function(trailModel, userModel, authService) {
+var trailController = function(trailModel, userModel, authService, $location) {
   var ctrl = this;
   ctrl.reports = [];
   ctrl.user = authService.currentUser();
@@ -35,7 +35,14 @@ var trailController = function(trailModel, userModel, authService) {
   };
 
   ctrl.loadReports(ctrl.showAllReports);
+
+  ctrl.redirectToTrail = function(toTrail) {
+    console.log(toTrail);
+    $location.path('/trail/' + toTrail.id);
+  };
 };
+
+
 
 module.component('trailComponent', {
   controller : trailController,
@@ -60,7 +67,9 @@ module.component('trailComponent', {
               <img ng-src="{{$ctrl.getImageUrl($ctrl.trail.imageUrl)}}"
                    ng-class="$ctrl.trailQuiet ? ['trailThumb','img-thumbnail','pull-left'] : []" />
             </div>
-
+            <button class="btn btn-primary btn-lg type="button" ng-show="$ctrl.trailQuiet"
+                ng-click="$ctrl.redirectToTrail($ctrl.trail)">View Trail
+            </button>
             <button class="btn btn-primary btn-lg type="button" ng-show="$ctrl.user.id"
                 ng-click="$ctrl.addUserFavorite($ctrl.user.id, $ctrl.trail.id)">Add Favorite
             </button>
