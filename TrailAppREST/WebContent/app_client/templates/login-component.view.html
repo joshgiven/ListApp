@@ -1,28 +1,35 @@
 <div class='col-md-12 loginForm'>
-  <form name="regForm" novalidate>
+  <form name="regForm" novalidate ng-init="showFormErrors=false">
   <div class="loginIcon"></div>
+
     <input type="email" name="email" class="form-control" placeholder="email" required
-      ng-model="user.email" />
+           ng-model="user.email" />
+
     <input type="password" name="password" class="form-control" placeholder="password" required
-      ng-model="user.password" ng-minlength="6" />
-    <button class="btn btn-primary btn-lg" ng-disabled="regForm.$invalid" ng-click="$ctrl.login(user)" >Login</button>
-  
-  
+           ng-model="user.password" ng-minlength="6" />
 
+    <button class="btn btn-primary btn-lg"
+            ng-disabled="regForm.$invalid"
+            ng-click="showFormErrors=true; $ctrl.login(user)"
+            ng-blur="showFormErrors=false" >
+      Login</button>
 
-  <ul>
-    <li class="loginError" ng-show="regForm.$dirty && regForm.email.$invalid">
-      Email must be valid
-    </li>
-    <li class="loginError" ng-show="regForm.$error.email.required">
-      Email is required
-    </li>
-    <li class="loginError" ng-show="regForm.$dirty && regForm.password.$invalid">
-      Password must be at least 6 characters
-    </li>
-    <li class="loginError" ng-show="regForm.password.value === 0">
-      Password is required
-    </li>
-  </ul>
+    <ul class="list-unstyled">
+      <li class="loginError" ng-show="showFormErrors && $ctrl.error">
+        {{$ctrl.error}}
+      </li>
+      <li class="loginError" ng-show="showFormErrors && regForm.$dirty && regForm.email.$invalid">
+        Email must be valid
+      </li>
+      <li class="loginError" ng-show="showFormErrors && regForm.$error.email.required">
+        Email is required
+      </li>
+      <li class="loginError" ng-show="showFormErrors && regForm.$dirty && regForm.password.$invalid">
+        Password must be at least 6 characters
+      </li>
+      <li class="loginError" ng-show="showFormErrors && regForm.password.value === 0">
+        Password is required
+      </li>
+    </ul>
   </form>
 </div>

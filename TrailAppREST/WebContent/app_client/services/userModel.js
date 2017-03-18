@@ -12,6 +12,8 @@ module.factory('userModel', function($http, authService){
       headers : {
         'x-access-token' : authService.getToken()
       }
+    }).catch(function(reason){
+      console.log('catch in userModel.getUser', reason);
     });
   };
 
