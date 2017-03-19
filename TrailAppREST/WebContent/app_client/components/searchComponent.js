@@ -9,9 +9,9 @@
    ctrl.executeSearch = function(params) {
      ctrl.search = params;
 
-     searchService.execute(ctrl.search)
-       .then(function(resp) {
-         ctrl.trails = resp.data;
+     searchService.findTrails(ctrl.search)
+       .then(function(trails) {
+         ctrl.trails = trails;
 
          if(ctrl.onSubmit) {
            ctrl.onSubmit(ctrl.search, ctrl.trails);
