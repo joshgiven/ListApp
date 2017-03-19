@@ -13,7 +13,7 @@ module.component('trailsList', {
   template : `
       <div class="trailsList">
         <ul class="list-unstyled">
-          <li ng-repeat="trail in $ctrl.trails">
+          <li ng-repeat="trail in $ctrl.trails | filter:searchConditions">
             <trail-component trail="trail"
                              show-all-reports="false"
                              report-quiet="$ctrl.reportQuiet"
