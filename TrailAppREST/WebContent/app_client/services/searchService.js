@@ -51,7 +51,7 @@ app.factory('searchService', function($http, $location, gLocatorService, errorXf
   return service;
 });
 
-app.factory('gLocatorService', function($http){
+app.factory('gLocatorService', function($http, $q){
   var service = {};
   var googleSearchAPI = "https://maps.googleapis.com/maps/api/geocode/json?address=";
 
@@ -71,16 +71,14 @@ app.factory('gLocatorService', function($http){
     var key = service.googleParams(city, state);
 
     if(service.lookups[key]) {
-      var promise = new Promise(function(resolve, reject){
+      return $q(function(resolve, reject){
         setTimeout(function(){
           //console.log('my promise');
           resolve(service.lookups[key]);
         }, 100);
       });
-
-      return promise;
     }
-
+    
     var gUrl = googleSearchAPI + key;
     //console.log(gUrl);
 
