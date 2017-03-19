@@ -1,5 +1,7 @@
 package data;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -149,101 +151,118 @@ public class SearchDAOImpl implements SearchDAO {
 			Integer lengthMin, Integer lengthMax, 
 			Double lat, Double lng) {
 
+		boolean locationBased = false;
+		if(Arrays.asList(city, state, lat, lng)
+		         .stream().anyMatch(x -> x != null)) {
+			locationBased = true;
+		}
+		
+		List<String> qConditions = new ArrayList<>();
+		Map<String, Object> qParams = new HashMap<>();
+		Map<String, Double> latLong = null;
+
+		if(lengthMin != null && lengthMin > 0) {
+			qConditions.add(" AND t.length >= :lengthMin ");
+			qParams.put("lengthMin", new Double(lengthMin.intValue()));
+		}
+		
+		if(lengthMax != null && lengthMax > 0) {
+			qConditions.add(" AND t.length <= :lengthMax ");
+			qParams.put("lengthMax", new Double(lengthMax.intValue()));
+		}
+		
+		
+		boolean trimCorners = false;
+		
+		if(locationBased) {
+			qConditions.add(" AND (1=1 ");
+			
+			if(city != null)
+			{
+				qConditions.add(" AND t.city = :city ");
+				qParams.put("city", city);
+			}
+			
+			if(state != null)
+			{
+				//query.append(" AND t.state = :state ");
+				qConditions.add(" AND t.state = :state ");
+				qParams.put("state", state);
+			}
+				
+			if( ((lat != null && lng != null) || 
+			     (city != null && state != null)) && 
+				radius != null && radius > 0) {
+				
+				if(city != null || state != null) {
+					qConditions.add(" OR ");
+				}
+				else {
+					qConditions.add(" AND  ");
+				}
+				
+				qConditions.add(" ( t.latitude  >= :minLat ");
+				qConditions.add(" AND t.latitude  <= :maxLat ");
+				qConditions.add(" AND t.longitude >= :minLong ");
+				qConditions.add(" AND t.longitude <= :maxLong ) ");
+
+				
+				latLong = (lat != null && lng != null) ? actualLatLong(lat,lng) 
+                                                       : sampleLatLong(city, state);
+
+				LatLongDelta delta = new LatLongDelta(latLong.get("latitude"), 
+				                                      latLong.get("longitude"), 
+				                                      radius);
+
+				qParams.put("minLat", delta.getMinLat());
+				qParams.put("maxLat", delta.getMaxLat());
+				qParams.put("minLong", delta.getMinLong());
+				qParams.put("maxLong", delta.getMaxLong());
+				trimCorners = true;
+			}
+			
+			qConditions.add(") ");
+		}
+		
+		if(qConditions.isEmpty()) {
+			return Collections.emptyList();
+		}
+
 		String baseQuery = 
 					"SELECT t " + 
 					"FROM Trail t " + 
-					"WHERE 1 = 1 ";
+					"WHERE 1=1 ";
 		
 		StringBuffer query = new StringBuffer(baseQuery);
 		
-		if(city != null && city.length() > 0 && radius == null)
-			query.append("  AND t.city = :city ");
+		qConditions.forEach((condition) -> {
+			query.append(condition);
+		});
 		
-		if(state != null && state.length() > 0 && radius == null)
-			query.append("  AND t.state = :state ");
-			
-		if(lengthMin != null && lengthMin > 0)
-			query.append("  AND t.length >= :lengthMin ");
-		
-		if(lengthMax != null && lengthMax > 0)
-			query.append("  AND t.length <= :lengthMax ");
-		 
-		if(city != null && state != null && radius != null && radius > 0) {
-			query.append("  AND t.latitude  >= :minLat ");
-			query.append("  AND t.latitude  <= :maxLat ");
-			query.append("  AND t.longitude >= :minLong ");
-			query.append("  AND t.longitude <= :maxLong ");
-		}
-
-		if(query.toString().equals(baseQuery)) {
-			return Collections.emptyList();
-		}
+		System.out.println(query);
 		
 		TypedQuery<Trail> q = em.createQuery(query.toString(), Trail.class);
 
-		if(city != null && city.length() > 0 && radius == null)
-			q.setParameter("city", city);
+		qParams.forEach((param, val) -> {
+			q.setParameter(param, val);
+		});
 		
-		if(state != null && state.length() > 0 && radius == null)
-			q.setParameter("state", state);
-		
-		if(lengthMin != null && lengthMin > 0)
-			q.setParameter("lengthMin", new Double(lengthMin.intValue()));
-		
-		if(lengthMax != null && lengthMax > 0)
-			q.setParameter("lengthMax", new Double(lengthMax.intValue()));
-
-		Map<String, Double> latLong = null;
-		if(city != null && state != null && radius != null && radius > 0) {
-			latLong = (lat != null && lng != null) ? actualLatLong(lat,lng) : sampleLatLong(city, state);
-			LatLongDelta delta = new LatLongDelta(latLong.get("latitude"), latLong.get("longitude"), radius);
-			
-			q.setParameter("minLat", delta.getMinLat());
-			q.setParameter("maxLat", delta.getMaxLat());
-			q.setParameter("minLong", delta.getMinLong());
-			q.setParameter("maxLong", delta.getMaxLong());
-			
-		}
-
 		List<Trail> trails = q.getResultList();
 
-		if(city != null && state != null && radius != null && radius > 0) {
+		if(trimCorners) {
 			double maxDistInKM = radius * 1.61;
 			
 			double oLat = latLong.get("latitude");
 			double oLon = latLong.get("longitude");
 			
-			trails = 
-				trails.stream()
-				      .filter(t -> maxDistInKM > haversine(t.getLatitude(),t.getLongitude(),oLat,oLon))
-				      .collect(Collectors.toList());	
+			trails = trails.stream().filter((t) -> {
+				double distance = haversine(t.getLatitude(),t.getLongitude(),oLat,oLon);
+				return (t.getCity().equals(city) && t.getCity().equals(city)) ||
+				        distance <= maxDistInKM;
+			}).collect(Collectors.toList());	
 		}
 		
 		return trails;
 	}
-
-//	@Override
-//	public List<Trail> search(String s) {
-//
-//		String query = 
-//		"SELECT t FROM Trail t " +
-//		"WHERE 1 = 1 " +
-//		"AND t.latitude  >= :minLat " +
-//		"AND t.latitude  <= :maxLat " +
-//		"AND t.longitude >= :minLong " +  
-//		"AND t.longitude <= :maxLong ";
-//		
-//		double minLat = 39.686183325077884;
-//		double maxLat = 40.40903667492211;
-//		double minLong = -105.81344837787128;
-//		double maxLong = -104.8691716221287;
-//	
-//		return em.createQuery(query, Trail.class)
-//		         .setParameter("minLat", minLat)
-//		         .setParameter("maxLat", maxLat)
-//		         .setParameter("minLong", minLong)
-//		         .setParameter("maxLong", maxLong)
-//		         .getResultList();
-//	}
 
 }
