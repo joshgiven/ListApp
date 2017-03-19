@@ -2,8 +2,13 @@
 
  var searchFormComponentController = function(searchService, locationService) {
    var ctrl = this;
+
+   ctrl.getDefaultParams = function() {
+     return {state:'Colorado', radius:'5'};
+   };
+
    ctrl.trails = Object.assign([], ctrl.trails);
-   ctrl.search = Object.assign({state:'Colorado',radius:'10'}, ctrl.searchParams);
+   ctrl.search = Object.assign(ctrl.getDefaultParams(), ctrl.searchParams);
    ctrl.states = locationService.getStateData();
 
    ctrl.executeSearch = function(params) {
