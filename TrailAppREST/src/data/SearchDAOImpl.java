@@ -111,6 +111,14 @@ public class SearchDAOImpl implements SearchDAO {
 		return trails;
 	}
 	
+	private Map<String, Double> actualLatLong(Double lat, Double lng) {
+		Map<String, Double> latLong = new HashMap<>();
+		latLong.put("longitude", lng);
+		latLong.put("latitude",  lat);
+		
+		return latLong;
+	}
+	
 	private Map<String, Double> sampleLatLong(String city, String state) {
 		String s = 
 				"SELECT avg(t.longitude), avg(t.latitude) " + 
@@ -133,12 +141,14 @@ public class SearchDAOImpl implements SearchDAO {
 		return latLong;
 	}
 	
+	
+	
 	@Override
-	public List<Trail> searchBy(String city, String state, Integer radius, Integer lengthMin, Integer lengthMax, Double lat, Double lng) {
-		
-		System.out.println(lat);
-		System.out.println(lng);
-		
+	public List<Trail> searchBy(
+			String city, String state, Integer radius, 
+			Integer lengthMin, Integer lengthMax, 
+			Double lat, Double lng) {
+
 		String baseQuery = 
 					"SELECT t " + 
 					"FROM Trail t " + 
@@ -185,7 +195,7 @@ public class SearchDAOImpl implements SearchDAO {
 
 		Map<String, Double> latLong = null;
 		if(city != null && state != null && radius != null && radius > 0) {
-			latLong = sampleLatLong(city, state);
+			latLong = (lat != null && lng != null) ? actualLatLong(lat,lng) : sampleLatLong(city, state);
 			LatLongDelta delta = new LatLongDelta(latLong.get("latitude"), latLong.get("longitude"), radius);
 			
 			q.setParameter("minLat", delta.getMinLat());
@@ -212,28 +222,28 @@ public class SearchDAOImpl implements SearchDAO {
 		return trails;
 	}
 
-	@Override
-	public List<Trail> search(String s) {
-
-		String query = 
-		"SELECT t FROM Trail t " +
-		"WHERE 1 = 1 " +
-		"AND t.latitude  >= :minLat " +
-		"AND t.latitude  <= :maxLat " +
-		"AND t.longitude >= :minLong " +  
-		"AND t.longitude <= :maxLong ";
-		
-		double minLat = 39.686183325077884;
-		double maxLat = 40.40903667492211;
-		double minLong = -105.81344837787128;
-		double maxLong = -104.8691716221287;
-	
-		return em.createQuery(query, Trail.class)
-		         .setParameter("minLat", minLat)
-		         .setParameter("maxLat", maxLat)
-		         .setParameter("minLong", minLong)
-		         .setParameter("maxLong", maxLong)
-		         .getResultList();
-	}
+//	@Override
+//	public List<Trail> search(String s) {
+//
+//		String query = 
+//		"SELECT t FROM Trail t " +
+//		"WHERE 1 = 1 " +
+//		"AND t.latitude  >= :minLat " +
+//		"AND t.latitude  <= :maxLat " +
+//		"AND t.longitude >= :minLong " +  
+//		"AND t.longitude <= :maxLong ";
+//		
+//		double minLat = 39.686183325077884;
+//		double maxLat = 40.40903667492211;
+//		double minLong = -105.81344837787128;
+//		double maxLong = -104.8691716221287;
+//	
+//		return em.createQuery(query, Trail.class)
+//		         .setParameter("minLat", minLat)
+//		         .setParameter("maxLat", maxLat)
+//		         .setParameter("minLong", minLong)
+//		         .setParameter("maxLong", maxLong)
+//		         .getResultList();
+//	}
 
 }

@@ -24,22 +24,6 @@ public class SearchController {
 		return dao.ping();
 	}
 	
-	@GetMapping("search/radius")
-	List<Trail> searchByLatLong(Double originLat, Double originLong, Integer radius) {
-		originLat = 39.0;
-		originLong = -105.0;
-		radius = 10;
-		
-		return dao.searchByLatLong(originLat, originLong, radius);
-		
-	}
-	
-	@GetMapping("search/derp")
-	List<Trail> searchDerp() {
-		return dao.search("");
-	}
-
-
 	@GetMapping("search/trails")
 	List<Trail> searchBy(
 			@RequestParam(required=false) String city, 
@@ -51,7 +35,8 @@ public class SearchController {
 			@RequestParam(required=false) Integer lengthMax, 
 			HttpServletRequest req, 
 			HttpServletResponse resp) {
-		System.out.println("lat in controller" + lat);
+		
+		//System.out.println("lat in controller" + lat);
 		
 		return dao.searchBy(city, state, radius, lengthMin, lengthMax, lat, lng);
 	}

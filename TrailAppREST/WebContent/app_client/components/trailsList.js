@@ -18,8 +18,8 @@ module.component('trailsList', {
                              show-all-reports="false"
                              report-quiet="$ctrl.reportQuiet"
                              trail-quiet="$ctrl.trailQuiet"
-                            <!--ng-click="$ctrl.redirectToTrail(trail)-->
-                             ">
+                             >
+                             <!--ng-click="$ctrl.redirectToTrail(trail)"-->
                   Loading...
             </trail-component>
           </li>

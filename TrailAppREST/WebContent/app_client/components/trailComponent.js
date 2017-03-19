@@ -99,7 +99,6 @@ module.component('trailComponent', {
                         !showReportForm" trail="$ctrl.trail">loading...
                 </report-form-component>
               </div>
-
               <div>
                 <h4 ng-hide="$ctrl.trailQuiet">Reports</h4>
                 <h4 ng-hide="!$ctrl.trailQuiet">Status</h4>
@@ -108,7 +107,6 @@ module.component('trailComponent', {
                   Loading Reports...
                 <report-list>
               </div>
-
             </div>
           </div>
         </div>

@@ -73,7 +73,16 @@ module.config(function($routeProvider){
         {{$resolve.error}}
       `,
       resolve: {
-        error : function(errorXferService) { return errorXferService.getError(); }
+        error : function(errorXferService) {
+          var error = errorXferService.getError();
+          errorXferService.putError(null);
+
+          if(!error) {
+            error = 'Unknown error';
+          }
+          
+          return error;
+        }
       }
     })
     .otherwise({

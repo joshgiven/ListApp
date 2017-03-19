@@ -6,7 +6,7 @@ var reportController = function(authService) {
   ctrl.user = authService.currentUser();
 
   ctrl.owner = function(report){
-    if (ctrl.user.id === report.user.id) {
+    if (ctrl.user && ctrl.user.id === report.user.id) {
       return true;
     }
     else return false;
@@ -18,7 +18,7 @@ module.component('reportComponent', {
       <div class="reportComponent well">
         <h4 ng-hide="$ctrl.reportQuiet">{{$ctrl.report.heading}}</h4>
         <button class="btn btn-primary btn-lg" ng-show=$ctrl.owner($ctrl.report)
-          ng-click=" >Edit</button>
+                ng-click="" >Edit</button>
           <div>
           <report-form-component report=$ctrl.report >loading....</report-form-component>
           </div>
