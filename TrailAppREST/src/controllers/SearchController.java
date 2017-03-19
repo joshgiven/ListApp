@@ -45,12 +45,15 @@ public class SearchController {
 			@RequestParam(required=false) String city, 
 			@RequestParam(required=false) String state, 
 			@RequestParam(required=false) Integer radius, 
+			@RequestParam(required=false) Double lat, 
+			@RequestParam(required=false) Double lng, 
 			@RequestParam(required=false) Integer lengthMin, 
 			@RequestParam(required=false) Integer lengthMax, 
 			HttpServletRequest req, 
 			HttpServletResponse resp) {
+		System.out.println("lat in controller" + lat);
 		
-		return dao.searchBy(city, state, radius, lengthMin, lengthMax);
+		return dao.searchBy(city, state, radius, lengthMin, lengthMax, lat, lng);
 	}
 
 }

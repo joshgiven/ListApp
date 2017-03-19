@@ -23,7 +23,7 @@ public class SearchDAOImpl implements SearchDAO {
 	}
 	
 	public List<Trail> searchByCity(String city, String state) {
-		return searchBy(city, state, null, null, null);
+		return searchBy(city, state, null, null, null, null, null);
 	}
 	
 	public static double haversine(double lat1, double lng1, double lat2,  double lng2) {
@@ -134,7 +134,10 @@ public class SearchDAOImpl implements SearchDAO {
 	}
 	
 	@Override
-	public List<Trail> searchBy(String city, String state, Integer radius, Integer lengthMin, Integer lengthMax) {
+	public List<Trail> searchBy(String city, String state, Integer radius, Integer lengthMin, Integer lengthMax, Double lat, Double lng) {
+		
+		System.out.println(lat);
+		System.out.println(lng);
 		
 		String baseQuery = 
 					"SELECT t " + 
