@@ -14,8 +14,8 @@ public interface SearchDAO{
 	
 	public List<Trail> searchByLatLong(Double originLat, Double originLong, int rangeInMiles);
 
-	public List<Trail> search(String s);
+	//public List<Trail> search(String s);
 
-	public List<Trail> searchBy(String city, String state, Integer radius, Integer lengthMin, Integer lengthMax);
+	public List<Trail> searchBy(String city, String state, Integer radius, Integer lengthMin, Integer lengthMax, Double lat, Double lng);
 	
 }

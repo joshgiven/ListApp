@@ -3,15 +3,15 @@
  var searchFormComponentController = function(searchService, locationService) {
    var ctrl = this;
    ctrl.trails = Object.assign([], ctrl.trails);
-   ctrl.search = Object.assign({}, ctrl.searchParams);
+   ctrl.search = Object.assign({state:'Colorado',radius:'5'}, ctrl.searchParams);
    ctrl.states = locationService.getStateData();
 
    ctrl.executeSearch = function(params) {
      ctrl.search = params;
 
-     searchService.execute(ctrl.search)
-       .then(function(resp) {
-         ctrl.trails = resp.data;
+     searchService.findTrails(ctrl.search)
+       .then(function(trails) {
+         ctrl.trails = trails;
 
          if(ctrl.onSubmit) {
            ctrl.onSubmit(ctrl.search, ctrl.trails);

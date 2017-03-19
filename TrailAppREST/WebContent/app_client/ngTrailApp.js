@@ -70,10 +70,19 @@ module.config(function($routeProvider){
     .when('/error', {
       template: `
         <h1>Error</h1>
-        Some error occurred. What could it have been?
+        {{$resolve.error}}
       `,
       resolve: {
-        // error : function(errorService) { return errorService.getError(); }
+        error : function(errorXferService) {
+          var error = errorXferService.getError();
+          errorXferService.putError(null);
+
+          if(!error) {
+            error = 'Unknown error';
+          }
+          
+          return error;
+        }
       }
     })
     .otherwise({
