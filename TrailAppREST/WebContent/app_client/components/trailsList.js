@@ -1,7 +1,7 @@
 var module = angular.module('ngTrailApp');
 
 
-var trailListController = function($location) {
+var trailListController = function($location /*, conditionFilter*/) {
   var ctrl = this;
 
   ctrl.redirectToTrail = function(trail) {
@@ -13,7 +13,7 @@ module.component('trailsList', {
   template : `
       <div class="trailsList">
         <ul class="list-unstyled">
-          <li ng-repeat="trail in $ctrl.trails | filter:searchConditions">
+          <li ng-repeat="trail in $ctrl.trails | conditionFilter : $ctrl.filterByCondition">
             <trail-component trail="trail"
                              show-all-reports="false"
                              report-quiet="$ctrl.reportQuiet"
@@ -33,6 +33,7 @@ module.component('trailsList', {
   bindings : {
     trails : '=',
     reportQuiet : '=',
-    trailQuiet : '='
+    trailQuiet : '=',
+    filterByCondition: '<'
   }
 });

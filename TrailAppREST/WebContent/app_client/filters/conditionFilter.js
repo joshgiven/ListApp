@@ -1,15 +1,25 @@
-var app = angular.module('ngTrailApp');
+var module = angular.module('ngTrailApp');
 
-app.filter('showConditionFilter', function(){
-  return function(trails, show) {
+module.filter('conditionFilter', function(condFilterCache){
+  return function(trails, dofilter) {
+
+    checkedConditions = condFilterCache.keys()
+                                       .filter((x) => condFilterCache.get(x));
+
     var results = [];
-    trails.forEach(function(trail){
-      trail.condition.forEach(function(condition){
-        if (condition === show ) {
+    if(doFilter && checkedConditions.length) {
+      trails.forEach(function(trail){
+        var hits = trail.recentReport.tstatuses.filter((status) =>
+          checkedConditions.includes(status.name));
+
+        if(hits.length)
           results.push(trail);
-        }
       });
-    });
+    }
+    else {
+      results = trails;
+    }
+
     return results;
   };
 });

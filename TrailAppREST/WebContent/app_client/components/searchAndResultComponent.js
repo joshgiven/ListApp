@@ -27,11 +27,23 @@ module.component('searchAndResultComponent', {
       </div>
 
       <div class="row">
+        <div class="col-md-3"><!-- spacer --></div>
+
+        <div class="col-md-6 search">
+          <filters-component>Loading Filters Component...</filters-component>
+        </div>
+
+        <div class="col-md-3"><!-- spacer --></div>
+      </div>
+
+      <div class="row">
 
         <div class="">
           <h4>Results</h4>
           <trails-list trails="$ctrl.trails"
-                       report-quiet="true" trail-quiet="true">
+                       report-quiet="true"
+                       trail-quiet="true"
+                       filter-by-condition="true">
             Loading results...
           </trails-list>
         </div>
