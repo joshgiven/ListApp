@@ -3,7 +3,7 @@
 A Contributor-Based Hiking Trail Status Tracking Site
 
 ## Try It Out!
-[demo](https://joshgiven.com:8080/TrailAppREST)
+[demo](http://joshgiven.com:8080/TrailAppREST)
 
 ## Obligatory Buzzword Compliance List
 - Front-End
