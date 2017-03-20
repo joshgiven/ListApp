@@ -40,6 +40,17 @@ var trailController = function(trailModel, userModel, authService, $location) {
     console.log(toTrail);
     $location.path('/trail/' + toTrail.id);
   };
+
+  ctrl.showReportForm = false;
+
+  ctrl.addReportButtonToggle = function() {
+    if(ctrl.user){
+      ctrl.showReportForm = !ctrl.showReportForm;
+    }
+    else {
+      $location.path('/login');
+    }
+  };
 };
 
 
@@ -90,13 +101,13 @@ module.component('trailComponent', {
 
               <div>
                 <button class="btn btn-primary btn-lg type="button" ng-hide="$ctrl.trailQuiet ||
-                        showReportForm" ng-click="showReportForm = !showReportForm">Add Report
+                        $ctrl.showReportForm" ng-click="$ctrl.addReportButtonToggle()">Add Report
                 </button></a>
                 <button class="btn btn-primary btn-lg type="button" ng-hide="$ctrl.trailQuiet ||
-                        !showReportForm" ng-click="showReportForm = !showReportForm">Hide Report
+                        !$ctrl.showReportForm" ng-click="$ctrl.addReportButtonToggle()">Hide Report
                 </button></a>
                 <report-form-component ng-hide="$ctrl.trailQuiet ||
-                        !showReportForm" trail="$ctrl.trail">loading...
+                        !$ctrl.showReportForm" trail="$ctrl.trail">loading...
                 </report-form-component>
               </div>
               <div>
