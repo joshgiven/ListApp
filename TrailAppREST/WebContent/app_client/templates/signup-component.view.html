@@ -1,46 +1,36 @@
-<h2>Sign Up</h2>
 <div class="row">
-<div class='col-md-12'>
-  <form name="regForm" class="form" novalidate>
+	<div class='col-md-12 text-center loginForm'>
+		<form name="regForm" class="form" novalidate>
+			<h2 class="signUp">Sign Up</h2>
 
-    <input type="email" name="email" class="form-control" placeholder="email" required
-      ng-model="user.email" />
+			<input type="email" name="email" class="form-control"
+				placeholder="email" required ng-model="user.email" /> <input
+				type="password" name="password" class="form-control"
+				placeholder="password" required ng-model="user.password"
+				ng-minlength="6" /> <input type="firstName" name="firstName"
+				class="form-control" placeholder="first name" required
+				ng-model="user.firstName" /> <input type="lastName" name="lastName"
+				class="form-control" placeholder="last name" required
+				ng-model="user.lastName" />
 
-    <input type="password" name="password" class="form-control" placeholder="password" required
-      ng-model="user.password" ng-minlength="6" />
+			<button class="btn btn-primary btn-lg" ng-disabled="regForm.$invalid"
+				ng-click="$ctrl.signup(user)">Sign Up</button>
+		</form>
 
-    <input type="firstName" name="firstName" class="form-control" placeholder="first name" required
-      ng-model="user.firstName" />
-
-	  <input type="lastName" name="lastName" class="form-control" placeholder="last name" required
-      ng-model="user.lastName" />
-
-    <button class="btn btn-success" ng-disabled="regForm.$invalid" ng-click="$ctrl.signup(user)" >sign up</button>
-  </form>
-
-  <ul class="list-unstyled">
-    <li ng-show="$ctrl.error">
-      <span class="text-danger">{{$ctrl.error}}</span>
-    </li>
-    <li ng-show="regForm.$dirty && regForm.email.$invalid">
-      Email must be valid
-    </li>
-    <li ng-show="regForm.$error.email.required">
-      Email is required
-    </li>
-    <li ng-show="regForm.$dirty && regForm.password.$invalid">
-      Password must be at least 6 characters
-    </li>
-    <li ng-show="regForm.password.value === 0">
-      Password is required
-    </li>
-        <li ng-show="regForm.$error.firstName.required">
-      First name is required
-    </li>
-        </li>
-        <li ng-show="regForm.$error.lastName.required">
-      Last name is required
-    </li>
-  </ul>
-</div>
+		<ul class="list-unstyled">
+			<li ng-show="$ctrl.error"><span class="text-danger">{{$ctrl.error}}</span>
+			</li>
+			<li ng-show="regForm.$dirty && regForm.email.$invalid">Email
+				must be valid</li>
+			<li ng-show="regForm.$error.email.required">Email is required</li>
+			<li ng-show="regForm.$dirty && regForm.password.$invalid">
+				Password must be at least 6 characters</li>
+			<li ng-show="regForm.password.value === 0">Password is required</li>
+			<li ng-show="regForm.$error.firstName.required">First name is
+				required</li>
+			</li>
+			<li ng-show="regForm.$error.lastName.required">Last name is
+				required</li>
+		</ul>
+	</div>
 </div>

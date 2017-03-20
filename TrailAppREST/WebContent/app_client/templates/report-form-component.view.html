@@ -1,30 +1,31 @@
-<form name="reportForm" class="form" novalidate ng-init='report={};report.tstatuses=[{},{},{}]'>
+<form name="reportForm" class="form" novalidate ng-init='report=$ctrl.getInitialReport()'>
     Heading: <input type="text" name="heading" class="form-control"
               placeholder="Heading" required ng-model="report.heading" />
     Comments: <input type="text" name="comment" class="form-control"
-              placeholder="Comment" value="$ctrl.reportInfo.comment" required ng-model="report.comment" />
+              placeholder="Comment" required ng-model="report.comment" />
     Snow Condtions: <select class="form-control" name="snow" required ng-model="report.tstatuses[0].id">
-                        <option value="1">deep</option>
-                        <option value="2">moderate</option>
-                        <option value="3">light</option>
-                        <option value="4">slush</option>
-                        <option value="5">no snow</option>
+                        <option ng-selected ="report.tstatuses[0].id === 1" value="1">deep</option>
+                        <option ng-selected ="report.tstatuses[0].id === 2" value="2">moderate</option>
+                        <option ng-selected ="report.tstatuses[0].id === 3" value="3">light</option>
+                        <option ng-selected ="report.tstatuses[0].id === 4" value="4">slush</option>
+                        <option ng-selected ="report.tstatuses[0].id === 5" value="5">no snow</option>
                     </select>
     Ground Conditions: <select class="form-control" name="ground" required ng-model="report.tstatuses[1].id">
-                        <option value="6">dry</option>
-                        <option value="7">icy</option>
-                        <option value="8">washed out</option>
-                        <option value="9">heavy mud</option>
-                        <option value="10">moderate mud</option>
-                        <option value="11">light mud</option>
+                        <option ng-selected ="report.tstatuses[1].id === 6" value="6">dry</option>
+                        <option ng-selected ="report.tstatuses[1].id === 7" value="7">icy</option>
+                        <option ng-selected ="report.tstatuses[1].id === 8" value="8">washed out</option>
+                        <option ng-selected ="report.tstatuses[1].id === 9" value="9">heavy mud</option>
+                        <option ng-selected ="report.tstatuses[1].id === 10" value="10">moderate mud</option>
+                        <option ng-selected ="report.tstatuses[1].id === 11" value="11">light mud</option>
                       </select>
     Passability: <select class="form-control" name="passability" required ng-model="report.tstatuses[2].id">
-                    <option value="12">open</option>
-                    <option value="13">closed</option>
-                    <option value="15">hazardous</option>
-                    <option value="14">impassable</option>
+                    <option ng-selected ="report.tstatuses[2].id === 13" value="13">open</option>
+                    <option ng-selected ="report.tstatuses[2].id === 12" value="12">closed</option>
+                    <option ng-selected ="report.tstatuses[2].id === 15" value="15">hazardous</option>
+                    <option ng-selected ="report.tstatuses[2].id === 14" value="14">impassable</option>
                   </select>
     Date Visited: <input id="formDate" type="datetime-local" name="timestamp" class="form-control" placeholder="Date Visited"
                     required ng-model="report.timestamp" />
-    <button class="btn btn-success" ng-disabled="regForm.$invalid" ng-click="edit ? $ctrl.updateReport(report) : $ctrl.createReport(report)">Submit Report</button>
+    <button class="btn btn-success" ng-hide="$ctrl.edit" ng-click="$ctrl.createReport(report)">Submit Report</button>
+    <button class="btn btn-success" ng-show="$ctrl.edit" ng-click="$ctrl.updateReport(report)">Edit Report</button>
 </form>

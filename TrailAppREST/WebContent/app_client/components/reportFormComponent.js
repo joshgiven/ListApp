@@ -19,13 +19,27 @@ var reportFormController = function(reportService, $location, $window) {
   vm.updateReport = function(report) {
     reportService.updateReport(report)
       .then(function(resp){
-        $location.path('/trail/'+report.trail.id);
-        $location.reload();
+    	  $window.location.reload();
       })
       .catch(function(err) {
-        console.log('login failed!');
+        console.log('Edit Report Failed');
       });
   };
+  
+
+  
+  vm.getInitialReport = function(){
+	  console.log("In initial report")
+	  if(vm.reportInfo){
+		  vm.report = Object.assign({}, vm.reportInfo);
+		  vm.report.timestamp = new Date(vm.report.timestamp);
+	  }else{
+		  vm.report={};
+		  vm.report.tstatuses=[{},{},{}]
+	  }
+	  return vm.report;
+  }
+  
 
 };
 
@@ -34,7 +48,8 @@ module.component('reportFormComponent', {
   controller : reportFormController,
   bindings :{
     trail : '=',
-    reportInfo : '='
+    reportInfo : '=',
+    edit : '<'
     	
   }
 });

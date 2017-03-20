@@ -101,7 +101,7 @@ module.component('trailComponent', {
 
               <div>
                 <button class="btn btn-primary btn-lg type="button" ng-hide="$ctrl.trailQuiet ||
-                        $ctrl.showReportForm" ng-click="$ctrl.addReportButtonToggle()">Add Report
+                        $ctrl.showReportForm" ng-click="$ctrl.addReportButtonToggle();edit=false">Add Report
                 </button></a>
                 <button class="btn btn-primary btn-lg type="button" ng-hide="$ctrl.trailQuiet ||
                         !$ctrl.showReportForm" ng-click="$ctrl.addReportButtonToggle()">Hide Report
