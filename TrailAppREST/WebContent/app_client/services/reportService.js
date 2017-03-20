@@ -15,10 +15,11 @@ app.factory('reportService', function($http, authService){
   });
 };
 
-service.updateReport = function(report, id){
+service.updateReport = function(report){
+	console.log(report)
   return $http({
     method : 'PUT',
-    url : 'api/auth/trails/'+report.trail.id+'/reports/'+ id,
+    url : 'api/auth/trails/reports/'+ report.id,
     headers : {
       'Content-Type' : 'application/json',
       'x-access-token' : authService.getToken()

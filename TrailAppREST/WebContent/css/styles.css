@@ -231,6 +231,22 @@
 	width:150px;
 }
 
+.signUp{
+	margin-top:0;
+	padding-top: 0;
+	padding-bottom: 10px;
+	color:black;
+}
+
+.link{
+	font-size:18px;
+	padding-bottom:0;
+	margin-bottom:0;
+	color:darkblue;
+	text-shadow: white 0px 0px 10px;
+}
+
+
 /* .cityField{
 	margin-left:15px;
 
