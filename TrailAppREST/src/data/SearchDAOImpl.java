@@ -232,7 +232,7 @@ public class SearchDAOImpl implements SearchDAO {
 					"FROM Trail t " + 
 					"WHERE 1=1 ";
 		
-		StringBuffer query = new StringBuffer(baseQuery);
+		StringBuilder query = new StringBuilder(baseQuery);
 		
 		qConditions.forEach((condition) -> {
 			query.append(condition);
@@ -259,6 +259,46 @@ public class SearchDAOImpl implements SearchDAO {
 				return (t.getCity().equals(city) && t.getCity().equals(city)) ||
 				        distance <= maxDistInKM;
 			}).collect(Collectors.toList());	
+		}
+		
+		return trails;
+	}
+
+	@Override
+	public List<Trail> searchByKeywords(List<String> keywords) {
+		List<Trail> trails = Collections.emptyList();
+		
+		Map<String, String> params = new HashMap<>();
+		for(int i=0; i < keywords.size(); i++) {
+			String kw = keywords.get(i);
+			if(kw != null && kw.length() > 0) {
+				String pname = "param" + i;
+				params.put(pname, kw);
+			}
+		}
+		
+		if(params.size() > 0) {
+			StringBuilder q = new StringBuilder(
+				"SELECT t " +
+				"FROM Trail t " +
+				"WHERE 1=0 "
+				);
+			
+			List<String> colNames = Arrays.asList("name"/*, "city", "state", "description"*/);
+			colNames.forEach((col) -> {
+				q.append(" OR ( 1=1 ");
+				params.forEach((pname, pval) -> {
+					q.append(" AND t." + col + " LIKE :" + pname + " ");		
+				});
+				q.append(" ) ");
+			});
+			
+			TypedQuery<Trail> query = em.createQuery(q.toString(), Trail.class);
+			params.forEach((pname, pval) -> {
+				query.setParameter(pname, "%" + pval + "%");		
+			});
+			
+			trails = query.getResultList();
 		}
 		
 		return trails;

@@ -24,6 +24,17 @@
        });
    };
 
+   ctrl.keywordSearch = function(keywords) {
+     searchService.findTrailsByKeyword(keywords)
+       .then(function(trails) {
+         ctrl.trails = trails;
+
+         if(ctrl.onSubmit) {
+           ctrl.onSubmit(ctrl.search, ctrl.trails);
+         }
+       });
+   };
+
  };
 
 module.component('searchComponent', {
