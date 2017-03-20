@@ -33,6 +33,8 @@ module.component('reportFormComponent', {
   templateUrl : 'app_client/templates/report-form-component.view.html',
   controller : reportFormController,
   bindings :{
-    trail : '='
+    trail : '=',
+    reportInfo : '='
+    	
   }
 });

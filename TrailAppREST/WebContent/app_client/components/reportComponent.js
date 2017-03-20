@@ -18,9 +18,9 @@ module.component('reportComponent', {
       <div class="reportComponent well">
         <h4 ng-hide="$ctrl.reportQuiet">{{$ctrl.report.heading}}</h4>
         <button class="btn btn-primary btn-lg" ng-show=$ctrl.owner($ctrl.report)
-                ng-click="" >Edit</button>
+                ng-click="edit=true" >Edit</button>
           <div>
-          <report-form-component report=$ctrl.report >loading....</report-form-component>
+          <report-form-component ng-show=edit && $ctrl.owner($ctrl.report) reportInfo=$ctrl.report >loading....</report-form-component>
           </div>
         <p ng-hide="$ctrl.reportQuiet">comment: {{$ctrl.report.comment}}</p>
         <p>Last Updated: {{$ctrl.report.timestamp | date : 'medium' : '-1200' }}</p>
