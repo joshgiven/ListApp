@@ -57,9 +57,9 @@ public class ReportController {
 		return reportDAO.create(r, tid, uid);
 	}
 	
-	@PutMapping("auth/trails/{tid}/reports/{rid}")
+	@PutMapping("auth/trails/reports/{rid}")
 	Report update(
-			@PathVariable int tid, 
+			 
 			@PathVariable int rid, 
 			@RequestBody String fillupJSON, 
 			HttpServletResponse res) {

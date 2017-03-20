@@ -62,5 +62,16 @@ module.factory('userModel', function($http, authService){
       });
   };
 
+  service.removeUserFavorite = function(userId, trailId) {
+    return $http({
+      method : 'DELETE',
+      // url : [userAPI, user.id, 'trails'].join('/'),
+      url : [userAPI, 'trails', trailId].join('/'),
+      headers : {
+        'x-access-token' : authService.getToken()
+      }
+    });
+};
+
   return service;
 });

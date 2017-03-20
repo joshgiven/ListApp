@@ -43,7 +43,8 @@ module.component('searchAndResultComponent', {
           <trails-list trails="$ctrl.trails"
                        report-quiet="true"
                        trail-quiet="true"
-                       filter-by-condition="true">
+                       filter-by-condition="true"
+                       parent="'searchview'">
             Loading results...
           </trails-list>
         </div>
