@@ -15,22 +15,22 @@
 
 			<button class="btn btn-primary btn-lg" ng-disabled="regForm.$invalid"
 				ng-click="$ctrl.signup(user)">Sign Up</button>
-		</form>
 
 		<ul class="list-unstyled">
-			<li ng-show="$ctrl.error"><span class="text-danger">{{$ctrl.error}}</span>
+			<li class="loginError" ng-show="$ctrl.error"><span class="loginError">{{$ctrl.error}}</span>
 			</li>
-			<li ng-show="regForm.$dirty && regForm.email.$invalid">Email
+			<li class="loginError" ng-show="regForm.$dirty && regForm.email.$invalid">Email
 				must be valid</li>
-			<li ng-show="regForm.$error.email.required">Email is required</li>
-			<li ng-show="regForm.$dirty && regForm.password.$invalid">
+			<li class="loginError" ng-show="regForm.$error.email.required">Email is required</li>
+			<li class="loginError" ng-show="regForm.$dirty && regForm.password.$invalid">
 				Password must be at least 6 characters</li>
-			<li ng-show="regForm.password.value === 0">Password is required</li>
-			<li ng-show="regForm.$error.firstName.required">First name is
+			<li class="loginError" ng-show="regForm.password.value === 0">Password is required</li>
+			<li class="loginError" ng-show="regForm.$error.firstName.required">First name is
 				required</li>
 			</li>
-			<li ng-show="regForm.$error.lastName.required">Last name is
+			<li class="loginError" ng-show="regForm.$error.lastName.required">Last name is
 				required</li>
 		</ul>
+		</form>
 	</div>
 </div>
