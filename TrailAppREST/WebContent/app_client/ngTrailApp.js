@@ -67,6 +67,9 @@ module.config(function($routeProvider){
     .when('/signup', {
       templateUrl: 'app_client/templates/signup.view.html',
     })
+    .when('/about', {
+      templateUrl: 'app_client/templates/about.view.html',
+    })
     .when('/error', {
       template: `
         <h1>Error</h1>
@@ -80,7 +83,7 @@ module.config(function($routeProvider){
           if(!error) {
             error = 'Unknown error';
           }
-          
+
           return error;
         }
       }
