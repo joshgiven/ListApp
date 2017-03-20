@@ -1,7 +1,7 @@
 var module = angular.module('ngTrailApp');
 
 module.filter('conditionFilter', function(condFilterCache){
-  return function(trails, dofilter) {
+  return function(trails, doFilter) {
 
     checkedConditions = condFilterCache.keys()
                                        .filter((x) => condFilterCache.get(x));

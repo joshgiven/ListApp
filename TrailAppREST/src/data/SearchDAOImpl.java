@@ -185,7 +185,6 @@ public class SearchDAOImpl implements SearchDAO {
 			
 			if(state != null)
 			{
-				//query.append(" AND t.state = :state ");
 				qConditions.add(" AND t.state = :state ");
 				qParams.put("state", state);
 			}
@@ -239,7 +238,7 @@ public class SearchDAOImpl implements SearchDAO {
 			query.append(condition);
 		});
 		
-		System.out.println(query);
+		//System.out.println(query);
 		
 		TypedQuery<Trail> q = em.createQuery(query.toString(), Trail.class);
 
