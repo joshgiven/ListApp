@@ -1,5 +1,8 @@
 package controllers;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +25,18 @@ public class SearchController {
 	@GetMapping("search/ping")
 	String ping() {
 		return dao.ping();
+	}
+	
+	@GetMapping("search/keyword")
+	List<Trail> searchBy(@RequestParam String k) {
+		List<Trail> trails = Collections.emptyList();
+		
+		if(k != null && k.length() > 0) {
+			List<String> keywords = Arrays.asList(k.split("\\s"));
+			trails = dao.searchByKeywords(keywords);
+		}
+		
+		return trails;
 	}
 	
 	@GetMapping("search/trails")
