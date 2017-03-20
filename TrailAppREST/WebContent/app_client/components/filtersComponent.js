@@ -12,13 +12,14 @@ var filtersComponentController = function(condFilterCache, uiHelperService) {
     });
 
   ctrl.reset = function() {
-    ctrl.cache.clear();
+    ctrl.cache.clearAll();
     ctrl.checks = {};
   };
 
-  ctrl.put = function(key, value){
-    if(key)
-      ctrl.cache.put(key, value);
+  ctrl.put = function(type,status, value){
+    if(type && status) {
+      ctrl.cache.put(type, status, value);
+    }
   };
 
   ctrl.types = function() {
@@ -39,7 +40,7 @@ module.component('filtersComponent', {
             <div class="checkbox text-left">
               <label>
                 <input type="checkbox"
-                       ng-click="$ctrl.put(status,$ctrl.checks[status])"
+                       ng-click="$ctrl.put(type,status,$ctrl.checks[status])"
                        ng-model="$ctrl.checks[status]"/>{{status}}</label>
 
             </div>
@@ -62,20 +63,25 @@ module.factory('condFilterCache', function() {
   service = {};
   cache = {};
 
-  service.put = function(key, value) {
-    cache[key] = value;
+  service.put = function(type, status, value) {
+    cache[type] = (cache[type]) ? cache[type] : {};
+    cache[type][status] = value;
   };
 
-  service.get = function(key) {
-    return cache[key];
+  service.statuses = function(type) {
+    return cache[type];
   };
 
-  service.keys = function() {
+  service.types = function() {
     return Object.keys(cache);
   };
 
-  service.clear = function(key) {
-    return delete cache.key;
+  service.clearType = function(type) {
+    return delete cache.type;
+  };
+
+  service.clearStatus = function(type, status) {
+    return delete cache.type.status;
   };
 
   service.clearAll = function() {
