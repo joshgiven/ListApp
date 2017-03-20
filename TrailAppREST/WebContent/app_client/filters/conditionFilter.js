@@ -15,9 +15,12 @@ module.filter('conditionFilter', function(condFilterCache){
     var results = trails;
     checkedConditions.forEach(function(cSet){
       results = results.filter(function(trail) {
-        var hits = trail.recentReport.tstatuses.filter(function(x) {
-          return cSet.includes(x.name);
-        });
+        var hits = [];
+        if(trail.recentReport && trail.recentReport.tstatuses) {
+          hits = trail.recentReport.tstatuses.filter(function(x) {
+            return cSet.includes(x.name);
+          });
+        }
         return hits.length > 0;
       });
     });
