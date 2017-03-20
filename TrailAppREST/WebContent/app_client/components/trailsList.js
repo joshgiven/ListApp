@@ -11,7 +11,7 @@ var trailListController = function($location /*, conditionFilter*/) {
 
 module.component('trailsList', {
   template : `
-      <div class="trailsList">
+      <div class="trailsList container">
         <ul class="list-unstyled">
           <li ng-repeat="trail in $ctrl.trails | conditionFilter : $ctrl.filterByCondition">
             <trail-component trail="trail"

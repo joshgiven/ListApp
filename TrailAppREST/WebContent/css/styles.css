@@ -167,6 +167,10 @@
   outline:none !important;
 }
 
+.ignoreGiantMargin .btn-primary {
+	margin-top: 3px;
+}
+
 .loginForm form .btn-primary:hover, .login-clean form .btn-primary:active {
   background:#428bca;
 }
@@ -228,7 +232,10 @@
 
 
 .trailComponent .trailThumb {
-	width:150px;
+	width:     175px;
+	height:    175px;
+	max-height:175px;
+	max-width: 175px;
 }
 
 .signUp{

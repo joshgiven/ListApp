@@ -45,7 +45,7 @@ module.component('reportComponent', {
         <div class="">
           <ul class="list-inline">
             <li ng-repeat="status in $ctrl.report.tstatuses">
-              {{status.statusType }} : <span class="label label-info">{{status.name}}</span>
+              <span ng-hide="$ctrl.reportQuiet">{{status.statusType }} : </span><span class="label label-info">{{status.name}}</span>
             </li>
           </ul>
         </div>
