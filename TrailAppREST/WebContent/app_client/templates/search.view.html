@@ -1,6 +1,25 @@
 <h2>Search Form</h2>
 
 <div class="row">
+	<div class="col-md-12 well">
+	<form class="form form-inline" name="keywordForm" novalidate
+				ng-init="keywords=''">
+			<div class="form-group">
+					<label for="keywords">Keywords
+					<input class="form-control cityField"
+								 type="text" name="keywords" placeholder="keywords" required
+								 ng-model="keywords" /></label>
+					 <button class="btn btn-primary btn-lg" type="button" name="button"
+					 ng-disabled="keywordForm.$invalid"
+					 ng-click="$ctrl.keywordSearch(keywords)">Submit</button>
+			</div>
+			<div class="form-group">
+			</div>
+		</form>
+		</div>
+</div>
+
+<div class="row">
 	<form class="form" name="searchForm" novalidate
 	      ng-init="params=$ctrl.search">
 		<div class="row">

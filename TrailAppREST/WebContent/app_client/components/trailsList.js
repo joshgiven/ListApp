@@ -18,6 +18,7 @@ module.component('trailsList', {
                              show-all-reports="false"
                              report-quiet="$ctrl.reportQuiet"
                              trail-quiet="$ctrl.trailQuiet"
+                             parent="$ctrl.parent"
                              >
                              <!--ng-click="$ctrl.redirectToTrail(trail)"-->
                   Loading...
@@ -34,6 +35,7 @@ module.component('trailsList', {
     trails : '=',
     reportQuiet : '=',
     trailQuiet : '=',
-    filterByCondition: '<'
+    filterByCondition: '<',
+    parent : '='
   }
 });

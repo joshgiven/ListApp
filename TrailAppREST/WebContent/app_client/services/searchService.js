@@ -3,7 +3,8 @@ var app = angular.module('ngTrailApp');
 
 app.factory('searchService', function($http, $location, gLocatorService, errorXferService){
   var service = {};
-  var searchAPI = 'api/search/trails';
+  var searchAPI  = 'api/search/trails';
+  var keywordAPI = 'api/search/keyword';
 
   service.reqParams = function(searchObj) {
     //var obj = {name:'Boulder', state:'Colorado', radius:25};
@@ -14,6 +15,29 @@ app.factory('searchService', function($http, $location, gLocatorService, errorXf
                         .map((key) => key + "=" + searchObj[key] )
                         .join("&");
     return s;
+  };
+
+  service.findTrailsByKeyword = function(keywords){
+    if(typeof keywords === 'string')
+    keywords = [keywords];
+
+    var paramString = function(words) {
+      return '?k=' + words.map(x => x.trim().replace(/\s+/, '+'))
+                        .join('+');
+    };
+
+    var url = keywordAPI + paramString(keywords);
+
+    return $http.get(url)
+      .then(function(resp) {
+        return Object.assign([], resp.data);
+      })
+      .catch(function(resp) {
+        errorXferService.putError(
+          ['trails search by keyword error: ', resp.status, resp.statusText].join(' '));
+        $location.path('/error');
+      });
+
   };
 
   service.findTrails = function(searchObj) {

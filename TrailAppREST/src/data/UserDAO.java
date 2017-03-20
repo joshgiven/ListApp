@@ -11,5 +11,6 @@ public interface UserDAO extends EntityCrudDAO<User>{
 	
 	public Set<Trail> userFavorites(int id);
 	public Set<Trail> addUserFavorite(int tid, int uid);
+	public Set<Trail> removeUserFavorite(int tid, int uid);
 	
 }

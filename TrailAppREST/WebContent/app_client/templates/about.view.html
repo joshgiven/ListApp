@@ -1,0 +1,29 @@
+<div class="container-fluid" ng-init="subView='none'">
+  <h2>About Page</h2>
+
+  <ul class='list-inline'>
+    <li class="btn" ng-class="(subView==='theSite')?'btn-success':''" ng-click="subView='theSite'">The Site</li>
+    <li class="btn" ng-class="(subView==='theTeam')?'btn-success':''" ng-click="subView='theTeam'">The Team</li>
+    <li class="btn" ng-class="(subView==='theDisclaimer')?'btn-success':''" ng-click="subView='theDisclaimer'">TrailAPI</li>
+  </ul>
+
+  <div name="theSite" class="panel" ng-show="subView==='theSite'">
+    <h3>The Site</h3>
+    <p>words words words</p>
+  </div>
+
+  <div name="theTeam" class="panel" ng-show="subView==='theTeam'">
+    <h3>The Team</h3>
+    <ul>
+      <li>Chaz</li>
+      <li>Matt</li>
+      <li>GGeoff</li>
+      <li>Josh</li>
+    </ul>
+  </div>
+
+  <div name="theDisclaimer" class="panel" ng-show="subView==='theDisclaimer'">
+    <h3>TrailAPI</h3>
+    <p>blah blah blah</p>
+  </div>
+</div>

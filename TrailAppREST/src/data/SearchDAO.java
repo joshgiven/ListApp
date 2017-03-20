@@ -17,5 +17,7 @@ public interface SearchDAO{
 	//public List<Trail> search(String s);
 
 	public List<Trail> searchBy(String city, String state, Integer radius, Integer lengthMin, Integer lengthMax, Double lat, Double lng);
+
+	public List<Trail> searchByKeywords(List<String> keywords);
 	
 }
