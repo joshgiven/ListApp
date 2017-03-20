@@ -32,9 +32,9 @@ var filtersComponentController = function(condFilterCache, uiHelperService) {
 module.component('filtersComponent', {
 
   template : `
-    <div class="row">
-      <div class="col-md-4" ng-repeat="type in $ctrl.types()">
-        <h5>{{type}}</h5>
+	  <h4>Filters</h4>
+      <div class="col-md-4 filter" ng-repeat="type in $ctrl.types()">
+        <h5 class='capitalize'>{{type}}</h5>
         <ul class="list-unstyled">
           <li ng-repeat="status in $ctrl.statusInfo[type]">
             <div class="checkbox text-left">
@@ -47,7 +47,6 @@ module.component('filtersComponent', {
           </li>
         </ul>
       </div>
-    </div>
   `,
 
   controller : filtersComponentController,
