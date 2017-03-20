@@ -37,7 +37,7 @@ app.factory('searchService', function($http, $location, gLocatorService, errorXf
           }
         })
         .then(function(resp) {
-          console.log('trails found',resp.data);
+          //console.log('trails found',resp.data);
           return Object.assign([], resp.data);
         })
         .catch(function(resp) {
@@ -78,7 +78,7 @@ app.factory('gLocatorService', function($http, $q){
         }, 100);
       });
     }
-    
+
     var gUrl = googleSearchAPI + key;
     //console.log(gUrl);
 

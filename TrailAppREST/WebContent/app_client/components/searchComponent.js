@@ -4,7 +4,7 @@
    var ctrl = this;
 
    ctrl.getDefaultParams = function() {
-     return {state:'Colorado', radius:'5'};
+     return {state:'Colorado', radius:'10'};
    };
 
    ctrl.trails = Object.assign([], ctrl.trails);

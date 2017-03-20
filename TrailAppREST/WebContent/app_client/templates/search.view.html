@@ -57,14 +57,14 @@
 					<div class="form-group">
 						<label for="length-min">Min</label> <input
 							class="form-control" type="number" name="length-min"
-							placeholder="miles" ng-model="params.lengthMin" />
+							placeholder="miles" min="0" ng-model="params.lengthMin" />
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="length-max">Max</label> <input
 							class="form-control" type="number" name="length-max"
-							placeholder="miles" ng-model="params.lengthMax" />
+							placeholder="miles" min="0" ng-model="params.lengthMax" />
 					</div>
 				</div>
 			</div>
@@ -77,6 +77,7 @@
 				</div>
 
 			</div>
+
 		</div>
 		<div class="row">
 		<div class="col-md-12">
@@ -128,4 +129,5 @@
       </div>
     </div> -->
 	</form>
+	<!-- <filters-component>Loading Filters Component...</filters-component> -->
 </div>
