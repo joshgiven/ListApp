@@ -17,7 +17,7 @@ module.component('trailsList', {
             <trail-component trail="trail"
                              show-all-reports="false"
                              report-quiet="$ctrl.reportQuiet"
-                             trail-quiet="$ctrl.trailQuiet"
+                             trail-quiet="true"
                              parent="$ctrl.parent"
                              >
                              <!--ng-click="$ctrl.redirectToTrail(trail)"-->

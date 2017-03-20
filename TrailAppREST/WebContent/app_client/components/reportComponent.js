@@ -6,7 +6,7 @@ var reportController = function(authService) {
   ctrl.user = authService.currentUser();
 
   ctrl.owner = function(report){
-    if (ctrl.user && ctrl.user.id === report.user.id) {
+    if (ctrl.user && (ctrl.user.id === report.user.id)) {
       return true;
     }
     else return false;
