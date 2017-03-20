@@ -74,7 +74,7 @@ app.factory('authService', function($window, $http){
 
         return {
           name : payload.email,
-          id : payload.user_id
+          id : payload.user_id,
         };
       }
     };
