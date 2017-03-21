@@ -238,6 +238,13 @@
 	max-width: 175px;
 }
 
+.trailComponent .trailImage {
+	/*width:     350px;
+	height:    350px;
+	max-height:350px;
+	max-width: 350px;*/
+}
+
 .signUp{
 	margin-top:0;
 	padding-top: 0;

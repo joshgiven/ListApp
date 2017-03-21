@@ -16,7 +16,7 @@ app.factory('reportService', function($http, authService){
 };
 
 service.updateReport = function(report){
-	console.log(report)
+	//console.log(report)
   return $http({
     method : 'PUT',
     url : 'api/auth/trails/reports/'+ report.id,

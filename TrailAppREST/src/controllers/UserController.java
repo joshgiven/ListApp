@@ -81,21 +81,13 @@ public class UserController {
 	
 	@PutMapping("auth/users/trails/{tid}")
 	Set<Trail> addUserFavorite(@PathVariable int tid, HttpServletRequest req){
-		
-		System.out.println(tid);
 		int uid = (int) req.getAttribute("userId");
-		System.out.println(uid);
 		return userDAO.addUserFavorite(uid, tid);
-	
 	}
 	
 	@DeleteMapping("auth/users/trails/{tid}")
 	Set<Trail> removeUserFavorite(@PathVariable int tid, HttpServletRequest req){
-		
-		System.out.println(tid);
 		int uid = (int) req.getAttribute("userId");
-		System.out.println(uid);
 		return userDAO.removeUserFavorite(uid, tid);
-		
 	}
 }
