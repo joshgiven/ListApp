@@ -1,0 +1,59 @@
+.aboutDiv{
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+#aboutHeader {
+  text-align: center;
+}
+
+.aboutTrailUpdate {
+  padding: 20px;
+  text-align: justify;
+}
+
+.teammate {
+  display: flex;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.75);
+  flex-direction: column;
+  align-items: center;
+}
+
+.teammateHeader {
+  align-self: center;
+  text-align: center;
+}
+
+.teammateInfo {
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  justify-content:center;
+}
+
+.teammateImage {
+  align-self: left;
+  width: 250px;
+  border-radius: 2%;
+  margin-right: 20px;
+
+}
+
+.aboutContact {
+  display: flex;
+  justify-content: center;
+
+  padding: 0px;
+}
+
+.aboutContact > ul {
+  display: flex;
+  flex-direction: row;
+  margin: 0px;
+  padding: 0px;
+  list-style-type: none;
+}
+
+.aboutContactList > li {
+  margin: 5px;
+}
