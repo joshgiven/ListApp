@@ -6,7 +6,7 @@ var reportController = function(authService) {
   ctrl.user = authService.currentUser();
 
   ctrl.owner = function(report){
-    if (ctrl.user && ctrl.user.id === report.user.id) {
+    if (ctrl.user && (ctrl.user.id === report.user.id)) {
       return true;
     }
     else return false;
@@ -45,7 +45,7 @@ module.component('reportComponent', {
         <div class="">
           <ul class="list-inline">
             <li ng-repeat="status in $ctrl.report.tstatuses">
-              {{status.statusType }} : <span class="label label-info">{{status.name}}</span>
+              <span ng-hide="$ctrl.reportQuiet">{{status.statusType }} : </span><span class="label label-info">{{status.name}}</span>
             </li>
           </ul>
         </div>

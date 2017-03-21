@@ -166,6 +166,10 @@
   outline:none !important;
 }
 
+.ignoreGiantMargin .btn-primary {
+	margin-top: 3px;
+}
+
 .loginForm form .btn-primary:hover, .login-clean form .btn-primary:active {
   background:#428bca;
 }
@@ -228,7 +232,10 @@
 
 
 .trailComponent .trailThumb {
-	width:150px;
+	width:     175px;
+	height:    175px;
+	max-height:175px;
+	max-width: 175px;
 }
 
 .signUp{
@@ -258,4 +265,23 @@
 } */
 body{
 	font-family: 'Anton', sans-serif;
+}
+
+.filter{
+	background-color:transparent;
+}
+.capitalize::first-letter {
+  text-transform: uppercase;
+}
+.keywordform{
+	display: flex;
+	align-items:center;
+	width:100%;
+	flex-direction:row;
+	justify-content:center;
+	margin:10px;
+}
+.keyword{
+	margin:0px;
+	margin-left:5px;
 }

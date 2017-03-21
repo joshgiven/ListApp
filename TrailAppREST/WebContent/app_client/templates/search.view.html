@@ -1,43 +1,43 @@
 <h2>Search Form</h2>
 
-<div class="row">
-	<div class="col-md-12 well">
-	<form class="form form-inline" name="keywordForm" novalidate
-				ng-init="keywords=''">
-			<div class="form-group">
-					<label for="keywords">Keywords
-					<input class="form-control cityField"
-								 type="text" name="keywords" placeholder="keywords" required
-								 ng-model="keywords" /></label>
-					 <button class="btn btn-primary btn-lg" type="button" name="button"
-					 ng-disabled="keywordForm.$invalid"
-					 ng-click="$ctrl.keywordSearch(keywords)">Submit</button>
-			</div>
-			<div class="form-group">
+<div class="row text-center">
+	<div class="col-md-12">
+		<form class="form form-inline" name="keywordForm" novalidate
+			ng-init="keywords=''">
+			<div class="keywordform">
+				<div><label for="keywords">Keywords <input
+					class="form-control cityField" type="text" name="keywords"
+					placeholder="keywords" required ng-model="keywords" /></label></div>
+				<div><button class="btn btn-primary btn-lg keyword" type="button" name="button"
+					ng-disabled="keywordForm.$invalid"
+					ng-click="$ctrl.keywordSearch(keywords)">Submit</button></div>
 			</div>
 		</form>
-		</div>
+	</div>
 </div>
 
+
+
 <div class="row">
+
+<div class="col-md-6">
+
 	<form class="form" name="searchForm" novalidate
-	      ng-init="params=$ctrl.search">
+		ng-init="params=$ctrl.search">
 		<div class="row">
 			<div class="col-md-6 text-center">
 				<div class="form-group">
-					<label for="city">City</label>
-					<input class="form-control cityField"
-					       type="text" name="city" placeholder="city" required
-								 ng-model="params.city" />
+					<label for="city">City</label> <input
+						class="form-control cityField" type="text" name="city"
+						placeholder="city" required ng-model="params.city" />
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="state">State</label>
-						<select class="form-control" name="state" required ng-model="params.state">
-							<option ng-repeat="state in $ctrl.states"
-											value="{{state.name}}">{{state.abbr}}</option>
+						<label for="state">State</label> <select class="form-control"
+							name="state" required ng-model="params.state">
+							<option ng-repeat="state in $ctrl.states" value="{{state.name}}">{{state.abbr}}</option>
 						</select>
 						<!-- <input class="form-control"
 							type="text" name="state" placeholder="state"
@@ -51,9 +51,9 @@
 						       type="number" name="radius" placeholder="miles"
 									 ng-model="params.radius" /> -->
 						<select class="form-control pull-right" name="radius" required
-						        ng-model="params.radius" >
-							<option ng-repeat="mi in ['10','25','50','100']"
-							        value="{{mi}}">{{mi}} mi</option>
+							ng-model="params.radius">
+							<option ng-repeat="mi in ['10','25','50','100']" value="{{mi}}">{{mi}}
+								mi</option>
 						</select>
 
 					</div>
@@ -61,12 +61,12 @@
 			</div>
 		</div>
 		<div class="row">
-		<div class="col-md-6">
-		<div class="col-md-3"></div>
-		<div class="col-md-6 title">Trail Length</div>
-		<div class="col-md-3 "></div>
-		</div>
-		<div class="col-md-6"></div>
+			<div class="col-md-6">
+				<div class="col-md-3"></div>
+				<div class="col-md-6 title">Trail Length</div>
+				<div class="col-md-3 "></div>
+			</div>
+			<div class="col-md-6"></div>
 
 
 		</div>
@@ -74,40 +74,57 @@
 			<div class="col-md-6">
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="length-min">Min</label> <input
-							class="form-control" type="number" name="length-min"
-							placeholder="miles" min="0" ng-model="params.lengthMin" />
+						<label for="length-min">Min</label> <input class="form-control"
+							type="number" name="length-min" placeholder="miles" min="0"
+							ng-model="params.lengthMin" />
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="length-max">Max</label> <input
-							class="form-control" type="number" name="length-max"
-							placeholder="miles" min="0" ng-model="params.lengthMax" />
+						<label for="length-max">Max</label> <input class="form-control"
+							type="number" name="length-max" placeholder="miles" min="0"
+							ng-model="params.lengthMax" />
 					</div>
 				</div>
 			</div>
 
 			<div class="col-md-6 text-center">
 				<div class="form-group">
-					<label for="since">Updated After</label> <input class="form-control updateField"
-						type="date" name="since" placeholder="since"
-						ng-model="params.since" />
+					<label for="since">Updated After</label> <input
+						class="form-control updateField" type="date" name="since"
+						placeholder="since" ng-model="params.since" />
 				</div>
 
 			</div>
 
 		</div>
+		
+		
+		</div>
+		
+		
+		
+		
+		<div class="col-md-6">
+		
 		<div class="row">
-		<div class="col-md-12">
+			<div class="col-md-12 filter">
+				<filters-component>Loading Filters Component...</filters-component>
+			</div>
+		</div>
+		
+		</div>
+		
+		<div class="row">
+			<div class="col-md-12">
 
 				<button class="btn btn-primary btn-lg" type="button" name="button"
 					ng-click="params = $ctrl.getDefaultParams()">Clear</button>
 
 
 				<button class="btn btn-primary btn-lg" type="button" name="button"
-				        ng-disabled="searchForm.$invalid"
-				        ng-click="$ctrl.executeSearch(params)">Submit</button>
+					ng-disabled="searchForm.$invalid"
+					ng-click="$ctrl.executeSearch(params)">Submit</button>
 
 			</div>
 		</div>

@@ -33,8 +33,8 @@ var userController = function(userModel) {
 module.component('userComponent', {
   template : `
     <div class="">
-      <h3>{{$ctrl.user.firstName + ' ' + $ctrl.user.lastName}}</h3>
-      <h4>Description</h4>
+      <h3>Welcome, {{$ctrl.user.firstName}}.</h3>
+      <!-- <h4>Description</h4> -->
       <!-- <p>{{$ctrl.user.description}}</p> -->
       <h4>Favorite Trails</h4>
       <trails-list trails="$ctrl.userFavs" parent="'userview'">Loading trails...</trails-list>

@@ -5,12 +5,13 @@ var trailController = function(trailModel, userModel, authService, $location, $w
   console.log("Location: " + $location);
   ctrl.reports = [];
   ctrl.user = authService.currentUser();
+
+  if(ctrl.user){
   userModel.getUserFavs(ctrl.user)
     .then(function(resp){
       ctrl.user.userFavs = resp.data;
     });
-
-  console.log("parent " + ctrl.parent);
+  }
 
   ctrl.loadReports = function(showAll) {
     if(showAll) {
@@ -97,6 +98,7 @@ module.component('trailComponent', {
     parent: '='
   },
 
+  //templateUrl : 'app_client/templates/trail-component.view.html'
   template : `
     <div ng-show="$ctrl.user.userFavs.contains($ctrl.trail) || $ctrl.parent != 'userview'" class="trailComponent">
       <div class="panel panel-default">
@@ -114,11 +116,11 @@ module.component('trailComponent', {
                 ng-click="$ctrl.redirectToTrail($ctrl.trail)">View Trail
             </button>
             <button class="btn btn-primary btn-lg type="button"
-                ng-show="$ctrl.user.id && !$ctrl.user.userFavs.contains($ctrl.trail)"
+                ng-show="$ctrl.user && !$ctrl.user.userFavs.contains($ctrl.trail)"
                 ng-click="$ctrl.addUserFavorite($ctrl.user.id, $ctrl.trail.id)">Add Favorite
             </button>
             <button class="btn btn-primary btn-lg type="button"
-                ng-show="$ctrl.user.id && $ctrl.user.userFavs.contains($ctrl.trail)"
+                ng-show="$ctrl.user && $ctrl.user.userFavs.contains($ctrl.trail)"
                 ng-click="$ctrl.removeUserFavorite($ctrl.user.id, $ctrl.trail.id)">Remove Favorite
             </button>
 
