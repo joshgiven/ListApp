@@ -39,7 +39,8 @@
 	<button class="btn btn-primary btn-lg" ng-show="$ctrl.edit"
 		ng-click="$ctrl.updateReport(report)">Edit Report</button>
 
-	<ul class="list-unstyled">
+<div ng-show='reportForm.$invalid'>
+	<ul class="list-unstyled" >
 		<li class="loginError" ng-show="reportForm.$invalid">Required Fields Missing</li>
 		<li class="loginError"
 			ng-show="reportForm.heading.$pristine || reportForm.$error.heading.required">
@@ -57,4 +58,5 @@
 			Date/Time is Required</li>
 
 	</ul>
+	</div>
 </form>
