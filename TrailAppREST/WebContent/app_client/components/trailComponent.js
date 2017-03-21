@@ -47,8 +47,10 @@ var trailController = function(trailModel, userModel, authService, $location, $w
   };
 
   ctrl.getImageUrl = function(url) {
-    if(!url)
-      url = "http://english.tw/wp-content/themes/qaengine/img/default-thumbnail.jpg";
+    if(!url) {
+      //url = "http://english.tw/wp-content/themes/qaengine/img/default-thumbnail.jpg";
+      url = "./img/default-trail-thumb.jpg";
+    }
 
     return url;
   };
