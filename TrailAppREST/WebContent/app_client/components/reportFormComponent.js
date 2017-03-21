@@ -7,7 +7,7 @@ var reportFormController = function(reportService, $location, $window) {
     report.trail = vm.trail;
     reportService.createReport(report)
       .then(function(resp){
-        console.log(report.trail.id);
+        //console.log(report.trail.id);
         // $location.path('/trail/'+report.trail.id);
         $window.location.reload();
       })
@@ -25,21 +25,21 @@ var reportFormController = function(reportService, $location, $window) {
         console.log('Edit Report Failed');
       });
   };
-  
 
-  
+
+
   vm.getInitialReport = function(){
-	  console.log("In initial report")
+	  //console.log("In initial report")
 	  if(vm.reportInfo){
 		  vm.report = Object.assign({}, vm.reportInfo);
 		  vm.report.timestamp = new Date(vm.report.timestamp);
 	  }else{
 		  vm.report={};
-		  vm.report.tstatuses=[{},{},{}]
+		  vm.report.tstatuses=[{},{},{}];
 	  }
 	  return vm.report;
-  }
-  
+  };
+
 
 };
 
@@ -50,6 +50,6 @@ module.component('reportFormComponent', {
     trail : '=',
     reportInfo : '=',
     edit : '<'
-    	
+
   }
 });

@@ -56,7 +56,7 @@ var trailController = function(trailModel, userModel, authService, $location, $w
   ctrl.loadReports(ctrl.showAllReports);
 
   ctrl.redirectToTrail = function(toTrail) {
-    console.log(toTrail);
+    //console.log(toTrail);
     $location.path('/trail/' + toTrail.id);
   };
 
