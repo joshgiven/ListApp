@@ -14,7 +14,7 @@ module.component('reportList', {
   template : `
       <div class="reportList">
         <ul class="list-unstyled">
-          <li ng-repeat="report in $ctrl.reports track by $index">
+          <li ng-repeat="report in $ctrl.reports | orderBy:'timestamp':true track by $index">
             <report-component report="report" report-quiet="$ctrl.reportQuiet">Loading...</report-component>
           </li>
           <li ng-hide="$ctrl.reports && $ctrl.reports[0]">no reports</li>

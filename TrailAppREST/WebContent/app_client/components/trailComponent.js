@@ -1,6 +1,6 @@
 var module = angular.module('ngTrailApp');
 
-var trailController = function(trailModel, userModel, authService, $location, $window) {
+var trailController = function(trailModel, userModel, authService, $location, $window, $anchorScroll) {
   var ctrl = this;
   ctrl.reports = [];
 
@@ -72,6 +72,8 @@ var trailController = function(trailModel, userModel, authService, $location, $w
       $location.path('/login');
     }
   };
+
+  $anchorScroll();
 };
 
 Array.prototype.contains = function contains(obj) {

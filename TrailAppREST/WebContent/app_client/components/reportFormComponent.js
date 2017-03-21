@@ -35,6 +35,7 @@ var reportFormController = function(reportService, $location, $window) {
 	  }else{
 		  vm.report={};
 		  vm.report.tstatuses=[{},{},{}];
+      vm.report.timestamp=new Date();
 	  }
 	  return vm.report;
   };
