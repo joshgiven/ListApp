@@ -266,3 +266,22 @@
 body{
 	font-family: 'Anton', sans-serif;
 }
+
+.filter{
+	background-color:transparent;
+}
+.capitalize::first-letter {
+  text-transform: uppercase;
+}
+.keywordform{
+	display: flex;
+	align-items:center;
+	width:100%;
+	flex-direction:row;
+	justify-content:center;
+	margin:10px;
+}
+.keyword{
+	margin:0px;
+	margin-left:5px;
+}
