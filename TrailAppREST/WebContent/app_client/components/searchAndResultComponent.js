@@ -1,12 +1,29 @@
 var module = angular.module('ngTrailApp');
 
-var searchAndResultComponentController = function(searchXferService) {
+var searchAndResultComponentController = function(searchXferService, $location, $anchorScroll) {
   var ctrl = this;
+
+  ctrl.scrollToResults = function() {
+    //$anchorScroll('trailSearchResultList');
+
+    // $anchorScroll.disableAutoScrolling().
+    // $location.hash('trailSearchResultList');
+    // $anchorScroll();
+    // $location.hash('');
+
+  };
 
   ctrl.submitSearch = function(searchParams, trails) {
     searchXferService.putSearchParams(searchParams);
     searchXferService.putSearchTrails(trails);
+
+    ctrl.scrollToResults();
   };
+
+  if(ctrl.trails.length) {
+    ctrl.scrollToResults();
+  }
+
 };
 
 module.component('searchAndResultComponent', {
@@ -21,7 +38,7 @@ module.component('searchAndResultComponent', {
                             on-submit="$ctrl.submitSearch">
             Loading search form...
           </search-component>
-          
+
         </div>
 
         <div class="col-md-2"><!-- spacer --></div>
@@ -37,7 +54,8 @@ module.component('searchAndResultComponent', {
 
       <div class="row">
 
-        <div class="">
+        <div  class="">
+          <a id="trailSearchResultList"></a>
           <h4>Results</h4>
           <trails-list trails="$ctrl.trails"
                        report-quiet="true"

@@ -14,7 +14,12 @@
 			        ng-click="search=true;sign=false;log=false;intro=true">Search</button>
 		</div>
 	</div>
-	<p ng-hide="intro">This page is for searching trails. Blah Blah blah blah.</p>
+	<p class="welcomeIntro" ng-hide="intro">Trail Update was created in 2017 as an effort to crowd source information
+		about trail conditions, giving users the ability to search, filter, and update
+		information. While mantained by a small team of dedicated developers, it is
+		dependent on you, the user, to stay current. Enjoy the site and please, submit
+		reports often! Happy trails!
+	</p>
 	<div class="row">
 		<div ng-show="log" class="col-md-12">
 			<login-component>Loading login...</login-component>
