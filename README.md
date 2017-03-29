@@ -1,6 +1,8 @@
-# TrailApp
+# TrailApp aka Trail Update
 
-A Contributor-Based Hiking Trail Status Tracking Site
+(A Contributor-Based Hiking Trail Status Tracking Site)
+
+Trail Update was created as an effort to crowdsource information about trail conditions, giving users the ability to search, filter, and update information. 
 
 ## Try It Out!
 [demo](http://joshgiven.com:8080/TrailAppREST)
@@ -27,7 +29,7 @@ A Contributor-Based Hiking Trail Status Tracking Site
   - Duct Tape
   - Chewing Gum
 
-## The B-Team
+## The Team
 - Matt Jump [Jump-23](https://github.com/Jump-23)
 - Geoff Edwards [GGeoffEdwards](https://github.com/GGeoffEdwards)
 - Chaz Sroczynski [chazlegrand](https://github.com/chazlegrand)
